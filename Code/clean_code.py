@@ -12,6 +12,13 @@ df = pd.read_csv('https://github.com/IsaacBoyd2/ActualFactualML/blob/c55c311d66e
 
 #--------------------------------------
 
+
+#Hyper Parameters
+
+dev = 16 #standard deviation control
+balance = True #Set to true to balance datasets
+
+#--------------------------------------
 #Preprocessing
 
 bins = df['Glass Type'].unique()                                #Get all of the classes                       
@@ -29,13 +36,32 @@ training_df =  df.iloc[:, 1:len(df.columns)]
 testing_df_with_labels = df.iloc[testing_list]
 testing_df = testing_df_with_labels.iloc[: , 1:-1]
 
+#category_df = training_df[training_df['Glass Type'] == 1]
+#print(category_df.loc[random.randint(0, len(category_df)-1)])
+
+def balancing(training_df):
+
+  max_list = []
+
+  for i in bins:
+    category_df = training_df[training_df['Glass Type'] == i]
+    max_list.append(len(category_df))
+  
+  for i in bins:
+    category_df = training_df[training_df['Glass Type'] == i]
+    while len(category_df) < max(max_list):
+      #df2 = df2.append(df1.iloc[x])
+      training_df = training_df.append(category_df.iloc[random.randint(0, len(category_df)-1)])
+      category_df = training_df[training_df['Glass Type'] == i]
+      #print(len(category_df))
+
+  return training_df
+
+if balance == True:
+  balancing(training_df)
+
 #--------------------------------------
 
-#Hyper Parameters
-
-dev = 16 #standard deviation control
-
-#--------------------------------------
 
 #Model/Algorithm
 
