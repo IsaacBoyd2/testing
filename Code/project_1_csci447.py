@@ -17,6 +17,7 @@ df = pd.read_csv('https://github.com/IsaacBoyd2/ActualFactualML/blob/c55c311d66e
 bins = df['Glass Type'].unique() #May need to rename each one to be the same accross datasets. Instead of "Glass Type" maybe do "categorical".
                                   #Also we may need a binning alg if data is continuous
 
+print(bins)
 
 training_size = math.ceil(len(df)*4/5)
 #testing_size = math.floor(len(df)*1/5)
@@ -28,8 +29,9 @@ training_list = random_list[0:training_size]
 testing_list = random_list[training_size:len(df)]
 
 training_df =  df.iloc[training_list]
-testing_df = df.iloc[testing_list]
-#print(training_df)
+testing_df_with_labels = df.iloc[testing_list]
+testing_df = testing_df_with_labels.iloc[: , 1:-1]
+#print(testing_df)
 
 #random_list = random.choices(possible_values, k=len(df))
 
@@ -50,10 +52,45 @@ testing_df = df.iloc[testing_list]
 #y = 0
 #bin_number = 0
 
-C_x = []
+#print(len(testing_df.columns))
 
-for i in bins:                                                    #For the categories get a small df
-  category_df = training_df[training_df['Glass Type'] == i]         #get all of the first category
+results = []
+
+for lines in range(len(testing_df)):
+  row = testing_df.iloc[lines]
+  C_x = []
+  for i in bins:   
+    F_a_c_list = []                                                 #For the categories get a small df
+    category_df = training_df[training_df['Glass Type'] == i]         #get all of the first category
+    for count,j in enumerate(row):
+      y = 0
+      for k in category_df.iloc[:, count][0:len(category_df)]:        #loop through the category_df's rows and get a y
+        if k == j:
+          y = y + 1
+        
+      numerator = y + 1
+      denominator = len(category_df)+len(testing_df.columns)-1
+      
+      F_a_c = numerator/denominator
+      F_a_c_list.append(F_a_c)
+
+    C_x.append(np.prod(F_a_c_list)*(len(category_df)/len(df)))
+    
+  print(C_x)
+  results.append(bins[C_x.index(max(C_x))])
+
+print(results)
+#print(testing_df_with_labels[0:20])
+
+    #index = C_x.index(max(C_x))
+
+    
+      #print(denominator)
+
+    
+
+#print(C_x)
+      
 
   #now we are going to take each training peice and categorize it
 
@@ -155,4 +192,3 @@ for i in bins:                                                    #For the categ
   
 #print(Q1)
 #print(number_of_2s)
-
