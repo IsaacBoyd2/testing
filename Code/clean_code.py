@@ -1,3 +1,5 @@
+#import Pandas and Numpy
+
 import pandas as pd
 import numpy as np
 import math
@@ -12,52 +14,74 @@ df = pd.read_csv('https://github.com/IsaacBoyd2/ActualFactualML/blob/c55c311d66e
 
 #Preprocessing
 
-bins = df['Glass Type'].unique() #May need to rename each one to be the same accross datasets. Instead of "Glass Type" maybe do "categorical".
-                                  #Also we may need a binning alg if data is continuous
-print(bins)
+bins = df['Glass Type'].unique()                                #Get all of the classes                       
 
-training_size = math.ceil(len(df)*4/5)
-#testing_size = math.floor(len(df)*1/5)
-
-random_list = random.sample(range(len(df)), len(df))
+training_size = math.ceil(len(df)*4/5)                          #Split the data 80/20 by index
+random_list = random.sample(range(len(df)), len(df)) 
 
 
+#Create a list of training and testing data
 training_list = random_list[0:training_size]
 testing_list = random_list[training_size:len(df)]
 
-training_df =  df.iloc[training_list]
+#Create a testing and training dataframe from the lists
+training_df =  df.iloc[:, 1:len(df.columns)]
 testing_df_with_labels = df.iloc[testing_list]
 testing_df = testing_df_with_labels.iloc[: , 1:-1]
 
+#--------------------------------------
 
-#------------------------------------
+#Hyper Parameters
+
+dev = 16 #standard deviation control
+
+#--------------------------------------
+
+#Model/Algorithm
+
+'''
+Breif Description of model:
+Model takes in a training and testing dataframe. Each entry into the training dataframe is
+an unknown entry with several attributes. These attributes are compared to those in the training
+set and a estimation is made based on a range as to which class shares the most attributes with
+the input data.
+'''
 
 results = []
 
-for lines in range(len(testing_df)):
-  row = testing_df.iloc[lines]
-  C_x = []
-  for i in bins:   
-    F_a_c_list = []                                                 #For the categories get a small df
-    category_df = training_df[training_df['Glass Type'] == i]         #get all of the first category
-    #print(len(category_df))
-    for count,j in enumerate(row):
-      y = 0
-      for k in category_df.iloc[:, count][0:len(category_df)]:        #loop through the category_df's rows and get a y
-        if k == j:
-          y = y + 1
-        
-      numerator = y + 1
-      denominator = len(category_df)+len(testing_df.columns)-1
-      
-      F_a_c = numerator/denominator
-      F_a_c_list.append(F_a_c)
+def model(training_df, testing_df):
 
-    C_x.append(np.prod(F_a_c_list)*(len(category_df)/len(df)))
-    
-  #print(C_x)
-  results.append(bins[C_x.index(max(C_x))])
+  for lines in range(len(testing_df)):                                         #For every testing datum
+    row = testing_df.iloc[lines]                              
+    C_x = []
+    for i in bins:                                                             #For every class (so in other words every testing input will be compared to every class)
+      F_a_c_list = []                                                 
+      category_df = training_df[training_df['Glass Type'] == i]  #This splits the data into class spesific dataframes       
+      for count,j in enumerate(row):                                                                                  
+        y = 0
+        for k in category_df.iloc[:, count][0:len(category_df)]:               #For every attribute in the inputs
+          sd = np.std(category_df.iloc[:, count][0:len(category_df)])          #Compare every attribute to all other attributes in the class
+          if k < (j+(sd/16)) and k>(j-(sd/16)):                                #If the attribute is close to another attribute (withing a fration of an standard deviation) add one
+            y = y + 1
+          
+        numerator = y + 1
+        denominator = len(category_df)+len(testing_df.columns)-1               #The following computes for the similarity based on the algotrim
+                                                                               #C(x) = Q(C = ci) × d∏j=1 F (Aj = ak, C = ci)
+        F_a_c = numerator/denominator
+        F_a_c_list.append(F_a_c)
 
+      C_x.append(np.prod(F_a_c_list)*(len(category_df)/len(df)))
+
+    results.append(bins[C_x.index(max(C_x))])                                  #Append the results for future comparisons
+           
+
+
+model(training_df,testing_df)
+
+
+#--------------------------------------
+
+#Analysis (WIP)
 
 correct = 0
 for count,i in enumerate(results):
@@ -67,5 +91,6 @@ for count,i in enumerate(results):
 accuracy = correct/len(results)
 print(accuracy)
 
-#print(results)
-#print(testing_df_with_labels['Glass Type'])
+print(results)
+print(testing_df_with_labels['Glass Type'])
+
