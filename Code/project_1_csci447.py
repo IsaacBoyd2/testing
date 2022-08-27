@@ -2,6 +2,8 @@
 
 import pandas as pd
 import numpy as np
+import math
+import random
 
 #--------------------------------------
 #Bring in the data
@@ -15,26 +17,79 @@ df = pd.read_csv('https://github.com/IsaacBoyd2/ActualFactualML/blob/c55c311d66e
 bins = df['Glass Type'].unique() #May need to rename each one to be the same accross datasets. Instead of "Glass Type" maybe do "categorical".
                                   #Also we may need a binning alg if data is continuous
 
-F_Values = pd.DataFrame(index= range(len(df)), columns = range(len(bins)))
 
-print(bins)
-y = 0
-for i in bins:
-  category_df = df[df['Glass Type'] == i]
+training_size = math.ceil(len(df)*4/5)
+#testing_size = math.floor(len(df)*1/5)
+
+random_list = random.sample(range(len(df)), len(df))
+
+
+training_list = random_list[0:training_size]
+testing_list = random_list[training_size:len(df)]
+
+training_df =  df.iloc[training_list]
+testing_df = df.iloc[testing_list]
+#print(training_df)
+
+#random_list = random.choices(possible_values, k=len(df))
+
+#print(random_list)
+#print(len(random_list))
+
+#sum = training_size + testing_size
+#print(sum)
+
+
+#print(F_values)
+
+#bins2 = range(len(bins))
+
+#print(bins)
+#column_names = list(df.columns)
+#print(column_names)
+#y = 0
+#bin_number = 0
+
+C_x = []
+
+for i in bins:                                                    #For the categories get a small df
+  category_df = training_df[training_df['Glass Type'] == i]         #get all of the first category
+
+  #now we are going to take each training peice and categorize it
+
+
+
+  #training_df = 
+
+  #globals()[f"F{i}"] = pd.DataFrame(index= range(len(category_df)), columns = range(len(column_names)-1)) #make an identical dataset with 
+
   #print(category_df[1])
   #print(category_df)
-  for lines in range(len(category_df)):
+  #for lines in range(len(category_df)):                          #in each df for every row
     #print(lines)
-    row = category_df.iloc[lines]
+    #row = category_df.iloc[lines]
     #print(row)
     #print(lines)
-    for count,attributes in enumerate(row):
-      x = 0
-      y = 0
-      for k in category_df.iloc[:, count][0:len(category_df)]:
-        if k == attributes:
-          y = y + 1
-      print(y)
+    #for count,attributes in enumerate(row):                        #then for every attribute in this row
+      #x = 0
+      #y = 0
+      #for k in category_df.iloc[:, count][0:len(category_df)]:        #loop through the category_df's rows and get a y
+        #if k == attributes:
+          #y = y + 1
+      #print(count)
+      #F_values.at[lines, bin_number] = y
+      #print(bin_number)
+      #F_values[lines, bin_number] = y                        # Put that y value in the df.
+      #print(F_values)  
+      
+
+
+  #bin_number += 1
+
+#print(F_values)
+  #print('kadjhfkajshdfkahsdf')
+  #print(bin_number)
+  
         #print('hello')
 
       #print(attributes)
@@ -51,7 +106,7 @@ for i in bins:
       
       #print(x)
 
-print(y)
+#print(y)
 
     #print(attributes)
 
@@ -100,3 +155,4 @@ print(y)
   
 #print(Q1)
 #print(number_of_2s)
+
