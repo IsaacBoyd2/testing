@@ -58,7 +58,7 @@ def balancing(training_df):
   return training_df
 
 if balance == True:
-  balancing(training_df)
+  training_df = balancing(training_df)
 
 #--------------------------------------
 
