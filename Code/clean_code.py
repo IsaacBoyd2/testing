@@ -12,7 +12,7 @@ import random
 
 dev = 16 #standard deviation control                                  #May need to adjust for soybean
 balance = True #Set to true to balance datasets
-dataset = 4  #Set to dataset of choice                                #1 Breast Cancer ; #2 Glass ; #3 Iris ; #4 soybean ; #5 Voting
+dataset = 5  #Set to dataset of choice                                #1 Breast Cancer ; #2 Glass ; #3 Iris ; #4 soybean ; #5 Voting
 
 #--------------------------------------
 #Bring in the data
@@ -27,8 +27,9 @@ elif dataset == 3:
   df = pd.read_csv('https://github.com/IsaacBoyd2/ActualFactualML/blob/5def86edf4fbfd4680cb5658061188cfd76628d7/DataProject1/iris.csv?raw=true')
 elif dataset == 4:
   df = pd.read_csv('https://github.com/IsaacBoyd2/ActualFactualML/blob/eb4cfd5f3920f3038f8d543ceca68080fb5c552f/DataProject1/soybean-small.csv?raw=true')
-#elif dataset == 5:
-
+elif dataset == 5:
+  df = pd.read_csv('https://github.com/IsaacBoyd2/ActualFactualML/blob/7010ae4c3d3dc4d9cee1d68c20f20ddb01dfd30d/DataProject1/house-votes-84.csv?raw=true')
+  df = df.replace('?', 'n')
 
 #--------------------------------------
 #Preprocessing
@@ -41,7 +42,9 @@ training_size = math.ceil(len(df)*4/5)                          #Split the data 
 percentages = []
 
 
-for sdlfj in range(177):
+for dev in np.linspace(1, 30, num=291):
+
+  #print(np.linspace(1, 30, num=291))
 
   random_list = random.sample(range(len(df)), len(df)) 
 
@@ -106,9 +109,13 @@ for sdlfj in range(177):
           y = 0
           for k in category_df.iloc[:, count][0:len(category_df)]:               #For every attribute in the inputs
             #print(k)
-            sd = np.std(category_df.iloc[:, count][0:len(category_df)])          #Compare every attribute to all other attributes in the class
-            if k < (j+(sd/dev)) and k>(j-(sd/dev)):                                #If the attribute is close to another attribute (withing a fration of an standard deviation) add one
-              y = y + 1
+            if dataset != 5:
+              sd = np.std(category_df.iloc[:, count][0:len(category_df)])          #Compare every attribute to all other attributes in the class
+              if k < (j+(sd/dev)) and k>(j-(sd/dev)):                                #If the attribute is close to another attribute (withing a fration of an standard deviation) add one
+                y = y + 1
+            else:
+              if k == j:                                #If the attribute is close to another attribute (withing a fration of an standard deviation) add one
+                y = y + 1
             
           numerator = y + 1
           denominator = len(category_df)+len(testing_df.columns)-1               #The following computes for the similarity based on the algotrim
