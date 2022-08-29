@@ -1,7 +1,4 @@
-# ActualFactualML
-James Lucas and Isaac Boyd's Repo for Fall CSCI446 Project
-
-Right now:
+# ActualFactualML -- James Lucas and Isaac Boyd's Repo for Fall CSCI446 Project
 
 Clean Code = working code
 
