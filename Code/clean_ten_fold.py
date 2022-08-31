@@ -22,7 +22,7 @@ import random
 
 #Hyper Parameters
 
-dev1 = 23.68421053 #standard deviation control                                  #May need to adjust for soybean
+dev1 = 23.68421053 #standard deviation control                                  #May need to adjust for soybean #divide by percentage of sd
 dev2 = 5 #standard deviation control                                  #May need to adjust for soybean
 dev3 = 1 #standard deviation control                                  #May need to adjust for soybean
 dev4 = 0.5 #standard deviation control                                  #May need to adjust for soybean
