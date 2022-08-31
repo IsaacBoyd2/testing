@@ -6,45 +6,35 @@ import math
 import random
 
 #--------------------------------------
+#Bring in the data
+
+df = pd.read_csv('https://github.com/IsaacBoyd2/ActualFactualML/blob/c55c311d66e9dd04da9a6ee8627facdcc11e9d2a/DataProject1/glass.csv?raw=true')
+
+#--------------------------------------
 
 
 #Hyper Parameters
 
-dev = 16 #standard deviation control                                  #May need to adjust for soybean
+dev = 16 #standard deviation control
 balance = True #Set to true to balance datasets
-dataset = 5  #Set to dataset of choice                                #1 Breast Cancer ; #2 Glass ; #3 Iris ; #4 soybean ; #5 Voting
-
-#--------------------------------------
-#Bring in the data
-
-if dataset == 1:
-  df = pd.read_csv('https://github.com/IsaacBoyd2/ActualFactualML/blob/4edb8f698e2425d1e799ae4419663cca285e2e5b/DataProject1/breast-cancer-wisconsin.csv?raw=true')
-  df = df.replace('?', 0)
-  df = df.apply(pd.to_numeric)
-elif dataset == 2:
-  df = pd.read_csv('https://github.com/IsaacBoyd2/ActualFactualML/blob/59ea51ba9844a15e7afb0d8bd6b92821689fb538/DataProject1/glass.csv?raw=true')
-elif dataset == 3:
-  df = pd.read_csv('https://github.com/IsaacBoyd2/ActualFactualML/blob/5def86edf4fbfd4680cb5658061188cfd76628d7/DataProject1/iris.csv?raw=true')
-elif dataset == 4:
-  df = pd.read_csv('https://github.com/IsaacBoyd2/ActualFactualML/blob/eb4cfd5f3920f3038f8d543ceca68080fb5c552f/DataProject1/soybean-small.csv?raw=true')
-elif dataset == 5:
-  df = pd.read_csv('https://github.com/IsaacBoyd2/ActualFactualML/blob/7010ae4c3d3dc4d9cee1d68c20f20ddb01dfd30d/DataProject1/house-votes-84.csv?raw=true')
-  df = df.replace('?', 'n')
 
 #--------------------------------------
 #Preprocessing
 
+pd.set_option('display.max_rows', None)
+pd.set_option('display.max_columns', None)
+pd.set_option('display.width', None)
+pd.set_option('display.max_colwidth', -1)
 
-bins = df['Class'].unique()                                #Get all of the classes
-
-training_size = math.ceil(len(df)*4/5)                          #Split the data 80/20 by index
-
-percentages = []
+for alsdfj in range(1):
 
 
-for dev in np.linspace(1, 30, num=291):
+  bins = df['Glass Type'].unique()                                #Get all of the classes                       
 
-  #print(np.linspace(1, 30, num=291))
+  training_size = math.ceil(len(df)*9/10)                          #Split the data 80/20 by index
+
+  print(len(df))
+  print(training_size)
 
   random_list = random.sample(range(len(df)), len(df)) 
 
@@ -54,9 +44,13 @@ for dev in np.linspace(1, 30, num=291):
   testing_list = random_list[training_size:len(df)]
 
   #Create a testing and training dataframe from the lists
-  training_df =  df.iloc[:, 0:len(df.columns)]
+  training_df =  df.iloc[training_list]
   testing_df_with_labels = df.iloc[testing_list]
-  testing_df = testing_df_with_labels.iloc[: , :-1]
+  testing_df = testing_df_with_labels.iloc[: , 1:-1]
+
+  #print(training_df)
+  #print(testing_df)
+
 
   #category_df = training_df[training_df['Glass Type'] == 1]
   #print(category_df.loc[random.randint(0, len(category_df)-1)])
@@ -66,15 +60,15 @@ for dev in np.linspace(1, 30, num=291):
     max_list = []
 
     for i in bins:
-      category_df = training_df[training_df['Class'] == i]
+      category_df = training_df[training_df['Glass Type'] == i]
       max_list.append(len(category_df))
     
     for i in bins:
-      category_df = training_df[training_df['Class'] == i]
+      category_df = training_df[training_df['Glass Type'] == i]
       while len(category_df) < max(max_list):
         #df2 = df2.append(df1.iloc[x])
         training_df = training_df.append(category_df.iloc[random.randint(0, len(category_df)-1)])
-        category_df = training_df[training_df['Class'] == i]
+        category_df = training_df[training_df['Glass Type'] == i]
         #print(len(category_df))
 
     return training_df
@@ -83,6 +77,8 @@ for dev in np.linspace(1, 30, num=291):
     training_df = balancing(training_df)
 
   #--------------------------------------
+  #print(training_df)
+  #print(testing_df)
 
 
   #Model/Algorithm
@@ -99,23 +95,23 @@ for dev in np.linspace(1, 30, num=291):
 
   def model(training_df, testing_df):
 
+    #print(training_df)
+    #print(testing_df)
+
+
     for lines in range(len(testing_df)):                                         #For every testing datum
       row = testing_df.iloc[lines]                              
       C_x = []
       for i in bins:                                                             #For every class (so in other words every testing input will be compared to every class)
         F_a_c_list = []                                                 
-        category_df = training_df[training_df['Class'] == i]  #This splits the data into class spesific dataframes       
+        category_df = training_df[training_df['Glass Type'] == i]  #This splits the data into class spesific dataframes    
+        #print(len(category_df))     
         for count,j in enumerate(row):                                                                                  
           y = 0
           for k in category_df.iloc[:, count][0:len(category_df)]:               #For every attribute in the inputs
-            #print(k)
-            if dataset != 5:
-              sd = np.std(category_df.iloc[:, count][0:len(category_df)])          #Compare every attribute to all other attributes in the class
-              if k < (j+(sd/dev)) and k>(j-(sd/dev)):                                #If the attribute is close to another attribute (withing a fration of an standard deviation) add one
-                y = y + 1
-            else:
-              if k == j:                                #If the attribute is close to another attribute (withing a fration of an standard deviation) add one
-                y = y + 1
+            sd = np.std(category_df.iloc[:, count][0:len(category_df)])          #Compare every attribute to all other attributes in the class
+            if k < (j+(sd/16)) and k>(j-(sd/16)):                                #If the attribute is close to another attribute (withing a fration of an standard deviation) add one
+              y = y + 1
             
           numerator = y + 1
           denominator = len(category_df)+len(testing_df.columns)-1               #The following computes for the similarity based on the algotrim
@@ -126,23 +122,28 @@ for dev in np.linspace(1, 30, num=291):
         C_x.append(np.prod(F_a_c_list)*(len(category_df)/len(df)))
 
       results.append(bins[C_x.index(max(C_x))])                                  #Append the results for future comparisons
+            
+
 
   model(training_df,testing_df)
 
 
   #--------------------------------------
 
+  #print(training_df)
+  #print(testing_df)
+
+
   #Analysis (WIP)
 
   correct = 0
   for count,i in enumerate(results):
-    if testing_df_with_labels['Class'].iloc[count] == i:
+    if testing_df_with_labels['Glass Type'].iloc[count] == i:
       correct += 1
 
   accuracy = correct/len(results)
   print(accuracy)
 
-  print(results)
-  print(testing_df_with_labels['Class'])
-  percentages.append(accuracy)
+  #print(results)
+  #print(testing_df_with_labels['Glass Type'])
 
