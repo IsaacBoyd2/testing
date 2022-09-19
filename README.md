@@ -8,25 +8,29 @@ Project3 : ?
 
 Project4 : ?
 
-Orgainization
 
-  Data -> Data used in project
+
+-  Orgainization
+
+   a. Data -> Data used in project
   
-  Code -> Code use throughout stages of project
+   b. Code -> Code use throughout stages of project
   
-  Video -> Video of project
+   c. Video -> Video of project
   
-  Paper -> Pdf pull down of overleaf paper.
+   d. Paper -> Pdf pull down of overleaf paper.
   
-  PreliminaryFigures -> interesting or neccessary figures
+   e. PreliminaryFigures -> interesting or neccessary figures
+   
+   
     
-Todo's (In order)
+-  Todo's (In order)
 
-  1. Split up Code for Project 
+   a. Split up Code for Project 
 
-    a. Determine how to split it into classes so that it is OO
+      - Determine how to split it into classes so that it is OO
     
-  2. Get initial code completed (9/28)
+   b. Get initial code completed (9/28)
     
     
 
