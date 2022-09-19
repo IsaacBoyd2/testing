@@ -29,6 +29,7 @@ Project4 : ?
    a. Split up Code for Project 
 
       - Determine how to split it into classes so that it is OO
+      - Value Difference Method
     
    b. Get initial code completed (9/28)
     
