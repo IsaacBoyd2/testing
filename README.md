@@ -1,28 +1,23 @@
-# ActualFactualML -- James Lucas's and Isaac Boyd's Repo for Fall CSCI446 Project
+# ActualFactualML -- James Lucas's and Isaac Boyd's Repo for Fall CSCI447 Projects
 
-Clean Code = working code
+Project1 : Naive Bayes Classifier
+Project2 : K-NN
+Project3 : ?
+Project4 : ?
 
-Project1CSCI447 = commented code showing process to get to answer
+Orgainization
+  Data -> Data used in project
+  Code -> Code use throughout stages of project
+  Video -> Video of project
+  Paper -> Pdf pull down of overleaf paper.
+  PreliminaryFigures -> interesting or neccessary figures
+    
+Todo's (In order)
 
----------------------------------------------------------------------------------
+  1. Split up Code for Project 2
+    a. Determine how to split it into classes so that it is OO
+  2. Get initial code completed (9/28)
+    
+    
 
-ToDo list:
-
-#1 Implement 10-fold cross validation.
-
-#2 Do robustness experiment
-
-#3 Implement confusion matrix and get other measurements of accuracy besides accuracy
-
-#4 Start Paper
-
-#5 Start Video
-
-Questions:
-
-Should we implement a grid search for optimal hyper parameters and then graph the output on some sort of 3d image?
-
-Should we have an automatically optimizing network that finds the best hyper paramters over time using averages?
-
-What other unique things can we do besides class balance and sensitivity to tune the algorithm?
 
