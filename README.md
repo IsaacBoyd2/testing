@@ -28,10 +28,11 @@ Project4 : ?
 
    a. Split up Code for Project 
 
-      - Determine how to split it into classes so that it is OO
+      - James (Pre-processing and Regression)
+      - Isaac (Classification and Graphing)
       - Value Difference Method
-    
-   b. Get initial code completed (9/28)
+      
+        Goal : Get initial code completed (9/28)
     
     
 
