@@ -8,7 +8,7 @@ Project3 : ?
 
 Project4 : ?
 
-
+#
 
 -  Orgainization
 
@@ -22,7 +22,7 @@ Project4 : ?
   
    e. PreliminaryFigures -> interesting or neccessary figures
    
-   
+#
     
 -  Todo's (In order)
 
