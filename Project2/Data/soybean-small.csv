@@ -1,4 +1,4 @@
-Date,Pland-Stand,Precip,Temp,Hail,Crop-Hist,Area-Damaged,Severity,Seed-Tmt,Germination,Plant-Growth,Leaves,Leafspots-Halo,Leafspots-marg,Leafspots-size,Leaf-shread,leaf-malf,Leaf-mild,Stem,Lodging,Stem-Canckers,Canker-Lesion,Fruiting-Bodies,External Decay,Mycelium,Int-Discolor,Sclerotia,Fruit-Pods,Fruit Spots,Seed,Mold-Growth,Seed-Discolor,Seed-Size,Shriveling,Roots,Class
+Date,Pland-Stand,Precip,Temp,Hail,Crop-Hist,Area-Damaged,Severity,Seed-Tmt,Germination,Plant-Growth,Leaves,Leafspots-Halo,Leafspots-marg,Leafspots-size,Leaf-shread,leaf-malf,Leaf-mild,Stem,Lodging,Stem-Canckers,Canker-Lesion,Fruiting-Bodies,External-Decay,Mycelium,Int-Discolor,Sclerotia,Fruit-Pods,Fruit-Spots,Seed,Mold-Growth,Seed-Discolor,Seed-Size,Shriveling,Roots,Class
 4,0,2,1,1,1,0,1,0,2,1,1,0,2,2,0,0,0,1,0,3,1,1,1,0,0,0,0,4,0,0,0,0,0,0,D1
 5,0,2,1,0,3,1,1,1,2,1,1,0,2,2,0,0,0,1,1,3,0,1,1,0,0,0,0,4,0,0,0,0,0,0,D1
 3,0,2,1,0,2,0,2,1,1,1,1,0,2,2,0,0,0,1,0,3,0,1,1,0,0,0,0,4,0,0,0,0,0,0,D1
