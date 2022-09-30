@@ -19,6 +19,8 @@ Original file is located at
 import pandas as pd
 import requests
 
+#----Python Classes import----
+
 r = requests.get('https://github.com/IsaacBoyd2/ActualFactualML/blob/main/Project2/Code/preprocessing.py?raw=true')
 
 with open('preprocessing.py', 'w') as f:
@@ -28,5 +30,8 @@ import preprocessing as pp
 
 #------------------------Main--------------------------
 
-preProcess = pp.Preprocessing()
-preProcess.process()
+def main():
+    preProcess = pp.Preprocessing()
+    preProcess.process()
+
+main()
