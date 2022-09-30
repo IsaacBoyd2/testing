@@ -48,6 +48,3 @@ class Preprocessing:
       print("Using Forest Fires data (Regression)")
     else:
       print("That is not a valid value for picking the data set.")
-      
-preProcess = Preprocessing() 
-preProcess.process()
