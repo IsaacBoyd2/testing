@@ -2,7 +2,7 @@
 
 #Code by: Isaac Boyd, James Lucas 
 
-##Code For: Naive Bayes
+##Code For: Preprocessing
 ##Completed: 9-29-2022
 ##References: NA
 
