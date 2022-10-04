@@ -19,6 +19,7 @@ Original file is located at
 
 import pandas as pd
 import math
+import random
 
 #------------------------Class--------------------------
 class Preprocessing:
