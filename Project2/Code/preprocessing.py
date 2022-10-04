@@ -31,7 +31,7 @@ class Preprocessing:
   #method that allows the user to chose the dataset, and preprocesses that said data set.
   def process(self):
     #gets user input 
-    DataNumber = input("Enter a Number(1-6) for data selection")
+    DataNumber = input("Enter a Number(1-6) for data selection: ")
 
     if DataNumber == '1':
       df = pd.read_csv('https://github.com/IsaacBoyd2/ActualFactualML/blob/main/Project2/Data/breast-cancer-wisconsin.csv?raw=true')
