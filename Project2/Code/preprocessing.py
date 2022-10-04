@@ -72,10 +72,10 @@ class Preprocessing:
     #takes input for the number of folds (mostly 10 in this case)
     foldNumber = input("How many folds?: ")
 
-    randomList = random.sample(range(len(df)), len(df))
+    randomList = random.sample(range(len(self.df)), len(self.df))
     testingList = []
     trainingList = []
-    testingSize = len(df) - math.ceil(len(df)*(foldNumber-1)/(foldNumber))
+    testingSize = len(self.df) - math.ceil(len(self.df)*(foldNumber-1)/(foldNumber))
 
     testingList = randomList[testingSize:testingSize]
     trainingList = randomList.copy()
@@ -83,5 +83,5 @@ class Preprocessing:
     for i in testingList:
       trainingList.remove(i)
 
-    trainingDf = df.iloc[trainingList]
-    testingDf = df.iloc[testingList]
+    self.trainingDf = self.df.iloc[trainingList]
+    self.testingDf = self.df.iloc[testingList]
