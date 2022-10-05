@@ -49,28 +49,47 @@ class Preprocessing:
       df = pd.read_csv('https://github.com/IsaacBoyd2/ActualFactualML/blob/main/Project2/Data/glass.csv?raw=true')
       print("Using Glass data (Classification)")
       self.df = df
+
     elif DataNumber == '3':
       df = pd.read_csv('https://github.com/IsaacBoyd2/ActualFactualML/blob/main/Project2/Data/soybean-small.csv?raw=true')
       print("Using Soybean data (Classification)")
       self.df = df
+      
     elif DataNumber == '4':
       df = pd.read_csv("https://github.com/IsaacBoyd2/ActualFactualML/blob/main/Project2/Data/abalone.csv?raw=true")
       print("Using Abalone data (Regression)")
+
+      oneEncodeList = []
+
+      for i in range(len(df)):
+        if df.iloc[0,i] == 'M':
+          oneEncodeList.append([1,0,0])
+        elif df.iloc[0,i] == 'F':
+          oneEncodeList.append([0,1,0])
+        else:
+          oneEncodeList.append([0,0,1])
+
+      adding = pd.DataFrame(oneEncodeList, columns =['Male', 'Female', 'Other'])
+      df.join(adding)
+      df.drop('Sex')
       self.df = df
+
     elif DataNumber == '5':
       df = pd.read_csv("https://github.com/IsaacBoyd2/ActualFactualML/blob/main/Project2/Data/machine.csv?raw=true")
       print("Using Machine data (Regression)")
       self.df = df
+
     elif DataNumber == '6':
       df = pd.read_csv("https://github.com/IsaacBoyd2/ActualFactualML/blob/main/Project2/Data/forestfires.csv?raw=true")
       print("Using Forest Fires data (Regression)")
       self.df = df
+
     else:
       print("That is not a valid value for picking the data set.")
 
   def fold(self):
     #takes input for the number of folds (mostly 10 in this case)
-    foldNumber = input("How many folds?: ")
+    foldNumber = int(input("How many folds?: "))
 
     randomList = random.sample(range(len(self.df)), len(self.df))
     testingList = []
