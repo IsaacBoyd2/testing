@@ -62,6 +62,7 @@ class Preprocessing:
       oneEncodeList = []
 
       for i in range(len(df)):
+        print("loop " + str(i))
         if df.iloc[0,i] == 'M':
           oneEncodeList.append([1,0,0])
         elif df.iloc[0,i] == 'F':
