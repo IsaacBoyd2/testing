@@ -62,7 +62,6 @@ class Preprocessing:
       oneEncodeList = []
 
       for i in range(len(df)):
-        print("loop " + str(i))
         if df.iloc[0,i] == 'M':
           oneEncodeList.append([1,0,0])
         elif df.iloc[0,i] == 'F':
@@ -80,6 +79,10 @@ class Preprocessing:
     elif DataNumber == '5':
       df = pd.read_csv("https://github.com/IsaacBoyd2/ActualFactualML/blob/main/Project2/Data/machine.csv?raw=true")
       print("Using Machine data (Regression)")
+
+      df.drop('VendorName')
+      df.drop('ModelName')
+
       self.df = df
 
     elif DataNumber == '6':
@@ -91,8 +94,8 @@ class Preprocessing:
       print("That is not a valid value for picking the data set.")
 
   def fold(self):
-    #takes input for the number of folds (mostly 10 in this case)
-    foldNumber = int(input("How many folds?: "))
+    #number of folds (mostly 10 in this case)
+    foldNumber = 10
 
     randomList = random.sample(range(len(self.df)), len(self.df))
     testingList = []
