@@ -54,7 +54,7 @@ class Preprocessing:
       df = pd.read_csv('https://github.com/IsaacBoyd2/ActualFactualML/blob/main/Project2/Data/soybean-small.csv?raw=true')
       print("Using Soybean data (Classification)")
       self.df = df
-      
+
     elif DataNumber == '4':
       df = pd.read_csv("https://github.com/IsaacBoyd2/ActualFactualML/blob/main/Project2/Data/abalone.csv?raw=true")
       print("Using Abalone data (Regression)")
@@ -72,6 +72,8 @@ class Preprocessing:
       adding = pd.DataFrame(oneEncodeList, columns =['Male', 'Female', 'Other'])
       df.join(adding)
       df.drop('Sex')
+      print(adding)
+      print(df)
       self.df = df
 
     elif DataNumber == '5':
