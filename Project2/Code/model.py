@@ -6,7 +6,7 @@ from scipy import stats as st
 class Model:
 
   def __init__(self):
-    df = pd.Dataframe
+    df = pd.DataFrame
     predictions = []
     labels = []
 
