@@ -44,6 +44,7 @@ class Model:
         temp_df_T = temp_df.transpose()
         #print(temp_df_T)
         training_df_with_class = training_df_with_class.append(temp_df_T)
+        print(training_df_with_class)
         training_df_with_class = training_df_with_class.drop(columns=['ID Number'])
         #print(training_df_with_class)
 
