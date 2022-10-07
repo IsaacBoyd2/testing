@@ -10,10 +10,10 @@ class Model:
     predictions = []
     labels = []
 
-  def run(self, data):
+  def run(self, data, k_nn):
 
     #Hyper parameters
-    k_nn = 3
+    #k_nn = 3
 
     
     #first we want to talk data[1] and from it we can seperate it into its folds
