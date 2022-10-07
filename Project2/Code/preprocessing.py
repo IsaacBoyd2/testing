@@ -252,8 +252,6 @@ class Preprocessing:
 
       self.folds = foldTotal
 
-preProcess = Preprocessing()
-preProcess.process()
-preProcess.fold()
-
-print(preProcess.df)
+#preProcess = Preprocessing()
+#preProcess.process()
+#preProcess.fold()
