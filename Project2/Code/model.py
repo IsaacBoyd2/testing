@@ -39,8 +39,9 @@ class Model:
     
     for count1, i in enumerate(training_data):
       temp_df = pd.DataFrame(i)
-      print(temp_df)
-      training_df = training_df.append(temp_df)
+      temp_df_T = temp_df.transpose()
+      print(temp_df_T)
+      training_df = training_df.append(temp_df_T)
       print(training_df)
       
 
