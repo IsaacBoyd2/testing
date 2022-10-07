@@ -167,9 +167,9 @@ class Model:
       counts = 0
       for i in range(len(decision)):
         print(decision[i][0])
-        print(training_df_with_class.iloc[i, -1])
+        print(testing_df_with_class.iloc[i, -1])
         #testing_df_with_class['Rings'][i]
-        if decision[i][0] == training_df_with_class.iloc[i, -1]:
+        if decision[i][0] == testing_df_with_class.iloc[i, -1]:
           counts += 1
 
       print(counts)
