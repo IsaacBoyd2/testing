@@ -56,8 +56,8 @@ class Model:
       training_df = training_df_with_class.copy()
       training_df = training_df.drop(columns=['Class'])
       testing_df = testing_df.drop(columns=['Class'])
-      training_df = training_df.reset_index()
-      testing_df = testing_df.reset_index()
+      training_df = training_df.reset_index(inplace=True)
+      testing_df = testing_df.reset_index(inplace=True)
       #print(training_df)
         
 
@@ -95,9 +95,9 @@ class Model:
 
       for count1 in range(len(testing_df)):
           base = testing_df.iloc[count1]
-          print('hello')
-          print(base)
-          print('hello')
+          #print('hello')
+          #print(base)
+          #print('hello')
           for count2 in range(len(training_df)):
             dist1 = []
             for count3 in range(len(testing_df.columns)):
@@ -109,17 +109,17 @@ class Model:
             df_matrix.loc[count1, count2] = distance 
 
           comparison_array = np.array(df_matrix.loc[count1])
-          k = k_nn+1
+          k = k_nn
           index = np.argpartition(comparison_array, k)
           reduced_idx = index[:k]
 
           reduced_list = reduced_idx.tolist()
 
-          print(reduced_list)
-          print(count1)
+          #print(reduced_list)
+          #print(count1)
 
 
-          reduced_list.remove(count1)
+          #reduced_list.remove(count1)
 
           majority =[]
           for i in reduced_list:
