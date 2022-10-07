@@ -1,190 +1,104 @@
-{
-  "nbformat": 4,
-  "nbformat_minor": 0,
-  "metadata": {
-    "colab": {
-      "provenance": [],
-      "collapsed_sections": [],
-      "toc_visible": true,
-      "authorship_tag": "ABX9TyPm1GcTt+MWsEkVMJpAxBRS",
-      "include_colab_link": true
-    },
-    "kernelspec": {
-      "name": "python3",
-      "display_name": "Python 3"
-    },
-    "language_info": {
-      "name": "python"
-    }
-  },
-  "cells": [
-    {
-      "cell_type": "markdown",
-      "metadata": {
-        "id": "view-in-github",
-        "colab_type": "text"
-      },
-      "source": [
-        "<a href=\"https://colab.research.google.com/github/IsaacBoyd2/ActualFactualML/blob/main/Project2/Code/model.py\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
-      ]
-    },
-    {
-      "cell_type": "code",
-      "execution_count": 1,
-      "metadata": {
-        "id": "ITzg_SPn1Hmy"
-      },
-      "outputs": [],
-      "source": [
-        "#-----------------------imports-------------------------\n",
-        "import pandas as pd\n",
-        "import numpy as np\n",
-        "from scipy import stats as st\n",
-        "\n",
-        "class Model:\n",
-        "\n",
-        "  def __init__(self):\n",
-        "    df = pd.DataFrame\n",
-        "    predictions = []\n",
-        "    labels = []\n",
-        "\n",
-        "  def run(self, data):\n",
-        "\n",
-        "    #Hyper parameters\n",
-        "    k_nn = 3\n",
-        "\n",
-        "    \n",
-        "    #first we want to talk data[1] and from it we can seperate it into its folds\n",
-        "    \n",
-        "    folds = data[1]\n",
-        "\n",
-        "    #now we are going to run each fold and hold out one.\n",
-        "\n",
-        "    for iterations in range(10):\n",
-        "      all_folds = range(10)\n",
-        "      all_folds.pop(iterations)\n",
-        "\n",
-        "      testing_data = folds[iterations]\n",
-        "\n",
-        "      training_data = []\n",
-        "      print(folds)\n",
-        "      #for allof in all_folds:\n",
-        "      #  for peices in \n",
-        "\n",
-        "\n",
-        "\n",
-        "    #all_folds = range(10)\n",
-        "\n",
-        "    \n",
-        "\n",
-        "    #training = folds[1]\n",
-        "\n",
-        "\n",
-        "\n",
-        "\n",
-        "\n",
-        "    #df = pd.read_csv('https://github.com/IsaacBoyd2/ActualFactualML/blob/main/Project2/Data/glass.csv?raw=true')\n",
-        "\n",
-        "    '''df_matrix = pd.DataFrame(np.nan, index=range(len(df)), columns = range(len(df)))\n",
-        "\n",
-        "\n",
-        "    df = df.drop(0)\n",
-        "    df = df.reset_index()\n",
-        "    df2 = df.iloc[: , 2:-1]\n",
-        "\n",
-        "    decision = []\n",
-        "\n",
-        "    for count1 in range(len(df2)):\n",
-        "        base = df2.iloc[count1]\n",
-        "        for count2 in range(len(df2)):\n",
-        "          dist1 = []\n",
-        "          for count3 in range(len(df2.columns)):\n",
-        "            dist1.append((base[count3] - df2.iloc[count2][count3])**2)\n",
-        "          \n",
-        "          summation = sum(dist1)\n",
-        "          distance = np.sqrt(summation)\n",
-        "\n",
-        "          df_matrix.loc[count1, count2] = distance \n",
-        "\n",
-        "        comparison_array = np.array(df_matrix.loc[count1])\n",
-        "        k = k_nn+1\n",
-        "        index = np.argpartition(comparison_array, k)\n",
-        "        reduced_idx = index[:k]\n",
-        "\n",
-        "        reduced_list = reduced_idx.tolist()\n",
-        "\n",
-        "        reduced_list.remove(count1)\n",
-        "\n",
-        "        majority =[]\n",
-        "        for i in reduced_list:\n",
-        "          #print(df['Class'][i])\n",
-        "          majority.append(df['Class'][i])\n",
-        "\n",
-        "        class_decision = st.mode(majority)\n",
-        "        \n",
-        "\n",
-        "        #print(class_decision[0])\n",
-        "        decision.append(class_decision)\n",
-        "\n",
-        "    counts = 0\n",
-        "    for i in range(len(decision)):\n",
-        "      #print(decision[i][0])\n",
-        "      #print(df['Class'][i])\n",
-        "      if decision[i][0] == df['Class'][i]:\n",
-        "        counts += 1\n",
-        "\n",
-        "    print(counts)\n",
-        "    print(counts/len(df))\n",
-        "\n",
-        "\n",
-        "    return [self.tuning, self.labels]'''\n",
-        "  "
-      ]
-    },
-    {
-      "cell_type": "code",
-      "source": [
-        "#class_decision[i][0]\n",
-        "#df['Class'][i]\n",
-        "\n",
-        "#b = np.delete(reduced_idx, count1)\n",
-        "\n",
-        "    #reduced_idx = reduced_idx.delete(count1)\n",
-        "\n",
-        "\n",
-        "\n",
-        "\n",
-        "\n",
-        "      #df_editted = df.drop(count1)\n",
-        "      #df_editted = df_editted.drop(0)\n",
-        "      #df_editted = df_editted.reset_index()\n",
-        "      #for count2 in range(len(df_editted)):\n",
-        "        \n",
-        "        #for count3 in range(len(df.columns)):\n",
-        "          #dist1.append((base[count3] - df_editted.iloc[count2][count3])**2)\n",
-        "        #summation = sum(dist1)\n",
-        "        #distance = np.sqrt(summation)\n",
-        "        \n",
-        "        #df_matrix.loc[count1, count2] = distance\n",
-        "\n",
-        "    #comparison_array = np.array(df_matrix.loc[count1])\n",
-        "    #print(comparison_array)\n",
-        "    #k = 3\n",
-        "    #idx = np.argpartition(comparison_array, k)\n",
-        "    #print(idx[:k])\n",
-        "\n",
-        "#df_matrix\n",
-        "\n",
-        "#base = df2.iloc[0][0]\n",
-        "#base\n",
-        "#df2 = df.iloc[: , 2:-1]\n",
-        "#df2"
-      ],
-      "metadata": {
-        "id": "qacQqwyCzAsh"
-      },
-      "execution_count": null,
-      "outputs": []
-    }
-  ]
-}
+#-----------------------imports-------------------------
+import pandas as pd
+import numpy as np
+from scipy import stats as st
+
+class Model:
+
+  def __init__(self):
+    df = pd.DataFrame
+    predictions = []
+    labels = []
+
+  def run(self, data):
+
+    #Hyper parameters
+    k_nn = 3
+
+    
+    #first we want to talk data[1] and from it we can seperate it into its folds
+    
+    folds = data[1]
+
+    #now we are going to run each fold and hold out one.
+
+    for iterations in range(10):
+      all_folds = [0,1,2,3,4,5,6,7,8,9]
+      all_folds.pop(iterations)
+
+      testing_data = folds[iterations]
+
+      training_data = []
+      print(folds)
+      print(testing_data)
+      #for allof in all_folds:
+      #  for peices in 
+
+
+
+    #all_folds = range(10)
+
+    
+
+    #training = folds[1]
+
+
+
+
+
+    #df = pd.read_csv('https://github.com/IsaacBoyd2/ActualFactualML/blob/main/Project2/Data/glass.csv?raw=true')
+
+    '''df_matrix = pd.DataFrame(np.nan, index=range(len(df)), columns = range(len(df)))
+
+
+    df = df.drop(0)
+    df = df.reset_index()
+    df2 = df.iloc[: , 2:-1]
+
+    decision = []
+
+    for count1 in range(len(df2)):
+        base = df2.iloc[count1]
+        for count2 in range(len(df2)):
+          dist1 = []
+          for count3 in range(len(df2.columns)):
+            dist1.append((base[count3] - df2.iloc[count2][count3])**2)
+          
+          summation = sum(dist1)
+          distance = np.sqrt(summation)
+
+          df_matrix.loc[count1, count2] = distance 
+
+        comparison_array = np.array(df_matrix.loc[count1])
+        k = k_nn+1
+        index = np.argpartition(comparison_array, k)
+        reduced_idx = index[:k]
+
+        reduced_list = reduced_idx.tolist()
+
+        reduced_list.remove(count1)
+
+        majority =[]
+        for i in reduced_list:
+          #print(df['Class'][i])
+          majority.append(df['Class'][i])
+
+        class_decision = st.mode(majority)
+        
+
+        #print(class_decision[0])
+        decision.append(class_decision)
+
+    counts = 0
+    for i in range(len(decision)):
+      #print(decision[i][0])
+      #print(df['Class'][i])
+      if decision[i][0] == df['Class'][i]:
+        counts += 1
+
+    print(counts)
+    print(counts/len(df))
+
+
+    return [self.tuning, self.labels]'''
+  
