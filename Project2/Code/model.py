@@ -58,7 +58,7 @@ class Model:
       testing_df = testing_df.drop(columns=['Class'])
       training_df = training_df.reset_index(inplace=True)
       testing_df = testing_df.reset_index(inplace=True)
-      #print(training_df)
+      print(training_df)
         
 
       #for count2, ii in enumerate(testing_data):
