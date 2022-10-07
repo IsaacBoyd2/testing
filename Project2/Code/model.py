@@ -154,6 +154,7 @@ class Model:
       print(counts/len(testing_df_with_class))
 
       accuracies.append(counts/len(testing_df_with_class))
+      print('hello')
     print(accuracies)
 
       #return [self.tuning, self.labels]
