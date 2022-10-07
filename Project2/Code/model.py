@@ -39,7 +39,7 @@ class Model:
     
     for count1, i in enumerate(training_data):
       temp_df = pd.DataFrame(i)
-      training_df.append(temp_df)
+      training_df = training_df.concat(temp_df)
       
 
     #for count2, ii in enumerate(testing_data):
@@ -118,5 +118,4 @@ class Model:
 
 
     return [self.tuning, self.labels]'''
-  
   
