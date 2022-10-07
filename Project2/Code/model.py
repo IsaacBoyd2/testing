@@ -33,9 +33,19 @@ class Model:
         for contents in folds[other_folds]:
           training_data.append(contents)
 
+    training_df = pd.DataFrame(np.nan, index=range(len(training_data)), columns = range(len(training_data)))
+
+    testing_df = pd.DataFrame(np.nan, index=range(len(testing_data)), columns = range(len(testing_data)))
+    
+    for i in training_data:
+      training_df.append()
+
+    for i in testing_data:
+      testing_df.append()
+
     #print(folds)
-    print(testing_data)
-    print(training_data)
+    print(training_df)
+    print(testing_df)
       #for allof in all_folds:
       #  for peices in 
 
