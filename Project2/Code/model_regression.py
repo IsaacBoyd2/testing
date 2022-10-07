@@ -126,17 +126,22 @@ class Model:
 
         #reduced_list.remove(count1)
 
-        majority =[]
+
+        desicion_list = []
         for i in reduced_list:
+          desicion_list.append(df['Rings'][i])
+
+        #majority =[]
+        #for i in reduced_list:
           #print(df['Class'][i])
-          majority.append(training_df_with_class['Rings'][i])
+          #majority.append(training_df_with_class['Rings'][i])
           #print(training_df_with_class['Class'][i])
 
-        class_decision = st.mode(majority)
+        #class_decision = st.mode(majority)
         
 
         #print(class_decision[0])
-        decision.append(class_decision)
+        #decision.append(class_decision)
 
 
         denominator = []
