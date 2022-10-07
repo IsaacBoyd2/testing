@@ -37,11 +37,11 @@ class Model:
 
     testing_df = pd.DataFrame(np.nan, index=range(len(testing_data)), columns = range(len(testing_data)))
     
-    for i in training_data:
-      training_df.append()
+    for count1, i in training_data:
+      training_df.iloc[count1] = i
 
-    for i in testing_data:
-      testing_df.append()
+    for count2, ii in testing_data:
+      testing_df.iloc[count2] = ii
 
     #print(folds)
     print(training_df)
