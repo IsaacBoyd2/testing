@@ -44,7 +44,7 @@ class Model:
         temp_df_T = temp_df.transpose()
         #print(temp_df_T)
         training_df_with_class = training_df_with_class.append(temp_df_T)
-        print(training_df_with_class)
+        #print(training_df_with_class)
         #training_df_with_class = training_df_with_class.drop(columns=['ID Number'])
         #print(training_df_with_class)
 
@@ -129,7 +129,7 @@ class Model:
 
         desicion_list = []
         for i in reduced_list:
-          desicion_list.append(df['Rings'][i])
+          desicion_list.append(raining_df_with_class['Rings'][i])
 
         #majority =[]
         #for i in reduced_list:
