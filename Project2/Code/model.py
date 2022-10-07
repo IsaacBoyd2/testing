@@ -53,7 +53,7 @@ class Model:
         testing_df = testing_df.drop(columns=['ID Number'])
         print(testing_df)
 
-      training_df = training_df_with_class.copy
+      training_df = training_df_with_class.copy()
       training_df = training_df.drop(columns=['Class'])
       testing_df = testing_df.drop(columns=['Class'])
       print(training_df)
