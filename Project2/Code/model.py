@@ -84,13 +84,7 @@ class Model:
 
       #all_folds = range(10)
 
-      
-
       #training = folds[1]
-
-
-
-
 
       #df = pd.read_csv('https://github.com/IsaacBoyd2/ActualFactualML/blob/main/Project2/Data/glass.csv?raw=true')
 
