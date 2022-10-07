@@ -22,6 +22,8 @@ class Model:
 
     #now we are going to run each fold and hold out one.
 
+    accuracies = []
+
     for iterations in range(10):
       all_folds = [0,1,2,3,4,5,6,7,8,9]
       all_folds.pop(iterations)
@@ -155,6 +157,8 @@ class Model:
       print(counts)
       print(counts/len(testing_df_with_class))
 
+      accuracies.append(counts/len(testing_df_with_class))
+    print(accuracies)
 
       #return [self.tuning, self.labels]
   
