@@ -150,5 +150,5 @@ class Model:
       print(counts/len(training_df_with_class))
 
 
-      return [self.tuning, self.labels]
+      #return [self.tuning, self.labels]
   
