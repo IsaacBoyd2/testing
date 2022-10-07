@@ -58,8 +58,11 @@ class Model:
 
       training_df = training_df_with_class.copy()
       testing_df = testing_df_with_class.copy()
-      training_df = training_df.drop(columns=['Rings'])
-      testing_df = testing_df.drop(columns=['Rings'])
+
+      training_df = training_df.iloc[: , :-1]
+      testing_df = training_df.iloc[: , :-1]
+      #training_df = training_df.drop(columns=['Rings'])
+      #testing_df = testing_df.drop(columns=['Rings'])
       training_df = training_df.reset_index()
       testing_df = testing_df.reset_index()
       training_df_with_class = training_df_with_class.reset_index()
@@ -129,7 +132,10 @@ class Model:
 
         desicion_list = []
         for i in reduced_list:
-          desicion_list.append(training_df_with_class['Rings'][i])
+
+          #last_column = df.iloc[: , -1]
+          #desicion_list.append(training_df_with_class['Rings'][i])
+          desicion_list.append(training_df_with_class.iloc[i, -1])
 
         #majority =[]
         #for i in reduced_list:
@@ -161,8 +167,9 @@ class Model:
       counts = 0
       for i in range(len(decision)):
         print(decision[i][0])
-        print(testing_df_with_class['Rings'][i])
-        if decision[i][0] == testing_df_with_class['Rings'][i]:
+        print(training_df_with_class.iloc[i, -1])
+        #testing_df_with_class['Rings'][i]
+        if decision[i][0] == training_df_with_class.iloc[i, -1]:
           counts += 1
 
       print(counts)
