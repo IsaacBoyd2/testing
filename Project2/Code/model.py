@@ -37,28 +37,28 @@ class Model:
 
       testing_df = pd.DataFrame()
       
-      for count1, i in enumerate(training_data):
+      for i in training_data:
         temp_df = pd.DataFrame(i)
         temp_df_T = temp_df.transpose()
-        print(temp_df_T)
+        #print(temp_df_T)
         training_df_with_class = training_df_with_class.append(temp_df_T)
         training_df_with_class = training_df_with_class.drop(columns=['ID Number'])
-        print(training_df_with_class)
+        #print(training_df_with_class)
 
-      for count1, i in enumerate(testing_data):
-        temp_df = pd.DataFrame(i)
+      for ii in testing_data:
+        temp_df = pd.DataFrame(ii)
         temp_df_T = temp_df.transpose()
-        print(temp_df_T)
+        #print(temp_df_T)
         testing_df = testing_df.append(temp_df_T)
         testing_df = testing_df.drop(columns=['ID Number'])
-        print(testing_df)
+        #print(testing_df)
 
       training_df = training_df_with_class.copy()
       training_df = training_df.drop(columns=['Class'])
       testing_df = testing_df.drop(columns=['Class'])
       training_df = training_df.reset_index()
       testing_df = testing_df.reset_index()
-      print(training_df)
+      #print(training_df)
         
 
       #for count2, ii in enumerate(testing_data):
@@ -111,6 +111,10 @@ class Model:
           reduced_idx = index[:k]
 
           reduced_list = reduced_idx.tolist()
+
+          print(reduced_list)
+          print(count1)
+
 
           reduced_list.remove(count1)
 
