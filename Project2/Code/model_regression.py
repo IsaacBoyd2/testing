@@ -60,7 +60,7 @@ class Model:
       testing_df = testing_df_with_class.copy()
 
       training_df = training_df.iloc[: , :-1]
-      testing_df = training_df.iloc[: , :-1]
+      testing_df = testing_df.iloc[: , :-1]
       #training_df = training_df.drop(columns=['Rings'])
       #testing_df = testing_df.drop(columns=['Rings'])
       training_df = training_df.reset_index()
