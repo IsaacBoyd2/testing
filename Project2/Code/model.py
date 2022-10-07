@@ -144,8 +144,11 @@ class Model:
 
 
       counts = 0
+
+      print(range(len(decision)))
       for i in range(len(decision)):
         print(decision[i][0])
+        print(i)
         print(testing_df_with_class.iloc[i, -1])
         if decision[i][0] == testing_df_with_class.iloc[i, -1]:
           counts += 1
