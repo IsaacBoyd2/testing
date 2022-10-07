@@ -58,10 +58,13 @@ class Model:
       testing_df = testing_df.drop(columns=['Class'])
       training_df = training_df.reset_index()
       testing_df = testing_df.reset_index()
+      training_df_with_class = training_df_with_class.reset_index()
       training_df = training_df.drop(columns=['index'])
       testing_df = testing_df.drop(columns=['index'])
+      #training_df_with_class = training_df_with_class.drop(columns=['ID Number'])
       
       print(training_df)
+      print(training_df_with_class)
         
 
       #for count2, ii in enumerate(testing_data):
