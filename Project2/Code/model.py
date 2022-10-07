@@ -33,15 +33,17 @@ class Model:
         for contents in folds[other_folds]:
           training_data.append(contents)
 
-    training_df = pd.DataFrame(np.nan, index=range(len(training_data[0])), columns = range(len(training_data)))
+    training_df = pd.DataFrame()
 
-    testing_df = pd.DataFrame(np.nan, index=range(len(testing_data[0])), columns = range(len(testing_data)))
+    testing_df = pd.DataFrame()
     
     for count1, i in enumerate(training_data):
-      training_df.iloc[count1] = i
+      temp_df = pd.DataFrame(i)
+      training_df.append(temp_df)
+      
 
-    for count2, ii in enumerate(testing_data):
-      testing_df.iloc[count2] = ii
+    #for count2, ii in enumerate(testing_data):
+     # testing_df.iloc[count2] = ii
 
     #print(folds)
     print(training_df)
@@ -116,4 +118,5 @@ class Model:
 
 
     return [self.tuning, self.labels]'''
+  
   
