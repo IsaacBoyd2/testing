@@ -49,16 +49,18 @@ class Model:
         temp_df = pd.DataFrame(ii)
         temp_df_T = temp_df.transpose()
         #print(temp_df_T)
-        testing_df = testing_df.append(temp_df_T)
-        testing_df = testing_df.drop(columns=['ID Number'])
+        testing_df_with_class = testing_df_with_class.append(temp_df_T)
+        testing_df_with_class = testing_df_with_class.drop(columns=['ID Number'])
         #print(testing_df)
 
       training_df = training_df_with_class.copy()
+      testing_df = testing_df_with_class.copy()
       training_df = training_df.drop(columns=['Class'])
       testing_df = testing_df.drop(columns=['Class'])
       training_df = training_df.reset_index()
       testing_df = testing_df.reset_index()
       training_df_with_class = training_df_with_class.reset_index()
+      testing_df_with_class = testing_df_with_class.reset_index()
       training_df = training_df.drop(columns=['index'])
       testing_df = testing_df.drop(columns=['index'])
       #training_df_with_class = training_df_with_class.drop(columns=['ID Number'])
@@ -146,12 +148,12 @@ class Model:
       counts = 0
       for i in range(len(decision)):
         print(decision[i][0])
-        print(training_df_with_class['Class'][i])
-        if decision[i][0] == training_df_with_class['Class'][i]:
+        print(testing_df_with_class['Class'][i])
+        if decision[i][0] == testing_df_with_class['Class'][i]:
           counts += 1
 
       print(counts)
-      print(counts/len(training_df_with_class))
+      print(counts/len(testing_df_with_class))
 
 
       #return [self.tuning, self.labels]
