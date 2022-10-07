@@ -56,9 +56,9 @@ class Model:
       training_df = training_df_with_class.copy()
       training_df = training_df.drop(columns=['Class'])
       testing_df = testing_df.drop(columns=['Class'])
-      training_df = training_df.reset_index()#inplace=True)
-      testing_df = testing_df.reset_index()#inplace=True)
-      print(training_df)
+      training_df = training_df.reset_index()
+      testing_df = testing_df.reset_index()
+      #print(training_df)
         
 
       #for count2, ii in enumerate(testing_data):
@@ -95,9 +95,9 @@ class Model:
 
       for count1 in range(len(testing_df)):
           base = testing_df.iloc[count1]
-          #print('hello')
-          #print(base)
-          #print('hello')
+          print('hello')
+          print(base)
+          print('hello')
           for count2 in range(len(training_df)):
             dist1 = []
             for count3 in range(len(testing_df.columns)):
@@ -115,8 +115,8 @@ class Model:
 
           reduced_list = reduced_idx.tolist()
 
-          #print(reduced_list)
-          #print(count1)
+          print(reduced_list)
+          print(count1)
 
 
           #reduced_list.remove(count1)
