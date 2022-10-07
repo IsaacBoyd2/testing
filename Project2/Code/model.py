@@ -56,6 +56,8 @@ class Model:
       training_df = training_df_with_class.copy()
       training_df = training_df.drop(columns=['Class'])
       testing_df = testing_df.drop(columns=['Class'])
+      training_df = training_df.reset_index()
+      testing_df = testing_df.reset_index()
       print(training_df)
         
 
