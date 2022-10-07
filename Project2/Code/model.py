@@ -65,8 +65,8 @@ class Model:
       # testing_df.iloc[count2] = ii
 
       #print(folds)
-      print(training_df)
-      print(testing_df)
+      #print(training_df)
+      #print(testing_df)
         #for allof in all_folds:
         #  for peices in 
 
@@ -95,7 +95,9 @@ class Model:
 
       for count1 in range(len(testing_df)):
           base = testing_df.iloc[count1]
+          print('hello')
           print(base)
+          print('hello')
           for count2 in range(len(training_df)):
             dist1 = []
             for count3 in range(len(testing_df.columns)):
