@@ -35,7 +35,7 @@ class Model:
 
       training_df_with_class = pd.DataFrame()
 
-      testing_df = pd.DataFrame()
+      testing_df_with_class = pd.DataFrame()
       
       for i in training_data:
         temp_df = pd.DataFrame(i)
