@@ -45,7 +45,7 @@ class Model:
         #print(temp_df_T)
         training_df_with_class = training_df_with_class.append(temp_df_T)
         print(training_df_with_class)
-        training_df_with_class = training_df_with_class.drop(columns=['ID Number'])
+        #training_df_with_class = training_df_with_class.drop(columns=['ID Number'])
         #print(training_df_with_class)
 
       for ii in testing_data:
@@ -53,13 +53,13 @@ class Model:
         temp_df_T = temp_df.transpose()
         #print(temp_df_T)
         testing_df_with_class = testing_df_with_class.append(temp_df_T)
-        testing_df_with_class = testing_df_with_class.drop(columns=['ID Number'])
+        #testing_df_with_class = testing_df_with_class.drop(columns=['ID Number'])
         #print(testing_df)
 
       training_df = training_df_with_class.copy()
       testing_df = testing_df_with_class.copy()
-      training_df = training_df.drop(columns=['Class'])
-      testing_df = testing_df.drop(columns=['Class'])
+      training_df = training_df.drop(columns=['Rings'])
+      testing_df = testing_df.drop(columns=['Rings'])
       training_df = training_df.reset_index()
       testing_df = testing_df.reset_index()
       training_df_with_class = training_df_with_class.reset_index()
@@ -129,7 +129,7 @@ class Model:
         majority =[]
         for i in reduced_list:
           #print(df['Class'][i])
-          majority.append(training_df_with_class['Class'][i])
+          majority.append(training_df_with_class['Rings'][i])
           #print(training_df_with_class['Class'][i])
 
         class_decision = st.mode(majority)
@@ -156,8 +156,8 @@ class Model:
       counts = 0
       for i in range(len(decision)):
         print(decision[i][0])
-        print(testing_df_with_class['Class'][i])
-        if decision[i][0] == testing_df_with_class['Class'][i]:
+        print(testing_df_with_class['Rings'][i])
+        if decision[i][0] == testing_df_with_class['Rings'][i]:
           counts += 1
 
       print(counts)
