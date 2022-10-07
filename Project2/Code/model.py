@@ -58,7 +58,10 @@ class Model:
       testing_df = testing_df.drop(columns=['Class'])
       training_df = training_df.reset_index()
       testing_df = testing_df.reset_index()
-      #print(training_df)
+      training_df = training_df.drop(columns=['index'])
+      testing_df = testing_df.drop(columns=['index'])
+      
+      print(training_df)
         
 
       #for count2, ii in enumerate(testing_data):
@@ -125,6 +128,7 @@ class Model:
           for i in reduced_list:
             #print(df['Class'][i])
             majority.append(training_df_with_class['Class'][i])
+            #print(training_df_with_class['Class'][i])
 
           class_decision = st.mode(majority)
           
