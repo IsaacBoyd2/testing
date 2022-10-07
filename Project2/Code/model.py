@@ -39,7 +39,7 @@ class Model:
     
     for count1, i in enumerate(training_data):
       temp_df = pd.DataFrame(i)
-      training_df = training_df.concat(temp_df)
+      training_df = pd.concat([training_df, temp_df])
       
 
     #for count2, ii in enumerate(testing_data):
