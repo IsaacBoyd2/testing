@@ -33,9 +33,9 @@ class Model:
         for contents in folds[other_folds]:
           training_data.append(contents)
 
-    training_df = pd.DataFrame(np.nan, index=range(len(training_data)), columns = range(len(training_data)))
+    training_df = pd.DataFrame(np.nan, index=range(len(training_data[0])), columns = range(len(training_data)))
 
-    testing_df = pd.DataFrame(np.nan, index=range(len(testing_data)), columns = range(len(testing_data)))
+    testing_df = pd.DataFrame(np.nan, index=range(len(testing_data[0])), columns = range(len(testing_data)))
     
     for count1, i in enumerate(training_data):
       training_df.iloc[count1] = i
