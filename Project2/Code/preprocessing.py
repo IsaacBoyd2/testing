@@ -104,6 +104,8 @@ class Preprocessing:
     else:
       print("That is not a valid value for picking the data set.")
 
+    #return self.df
+
   #function used to make the tuning fold, and 'foldNumber' amount of folds
   def fold(self):
     #number of folds (mostly 10 in this case)
@@ -200,6 +202,8 @@ class Preprocessing:
 
       self.folds = foldTotal
 
+      return [self.tuning,self.folds]
+
 
     #regression
     else:
@@ -236,3 +240,8 @@ class Preprocessing:
         foldTotal.append(fold)
 
       self.folds = foldTotal
+
+      return [self.tuning,self.folds]
+#preProcess = Preprocessing()
+#preProcess.process()
+#preProcess.fold()
