@@ -63,8 +63,8 @@ class Model:
       testing_df = testing_df.drop(columns=['index'])
       #training_df_with_class = training_df_with_class.drop(columns=['ID Number'])
       
-      print(training_df)
-      print(training_df_with_class)
+      #print(training_df)
+      #print(training_df_with_class)
         
 
       #for count2, ii in enumerate(testing_data):
@@ -101,9 +101,9 @@ class Model:
 
       for count1 in range(len(testing_df)):
           base = testing_df.iloc[count1]
-          print('hello')
-          print(base)
-          print('hello')
+          #rint('hello')
+          #print(base)
+          #print('hello')
           for count2 in range(len(training_df)):
             dist1 = []
             for count3 in range(len(testing_df.columns)):
@@ -121,8 +121,8 @@ class Model:
 
           reduced_list = reduced_idx.tolist()
 
-          print(reduced_list)
-          print(count1)
+          #print(reduced_list)
+          #print(count1)
 
 
           #reduced_list.remove(count1)
@@ -139,10 +139,14 @@ class Model:
           #print(class_decision[0])
           decision.append(class_decision)
 
+
+
+
+
       counts = 0
       for i in range(len(decision)):
-        #print(decision[i][0])
-        #print(df['Class'][i])
+        print(decision[i][0])
+        print(training_df_with_class['Class'][i])
         if decision[i][0] == training_df_with_class['Class'][i]:
           counts += 1
 
