@@ -95,6 +95,7 @@ class Model:
 
       for count1 in range(len(testing_df)):
           base = testing_df.iloc[count1]
+          print(base)
           for count2 in range(len(training_df)):
             dist1 = []
             for count3 in range(len(testing_df.columns)):
