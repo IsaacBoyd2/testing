@@ -39,7 +39,9 @@ class Model:
     
     for count1, i in enumerate(training_data):
       temp_df = pd.DataFrame(i)
+      print(temp_df)
       training_df = training_df.append(temp_df)
+      print(training_df)
       
 
     #for count2, ii in enumerate(testing_data):
