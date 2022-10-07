@@ -43,7 +43,7 @@ class Model:
         print(temp_df_T)
         training_df_with_class = training_df_with_class.append(temp_df_T)
         training_df_with_class = training_df_with_class.drop(columns=['ID Number'])
-        print(training_df)
+        print(training_df_with_class)
 
       for count1, i in enumerate(testing_data):
         temp_df = pd.DataFrame(i)
@@ -51,11 +51,12 @@ class Model:
         print(temp_df_T)
         testing_df = testing_df.append(temp_df_T)
         testing_df = testing_df.drop(columns=['ID Number'])
-        print(training_df)
+        print(testing_df)
 
       training_df = training_df_with_class.copy
       training_df = training_df.drop(columns=['Class'])
       testing_df = testing_df.drop(columns=['Class'])
+      print(training_df)
         
 
       #for count2, ii in enumerate(testing_data):
