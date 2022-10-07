@@ -29,8 +29,13 @@ class Model:
       testing_data = folds[iterations]
 
       training_data = []
-      print(folds)
-      print(testing_data)
+      for other_folds in all_folds:
+        for contents in folds[other_folds]:
+          training_data.append(contents)
+
+    #print(folds)
+    print(testing_data)
+    print(training_data)
       #for allof in all_folds:
       #  for peices in 
 
