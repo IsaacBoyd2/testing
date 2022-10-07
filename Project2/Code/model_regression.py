@@ -129,7 +129,7 @@ class Model:
 
         desicion_list = []
         for i in reduced_list:
-          desicion_list.append(raining_df_with_class['Rings'][i])
+          desicion_list.append(training_df_with_class['Rings'][i])
 
         #majority =[]
         #for i in reduced_list:
