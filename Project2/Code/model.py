@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 from scipy import stats as st
 
-class model:
+class Model:
 
   def __init__(self):
     df = pd.Dataframe
