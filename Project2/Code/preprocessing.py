@@ -12,7 +12,7 @@ Original file is located at
 #Code by: Isaac Boyd, James Lucas 
 
 ##Code For: Preprocessing
-##Completed: 9-29-2022
+##Completed: 10-6-2022
 ##References: NA
 
 #-----------------------imports-------------------------
@@ -80,6 +80,10 @@ class Preprocessing:
       df = df.join(adding)
       df.drop(columns=["Sex"], inplace = True)
       df = df.sort_values(by=['Rings'])
+
+      classColumn = df.pop("Rings")
+
+      df.insert(len(df.columns), "Rings", classColumn)
 
       self.value = 1
       self.df = df
@@ -211,8 +215,6 @@ class Preprocessing:
 
       self.folds = foldTotal
 
-      return [self.tuning,self.folds]
-
 
     #regression
     else:
@@ -250,7 +252,8 @@ class Preprocessing:
 
       self.folds = foldTotal
 
-      return [self.tuning,self.folds]
-#preProcess = Preprocessing()
-#preProcess.process()
-#preProcess.fold()
+preProcess = Preprocessing()
+preProcess.process()
+preProcess.fold()
+
+print(preProcess.df)
