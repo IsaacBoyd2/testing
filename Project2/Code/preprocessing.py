@@ -38,14 +38,17 @@ class Preprocessing:
               #takes out the row with missing values
               df = df.drop(df.index[i])
               i = i - 1
+      df.reset_index(drop=True)
+      for i in range(len(df)):
+        
       self.value = 0
       self.df = df
 
     elif DataNumber == '2':
       df = pd.read_csv('https://github.com/IsaacBoyd2/ActualFactualML/blob/main/Project2/Data/glass.csv?raw=true')
 
-      for j in df.columns:
-        df[j] = (df[j] - df[j].min()) / (df[j].max() - df[j].min())
+      #for j in df.columns:
+      #  df[j] = (df[j] - df[j].min()) / (df[j].max() - df[j].min())
 
       print("Using Glass data (Classification)")
       self.value = 0
@@ -169,6 +172,10 @@ class Preprocessing:
 
       self.tuning = tuningList
 
+      print("len dfHolder: ", len(dfHolder), len(self.df))
+
+      total = len(dfHolder)
+
       classSize = np.zeros((len(classes),1))
 
       for i in range(len(dfHolder)):
@@ -179,11 +186,13 @@ class Preprocessing:
       for i in range(len(classSize)):
         classPercent[i] = classSize[i]/total
 
-      total = total/foldNumber
+      print("class percent: ", classPercent)
 
       #gets the new amount of each class that we need for each fold
       for i in range(len(classPercent)):
-        classAmount[i] = math.ceil(classPercent[i] * total)
+        classAmount[i] = math.ceil(classPercent[i] * (len(dfHolder)/foldNumber))
+
+      print("classAmount: ", classAmount, " and: ", classAmount[0][0])
 
       #used to get the 'foldNumber' amount of folds
       for m in range(foldNumber):
@@ -217,7 +226,6 @@ class Preprocessing:
       #sets values for looping through the data
       index = 0
       total = len(self.df)
-      dfHolder = self.df
       percentage = total*.1
       percentage = math.ceil(len(self.df)/percentage)
       foldAmount = math.ceil(total*.1)
@@ -270,6 +278,6 @@ class Preprocessing:
 
       self.folds = foldTotal
 
-#preProcess = Preprocessing() 
+#preProcess = Preprocessing()
 #preProcess.process()
 #preProcess.fold()
