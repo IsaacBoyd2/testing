@@ -18,10 +18,10 @@ class Loss:
 
   #initialization
   def __init__ (self):
-    F1 = 0
     precision = []
     recall = []
     error = []
+    F1 = int()
   
   def calculate(self, value, classes, pred, facts):
     #makes a confusion Matrix that is the correct size
@@ -39,7 +39,6 @@ class Loss:
               indVert = k
             if classes[k] == facts[i][j]:
               indHorz = k
-            print("classes: ", classes[k], " prediction: ", pred[i][j], " actual: ", facts[i][j])
           #adds an occurance in the confusion matrix
           confusionMat[indHorz, indVert] += 1
 
@@ -55,9 +54,11 @@ class Loss:
             falsePos = falsePos + confusionMat[i][j]
             falseNeg = falseNeg + confusionMat[j][i]
           
+        precision = truePos/(truePos+falsePos)
+        recall = truePos/(truePos+falseNeg)
 
-        self.precision.append(truePos/(truePos+falsePos))
-        self.recall.append(truePos/(truePos+falseNeg))
+        self.precision.append(precision)
+        self.recall.append(recall)
 
       #calculates the F1
       avgPrec = 0
