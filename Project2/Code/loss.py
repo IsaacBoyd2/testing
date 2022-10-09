@@ -18,8 +18,8 @@ class Loss:
 
   #initialization
   def __init__(self):
-    precision = []
-    recall = []
+    prec = []
+    rec = []
     error = []
     F1 = int()
   
@@ -57,17 +57,17 @@ class Loss:
         precision = truePos/(truePos+falsePos)
         recall = truePos/(truePos+falseNeg)
 
-        self.precision.append(precision)
-        self.recall.append(recall)
+        self.prec.append(precision)
+        self.rec.append(recall)
 
       #calculates the F1
       avgPrec = 0
       avgRec = 0
-      for i in range(len(self.precision)):
-        avgPrec = avgPrec + self.precision[i]
-        avgRec = avgRec + self.recall[i]
-      avgPrec = avgPrec/len(self.precision)
-      avgRec = avgRec/len(self.recall)
+      for i in range(len(self.prec)):
+        avgPrec = avgPrec + self.prec[i]
+        avgRec = avgRec + self.rec[i]
+      avgPrec = avgPrec/len(self.prec)
+      avgRec = avgRec/len(self.rec)
 
       self.F1 = 2*((avgPrec*avgRec)/(avgPrec+avgRec))
 
