@@ -154,7 +154,7 @@ class Model:
       print(range(len(decision)))
       for i in range(len(decision)):
         print(testing_df_with_class.iloc[i, -1])
-        print(decision[i][0])
+        print(decision[i][0][0])
         thing1.append(decision[i][0])
         thing2.append(testing_df_with_class.iloc[i, -1])
         print(i)
