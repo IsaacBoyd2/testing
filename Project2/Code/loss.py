@@ -18,10 +18,10 @@ class Loss:
 
   #initialization
   def __init__(self):
-    prec = []
-    rec = []
-    error = []
-    F1 = int()
+    self.prec = []
+    self.rec = []
+    self.error = []
+    self.F1 = int()
   
   def calculate(self, value, classes, pred, facts):
     #makes a confusion Matrix that is the correct size
