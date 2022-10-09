@@ -163,6 +163,7 @@ class Model:
           counts += 1
 
 
+
       thing3.append(thing1)
       thing4.append(thing2)
 
