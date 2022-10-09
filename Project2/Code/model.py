@@ -153,12 +153,12 @@ class Model:
 
       print(range(len(decision)))
       for i in range(len(decision)):
-        print(testing_df_with_class.iloc[i, -1])
-        print(decision[i][0][0])
-        thing1.append(decision[i][0])
+        #print(testing_df_with_class.iloc[i, -1])
+        #print(decision[i][0][0])
+        thing1.append(decision[i][0][0])
         thing2.append(testing_df_with_class.iloc[i, -1])
-        print(i)
-        print(testing_df_with_class.iloc[i, -1])
+        #print(i)
+        #print(testing_df_with_class.iloc[i, -1])
         if decision[i][0] == testing_df_with_class.iloc[i, -1]:
           counts += 1
 
