@@ -57,7 +57,7 @@ class Loss:
         precision = truePos/(truePos+falsePos)
         recall = truePos/(truePos+falseNeg)
 
-        self.precision.append(precision)
+        #self.precision.append(precision)
         self.recall.append(recall)
 
       #calculates the F1
