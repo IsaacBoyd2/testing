@@ -37,6 +37,7 @@ class Loss:
               indVert = k
             if classes[k] == facts[i][j]:
               indHorz = k
+            print("classes: ", classes[k], " prediction: ", pred[i][j], " actual: ", facts[i][j])
           #adds an occurance in the confusion matrix
           confusionMat[indHorz, indVert] += 1
 
