@@ -40,7 +40,7 @@ class Preprocessing:
               i = i - 1
       df.reset_index(drop=True)
       for i in range(len(df)):
-        
+        pass
       self.value = 0
       self.df = df
 
