@@ -33,9 +33,9 @@ class Loss:
           indVert = 0
           #checks for position in the confusion matrix
           for k in range(len(classes)):
-            if classes[k] == pred[j].iloc['Class']:
+            if classes[k] == pred[i][j]:
               indVert = k
-            if classes[k] == facts[j].iloc['Class']:
+            if classes[k] == facts[i][j]:
               indHorz = k
           #adds an occurance in the confusion matrix
           confusionMat[indHorz, indVert] += 1
