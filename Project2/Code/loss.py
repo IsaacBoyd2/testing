@@ -20,7 +20,7 @@ class Loss:
   def __init__ (self):
     precision = []
     recall = []
-    error = []
+    #error = []
     F1 = int()
   
   def calculate(self, value, classes, pred, facts):
