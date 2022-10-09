@@ -56,7 +56,7 @@ class Loss:
             falseNeg = falseNeg + confusionMat[j][i]
           
 
-        self.precison.append(truePos/(truePos+falsePos))
+        self.precision.append(truePos/(truePos+falsePos))
         self.recall.append(truePos/(truePos+falseNeg))
 
       #calculates the F1
