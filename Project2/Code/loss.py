@@ -40,8 +40,7 @@ class Loss:
           #adds an occurance in the confusion matrix
           confusionMat[indHorz, indVert] += 1
 
-    print("\n\n\n\nConfusionMat: ", confusionMat)
+      print("\n\n\n\nConfusionMat: ", confusionMat)
 
     else:
       pass
-
