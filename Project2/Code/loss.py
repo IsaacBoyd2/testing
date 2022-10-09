@@ -17,10 +17,10 @@ import numpy as np
 class Loss:
 
   #initialization
-  def __init__ (self):
+  def __init__(self):
     precision = []
     recall = []
-    #error = []
+    error = []
     F1 = int()
   
   def calculate(self, value, classes, pred, facts):
