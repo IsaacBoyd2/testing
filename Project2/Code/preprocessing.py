@@ -84,6 +84,7 @@ class Preprocessing:
       classColumn = df.pop("Rings")
 
       df.insert(len(df.columns), "Rings", classColumn)
+      df = df.reset_index()
 
       self.value = 1
       self.df = df
@@ -218,36 +219,58 @@ class Preprocessing:
 
     #regression
     else:
-      #sets values for looping through the sorted data
+      #sets values for looping through the data
       index = 0
       total = len(self.df)
       dfHolder = self.df
       percentage = total*.1
       percentage = math.ceil(len(self.df)/percentage)
+      foldAmount = math.ceil(total*.1)
 
-      #loop for tuning set
-      while index < total:
-        tuningList.append(self.df.iloc[index])
-        dfHolder = dfHolder.drop(index)
-        index = index + percentage
+      dfFolds = []
+      lastIndex = 0
 
-      dfHolder.reset_index(drop=True, inplace=True)
+      #loops through the amount of folds, then make a 'cut' at each 'class'
+      for i in range(foldNumber):
+        if lastIndex < len(self.df):
+          dfFolds.append(self.df.iloc[(lastIndex):lastIndex+foldAmount])
+          lastIndex = lastIndex + foldAmount
+        else:
+          dfFolds.append(self.df.iloc[lastIndex:len(self.df)])
+
+      #shuffles the classes
+      for i in range(len(dfFolds)):
+        dfFolds[i] = dfFolds[i].sample(frac=1).reset_index()
+          
+      #loops to create the tuningList
+      for i in range(len(dfFolds)):
+        for j in range(math.floor(foldAmount/foldNumber)):
+          tuningList.append(dfFolds[i].iloc[j])
+          dfFolds[i] = dfFolds[i].drop(j)
+        dfFolds[i].reset_index(drop=True)
+
       self.tuning = tuningList
 
-      #sets values for the folds
-      total = len(dfHolder)
-      percentage = total/foldNumber
-      percentage = math.ceil(len(dfHolder)/percentage)
+      #used to get a new total and reindex all of the classes
+      total = 0
+      for i in range(len(dfFolds)):
+        total = total + len(dfFolds[i])
+        dfFolds[i] = dfFolds[i].reset_index(drop=True)
+      foldAmount = math.ceil(total*.1)
 
+      foldTotal = []
       #loops for the amount of folds
-      for i in range(foldNumber):
-        index = i
+      for k in range(foldNumber):
         fold = []
-        #takes the first value in each sorted 'class'
-        while index < len(dfHolder):
-          fold.append(dfHolder.iloc[index])
-          index = index + percentage
-        print("Fold: ", i, " len: ", len(fold))
+        #goes through each class in order to stratisfy the data
+        for i in range(len(dfFolds)):
+          #gives each fold the correct amount of points
+          for j in range(math.ceil(foldAmount/foldNumber)):
+            if j < len(dfFolds[i]):
+              fold.append(dfFolds[i].iloc[j])
+              dfFolds[i] = dfFolds[i].drop(j)
+          dfFolds[i] = dfFolds[i].reset_index(drop=True)
+        
         foldTotal.append(fold)
 
       self.folds = foldTotal
