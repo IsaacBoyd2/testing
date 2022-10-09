@@ -23,6 +23,8 @@ class Model:
     #now we are going to run each fold and hold out one.
 
     accuracies = []
+    thing3 = []
+    thing4 =[]
 
     for iterations in range(10):
       all_folds = [0,1,2,3,4,5,6,7,8,9]
@@ -58,8 +60,7 @@ class Model:
       training_df = training_df_with_class.copy()
       testing_df = testing_df_with_class.copy()
       training_df = training_df.iloc[: , :-1]
-      testing_df = testing_df.iloc[: , :-1]
-      print(testing_df)
+      testing_df = training_df.iloc[: , :-1]
       #training_df = training_df.drop(columns=['Class'])
       #testing_df = testing_df.drop(columns=['Class'])
       training_df = training_df.reset_index()
@@ -72,6 +73,7 @@ class Model:
       
       #print(training_df)
       #print(training_df_with_class)
+      print("testingDF with class: ", testing_df_with_class)
         
 
       #for count2, ii in enumerate(testing_data):
@@ -101,44 +103,44 @@ class Model:
       decision = []
 
       for count1 in range(len(testing_df)):
-          base = testing_df.iloc[count1]
-          #rint('hello')
-          #print(base)
-          #print('hello')
-          for count2 in range(len(training_df)):
-            dist1 = []
-            for count3 in range(len(testing_df.columns)):
-              dist1.append((base[count3] - training_df.iloc[count2][count3])**2)
-          
-            summation = sum(dist1)
-            distance = np.sqrt(summation)
+        base = testing_df.iloc[count1]
+        #rint('hello')
+        #print(base)
+        #print('hello')
+        for count2 in range(len(training_df)):
+          dist1 = []
+          for count3 in range(len(testing_df.columns)):
+            dist1.append((base[count3] - training_df.iloc[count2][count3])**2)
+        
+          summation = sum(dist1)
+          distance = np.sqrt(summation)
 
-            df_matrix.loc[count1, count2] = distance 
+          df_matrix.loc[count1, count2] = distance 
 
-          comparison_array = np.array(df_matrix.loc[count1])
-          k = k_nn
-          index = np.argpartition(comparison_array, k)
-          reduced_idx = index[:k]
+        comparison_array = np.array(df_matrix.loc[count1])
+        k = k_nn
+        index = np.argpartition(comparison_array, k)
+        reduced_idx = index[:k]
 
-          reduced_list = reduced_idx.tolist()
+        reduced_list = reduced_idx.tolist()
 
-          #print(reduced_list)
-          #print(count1)
+        #print(reduced_list)
+        #print(count1)
 
 
-          #reduced_list.remove(count1)
+        #reduced_list.remove(count1)
 
-          majority =[]
-          for i in reduced_list:
-            #print(df['Class'][i])
-            majority.append(training_df_with_class.iloc[i, -1])
-            #print(training_df_with_class['Class'][i])
+        majority =[]
+        for i in reduced_list:
+          #print(df['Class'][i])
+          majority.append(training_df_with_class.iloc[i, -1])
+          #print(training_df_with_class['Class'][i])
 
-          class_decision = st.mode(majority)
-          
+        class_decision = st.mode(majority)
+        
 
-          #print(class_decision[0])
-          decision.append(class_decision)
+        #print(class_decision[0])
+        decision.append(class_decision)
 
 
 
@@ -146,19 +148,41 @@ class Model:
 
       counts = 0
 
+      thing1 = []
+      thing2 = []
+
       print(range(len(decision)))
       for i in range(len(decision)):
+        thing1.append(decision[i][0])
+        thing2.append(testing_df_with_class.iloc[i, -1].value)
+        print(testing_df_with_class.iloc[i, -1].value)
         print(decision[i][0])
         print(i)
         print(testing_df_with_class.iloc[i, -1])
         if decision[i][0] == testing_df_with_class.iloc[i, -1]:
           counts += 1
 
+
+      thing3.append(thing1)
+      thing4.append(thing2)
+
+      
+
+
+      
+
       print(counts)
       print(counts/len(testing_df_with_class))
 
       accuracies.append(counts/len(testing_df_with_class))
       print('hello')
+
+    
+
+    self.labels = thing4
+    self.predictions = thing3
+
+
     print(accuracies)
 
       #return [self.tuning, self.labels]
