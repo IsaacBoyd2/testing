@@ -27,8 +27,8 @@ class Model:
 
     for iterations in range(10):
 
-      if iterations == 9:
-        break
+      #if iterations == 9:
+      #  break
 
       print(iterations)
       print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
