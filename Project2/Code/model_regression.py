@@ -15,6 +15,8 @@ class Model:
     #Hyper parameters
     #k_nn = 3
 
+    sigma = 40
+
     
     #first we want to talk data[1] and from it we can seperate it into its folds
     
@@ -157,7 +159,7 @@ class Model:
         #print(class_decision[0])
         #decision.append(class_decision)
 
-
+        
         
         denominator = []
         numerator = []
@@ -166,7 +168,7 @@ class Model:
           weight_holder = []
           for ii in desicion_list:
             if i != ii:
-              w_i_part = 2.72**(-(i-ii)**2)
+              w_i_part = 2.72**((-(i-ii)**2)/sigma**2)
 
               #print(w_i)
               weight_holder.append(w_i_part)
