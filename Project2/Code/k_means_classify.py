@@ -2,6 +2,9 @@
 import pandas as pd
 import numpy as np
 from scipy import stats as st
+import requests
+import os
+import random
 
 class Model:
 
