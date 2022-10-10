@@ -99,6 +99,7 @@ class Model:
         clicks = clicks + 1
 
         df_matrix = pd.DataFrame(np.nan, index=range(len(weights_matrix)), columns = range(len(training_df)))
+        #print('df_matrix : ', dis)
 
         Centroid_holder = []
 
@@ -114,6 +115,8 @@ class Model:
         
             summation = sum(dist1)
             distance = np.sqrt(summation)
+
+            print('distance : ', distance)
 
             df_matrix.iloc[count1, count2] = distance 
         
