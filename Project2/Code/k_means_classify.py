@@ -115,7 +115,7 @@ class Model:
             summation = sum(dist1)
             distance = np.sqrt(summation)
 
-            df_matrix.loc[count1, count2] = distance 
+            df_matrix.iloc[count1, count2] = distance 
         
         print(df_matrix)
 
