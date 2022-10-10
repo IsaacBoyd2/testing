@@ -103,6 +103,9 @@ class Model:
       #df2 = df.iloc[: , 2:-1]
 
       decision = []
+      thing1 = []
+      thing2 = []
+
 
       for count1 in range(len(testing_df)):
         base = testing_df.iloc[count1]
@@ -140,6 +143,8 @@ class Model:
           #desicion_list.append(training_df_with_class['Rings'][i])
           desicion_list.append(training_df_with_class.iloc[i, -1])
 
+        print(desicion_list)
+
         #majority =[]
         #for i in reduced_list:
           #print(df['Class'][i])
@@ -153,9 +158,7 @@ class Model:
         #decision.append(class_decision)
 
 
-        thing1 = []
-        thing2 = []
-
+        
         denominator = []
         numerator = []
 
