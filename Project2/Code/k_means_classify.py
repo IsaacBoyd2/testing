@@ -89,6 +89,8 @@ class Model:
 
         if clicks == 0:
 
+          print('asdlkjfaslkdjfaslkdfjaslkdfj')
+
           randomList = random.sample(range(len(training_df)), k_nn)
 
           for counters,i in enumerate(randomList):
