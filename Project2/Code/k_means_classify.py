@@ -223,6 +223,8 @@ class Model:
       thing3.append(thing1)
       thing4.append(thing2)
 
+    print(thing4)
+
     self.labels = thing4
     self.predictions = thing3
 
