@@ -141,6 +141,8 @@ class Model:
           if np.isnan(p).all() == False:
             weights_matrix.iloc[i] = df2_holder
 
+          print(weights_matrix)
+
 
       
       df_matrix = pd.DataFrame(np.nan, index=range(len(weights_matrix)), columns = range(len(training_df)))
