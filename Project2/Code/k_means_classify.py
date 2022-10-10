@@ -220,3 +220,6 @@ class Model:
 
     self.labels = thing4
     self.predictions = thing3
+
+    print(self.labels)
+    print(self.predictions)
