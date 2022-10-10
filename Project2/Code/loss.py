@@ -74,11 +74,14 @@ class Loss:
   def calculateReg(self, pred, facts):
     print("pred: ", pred, " \n\nfacts: ", facts)
     distance = float(0)
+    total = 0
     for i in range(len(pred)):
       for j in range(len(pred[i])):
         distance = distance + ((float(facts[i][j]) - float(pred[i][j]))**float(2))
         self.error.append((float(facts[i][j]) - float(pred[i][j]))**float(2))
+        total = total+1
+
     if len(facts) > 0:
-      self.mse = distance/len(facts)
+      self.mse = distance/total
     else:
       self.mse = 0
