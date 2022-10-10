@@ -200,7 +200,7 @@ class Model:
 
         majority =[]
         for i in reduced_list:
-          majority.append(weights_matrix.iloc[i, -1])
+          majority.append(weights_matrix_labels.iloc[i, -1])
 
         class_decision = st.mode(majority)
         
