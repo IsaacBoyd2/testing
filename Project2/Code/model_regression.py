@@ -143,7 +143,7 @@ class Model:
           #desicion_list.append(training_df_with_class['Rings'][i])
           desicion_list.append(training_df_with_class.iloc[i, -1])
 
-        print(desicion_list)
+        #print(desicion_list)
 
         #majority =[]
         #for i in reduced_list:
@@ -174,6 +174,7 @@ class Model:
           numerator.append(y_i_w_i) 
 
         f = sum(numerator)/sum(denominator)
+        print(f)
 
         thing1.append(f)
         thing2.append(testing_df_with_class.iloc[count1, -1])
