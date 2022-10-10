@@ -171,7 +171,7 @@ class Model:
           numerator.append(y_i_w_i) 
 
           thing1.append(sum(numerator)/sum(denominator))
-          thing2.append(testing_df_with_class.iloc[i, -1])
+          thing2.append(testing_df_with_class.iloc[count1, -1])
 
 
 
