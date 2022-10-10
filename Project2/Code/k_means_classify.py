@@ -215,9 +215,7 @@ class Model:
 
       for i in range(len(decision)):
         thing1.append(decision[i][0][0])
-        thing2.append(testing_df.iloc[i, -1])
-        if decision[i][0] == testing_df.iloc[i, -1]:
-          counts += 1
+        thing2.append(testing_df_with_class.iloc[i, -1])
 
       thing3.append(thing1)
       thing4.append(thing2)
