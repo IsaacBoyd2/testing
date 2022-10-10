@@ -153,6 +153,9 @@ class Model:
         #decision.append(class_decision)
 
 
+        thing1 = []
+        thing2 = []
+
         denominator = []
         numerator = []
 
@@ -167,25 +170,31 @@ class Model:
           y_i_w_i = w_i * i
           numerator.append(y_i_w_i) 
 
-      thing1 = []
-      thing2 = []
+          thing1.append(numerator/denominator)
+          thing2.append(testing_df_with_class.iloc[i, -1])
 
-      counts = 0
-      for i in range(len(decision)):
-        thing1.append(decision[i][0][0])
-        thing2.append(testing_df_with_class.iloc[i, -1])
-        print(decision[i][0])
-        print(testing_df_with_class.iloc[i, -1])
+
+
+      #counts = 0
+      #for i in range(len(decision)):
+        #thing1.append(decision[i][0][0])
+        #thing2.append(testing_df_with_class.iloc[i, -1])
+        #print(decision[i][0])
+        #print(testing_df_with_class.iloc[i, -1])
         #testing_df_with_class['Rings'][i]
-        if decision[i][0] == testing_df_with_class.iloc[i, -1]:
-          counts += 1
+        #if decision[i][0] == testing_df_with_class.iloc[i, -1]:
+          #counts += 1
 
 
-      thing3.append(thing1)
-      thing4.append(thing2)
+        thing3.append(thing1)
+        thing4.append(thing2)
+    
 
-    self.labels = thing4
-    self.predictions = thing3
+      self.labels = thing4
+      self.predictions = thing3
+
+    print(self.labels)
+    print(self.predictions)
 
 
       #print(counts)
