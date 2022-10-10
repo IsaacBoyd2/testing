@@ -134,59 +134,59 @@ class Model:
 
 
       
-        df_matrix = pd.DataFrame(np.nan, index=range(len(weights_matrix)), columns = range(len(training_df)))
+      df_matrix = pd.DataFrame(np.nan, index=range(len(weights_matrix)), columns = range(len(training_df)))
 
-        decision = []
+      decision = []
 
-        for count1 in range(len(weights_matrix)):
-          base = weights_matrix.iloc[count1]
-          for count2 in range(len(training_df)):
-            dist1 = []
-            for count3 in range(len(weights_matrix.columns)):
-              dist1.append((base[count3] - training_df.iloc[count2][count3])**2)
-          
-            summation = sum(dist1)
-            distance = np.sqrt(summation)
+      for count1 in range(len(weights_matrix)):
+        base = weights_matrix.iloc[count1]
+        for count2 in range(len(training_df)):
+          dist1 = []
+          for count3 in range(len(weights_matrix.columns)):
+            dist1.append((base[count3] - training_df.iloc[count2][count3])**2)
+        
+          summation = sum(dist1)
+          distance = np.sqrt(summation)
 
-            df_matrix.loc[count1, count2] = distance 
+          df_matrix.loc[count1, count2] = distance 
 
-          comparison_array = np.array(df_matrix.loc[count1])
-          k = k_nn
-          index = np.argpartition(comparison_array, k)
-          reduced_idx = index[:k]
+        comparison_array = np.array(df_matrix.loc[count1])
+        k = k_nn
+        index = np.argpartition(comparison_array, k)
+        reduced_idx = index[:k]
 
-          reduced_list = reduced_idx.tolist()
+        reduced_list = reduced_idx.tolist()
 
-          majority =[]
-          for i in reduced_list:
-            majority.append(training_df_with_class.iloc[i, -1])
+        majority =[]
+        for i in reduced_list:
+          majority.append(training_df_with_class.iloc[i, -1])
 
-          class_decision = st.mode(majority)
-          
-          decision.append(class_decision)
+        class_decision = st.mode(majority)
+        
+        decision.append(class_decision)
 
-        counts = 0
+      counts = 0
 
-        thing1 = []
-        thing2 = []
+      thing1 = []
+      thing2 = []
 
-        print(range(len(decision)))
-        for i in range(len(decision)):
-          thing1.append(decision[i][0][0])
-          thing2.append(testing_df_with_class.iloc[i, -1])
-          if decision[i][0] == testing_df_with_class.iloc[i, -1]:
-            counts += 1
+      #print(range(len(decision)))
+      for i in range(len(decision)):
+        thing1.append(decision[i][0][0])
+        thing2.append(testing_df_with_class.iloc[i, -1])
+        if decision[i][0] == testing_df_with_class.iloc[i, -1]:
+          counts += 1
 
-        thing3.append(thing1)
-        thing4.append(thing2)
+      thing3.append(thing1)
+      thing4.append(thing2)
 
-        print(counts)
-        print(counts/len(testing_df_with_class))
+      print(counts)
+      print(counts/len(testing_df_with_class))
 
-        #accuracies.append(counts/len(testing_df_with_class))
-        print('hello')
+      #accuracies.append(counts/len(testing_df_with_class))
+      print('hello')
 
-      self.labels = thing4
-      self.predictions = thing3
+    self.labels = thing4
+    self.predictions = thing3
 
       #print(accuracies)        
