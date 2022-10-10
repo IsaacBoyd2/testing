@@ -27,7 +27,7 @@ class Model:
 
     for iterations in range(10):
 
-      if iterations == 9:
+      if iterations == 4:
         break
 
       print(iterations)
