@@ -27,11 +27,7 @@ class Model:
 
     for iterations in range(10):
 
-      #if iterations == 9:
-      #  break
-
-      print(iterations)
-      print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
+      print(iterations*10, '%')
 
       all_folds = [0,1,2,3,4,5,6,7,8,9]
 
@@ -81,12 +77,6 @@ class Model:
 
       while (Initial_weights != new_weights):
 
-
-        #print(Initial_weights)
-        #print(new_weights)
-
-        #print('ehelelr')
-
         Initial_weights = new_weights.copy() 
 
         
@@ -95,7 +85,6 @@ class Model:
 
           weights_matrix = pd.DataFrame(np.nan, index=range(k_nn), columns = range(len(training_df.columns)))
 
-          #print('asdlkjfaslkdjfaslkdfjaslkdfj')
 
           randomList = random.sample(range(len(training_df)), k_nn)
 
@@ -105,7 +94,6 @@ class Model:
         clicks = clicks + 1
 
         df_matrix = pd.DataFrame(np.nan, index=range(len(weights_matrix)), columns = range(len(training_df)))
-        #print('df_matrix : ', dis)
 
         Centroid_holder = []
 
@@ -122,11 +110,7 @@ class Model:
             summation = sum(dist1)
             distance = np.sqrt(summation)
 
-            #print('distance : ', distance)
-
             df_matrix.iloc[count1, count2] = distance 
-        
-        #print(df_matrix)
 
         for i in df_matrix.columns:
           new_weights[i] = df_matrix.iloc[:,i].idxmin()
@@ -147,19 +131,11 @@ class Model:
           if np.isnan(p).all() == False:
             weights_matrix.iloc[i] = df2_holder
 
-          #print(weights_matrix)
 
-
-
-
-  #Classify the centroids
 
       weights_matrix_labels = weights_matrix.copy()
 
       weights_matrix_labels['Class'] = 1
-
-      #print(weights_matrix_labels)
-
 
       df_matrix = pd.DataFrame(np.nan, index=range(len(weights_matrix)), columns = range(len(training_df)))
 
@@ -180,7 +156,7 @@ class Model:
         comparison_array = np.array(df_matrix.loc[count1])
         k = k_nn
         index = np.argpartition(comparison_array, k)
-      # print(index)
+
         reduced_idx = index[:k]
 
         reduced_list = reduced_idx.tolist()
@@ -192,32 +168,6 @@ class Model:
         class_decision = st.mode(majority)
 
         weights_matrix_labels['Class'][count1] = class_decision[0]
-        
-        #decision.append(class_decision)
-
-
-      #print(weights_matrix_labels)
-
-      #counts = 0
-
-      #thing1 = []
-      #thing2 = []
-
-      #print(range(len(decision)))
-      #for i in range(len(decision)):
-        #thing1.append(decision[i][0][0])
-        #thing2.append(testing_df_with_class.iloc[i, -1])
-        #if decision[i][0] == testing_df_with_class.iloc[i, -1]:
-          #counts += 1
-
-
-
-        
-
-
-      
-
-
       
       df_matrix = pd.DataFrame(np.nan, index=range(len(testing_df)), columns = range(len(weights_matrix)))
 
@@ -238,15 +188,13 @@ class Model:
         comparison_array = np.array(df_matrix.loc[count1])
         k = k_nn
 
-        print(comparison_array)
-
         index = np.argpartition(comparison_array, k-1)
-
-        print(index)
         
         reduced_idx = index[:k]
 
         reduced_list = reduced_idx.tolist()
+
+        print(len(weights_matrix))
 
         majority =[]
         for i in reduced_list:
@@ -261,22 +209,14 @@ class Model:
       thing1 = []
       thing2 = []
 
-      #print(range(len(decision)))
       for i in range(len(decision)):
         thing1.append(decision[i][0][0])
-        thing2.append(weights_matrix.iloc[i, -1])
-        if decision[i][0] == weights_matrix.iloc[i, -1]:
+        thing2.append(testing_df.iloc[i, -1])
+        if decision[i][0] == testing_df.iloc[i, -1]:
           counts += 1
 
       thing3.append(thing1)
       thing4.append(thing2)
 
-      print(counts)
-      print(counts/len(testing_df_with_class))
-
-      #accuracies.append(counts/len(testing_df_with_class))
-      print('hello')
-
     self.labels = thing4
     self.predictions = thing3
-        #print(accuracies)        
