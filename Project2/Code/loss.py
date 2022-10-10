@@ -76,7 +76,7 @@ class Loss:
     distance = 0
     for i in range(len(pred)):
       for j in range(len(pred[i])):
-        distance = distance + ((facts[i][j] - pred[i][j])^2)
+        distance = distance + ((float(facts[i][j]) - float(pred[i][j]))^2)
         self.error.append((facts[i][j] - pred[i][j])^2)
     if len(facts) > 0:
       self.mse = distance/len(facts)
