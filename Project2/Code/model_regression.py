@@ -172,6 +172,8 @@ class Model:
 
       counts = 0
       for i in range(len(decision)):
+        thing1.append(decision[i][0][0])
+        thing2.append(testing_df_with_class.iloc[i, -1])
         print(decision[i][0])
         print(testing_df_with_class.iloc[i, -1])
         #testing_df_with_class['Rings'][i]
