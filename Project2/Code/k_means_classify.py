@@ -94,7 +94,9 @@ class Model:
           randomList = random.sample(range(len(training_df)), k_nn)
 
           for counters,i in enumerate(randomList):
-            weights_matrix.iloc[counters] = training_df.iloc[i] 
+            weights_matrix.iloc[counters] = training_df.iloc[i]
+
+        clicks = clicks + 1
 
         df_matrix = pd.DataFrame(np.nan, index=range(len(weights_matrix)), columns = range(len(training_df)))
 
