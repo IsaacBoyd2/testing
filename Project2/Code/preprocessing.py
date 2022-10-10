@@ -18,10 +18,10 @@ class Preprocessing:
 
   #initialization
   def __init__ (self):
-    df = pd.DataFrame
-    folds = []
-    tuning = []
-    value = int()
+    self.df = pd.DataFrame
+    self.folds = []
+    self.tuning = []
+    self.value = int()
 
   #method that allows the user to chose the dataset, and preprocesses that said data set.
   def process(self):
