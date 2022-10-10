@@ -72,6 +72,7 @@ class Loss:
     self.F1 = 2*((avgPrec*avgRec)/(avgPrec+avgRec))
 
   def calculateReg(self, pred, facts):
+    print("pred: ", pred, " \n\nfacts: ", facts)
     distance = 0
     for i in range(len(pred)):
       for j in range(len(pred[i])):
