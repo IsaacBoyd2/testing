@@ -13,12 +13,13 @@ class Model:
     predictions = []
     labels = []
 
-  def run(self, data, k_nn):
+  def run(self, data, k_nn, k_cluster):
 
     #preProcess = pp.Preprocessing()
     #preProcess.process()
     #preProcess.fold()
     #data = [preProcess.tuning, preProcess.folds]
+
 
   
     folds = data[1]
@@ -83,10 +84,10 @@ class Model:
 
         if clicks == 0:
 
-          weights_matrix = pd.DataFrame(np.nan, index=range(k_nn), columns = range(len(training_df.columns)))
+          weights_matrix = pd.DataFrame(np.nan, index=range(k_cluster), columns = range(len(training_df.columns)))
 
 
-          randomList = random.sample(range(len(training_df)), k_nn)
+          randomList = random.sample(range(len(training_df)), k_cluster)
 
           for counters,i in enumerate(randomList):
             weights_matrix.iloc[counters] = training_df.iloc[i]
@@ -97,7 +98,7 @@ class Model:
 
         Centroid_holder = []
 
-        for i in range(k_nn):
+        for i in range(k_cluster):
             Centroid_holder.append([])
 
         for count1 in range(len(weights_matrix)):
