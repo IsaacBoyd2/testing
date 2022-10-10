@@ -170,7 +170,9 @@ class Model:
           y_i_w_i = w_i * i
           numerator.append(y_i_w_i) 
 
-        thing1.append(sum(numerator)/sum(denominator))
+        f = sum(numerator)/sum(denominator)
+
+        thing1.append(f)
         thing2.append(testing_df_with_class.iloc[count1, -1])
 
 
