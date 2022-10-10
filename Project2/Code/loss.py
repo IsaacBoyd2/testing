@@ -23,6 +23,7 @@ class Loss:
     self.error = []
     self.F1 = int()
     self.mse = int()
+    self.mae = int()
   
   def calculate(self, classes, pred, facts):
     #makes a confusion Matrix that is the correct size
@@ -74,14 +75,17 @@ class Loss:
   def calculateReg(self, pred, facts):
     print("pred: ", pred, " \n\nfacts: ", facts)
     distance = float(0)
+    distanceabs = float(0)
     total = 0
     for i in range(len(pred)):
       for j in range(len(pred[i])):
         distance = distance + ((float(facts[i][j]) - float(pred[i][j]))**float(2))
+        distanceabs = distanceabs + abs((float(facts[i][j]) - float(pred[i][j])))
         self.error.append((float(facts[i][j]) - float(pred[i][j]))**float(2))
         total = total+1
 
     if len(facts) > 0:
       self.mse = distance/total
+      self.mae = distanceabs/total
     else:
       self.mse = 0
