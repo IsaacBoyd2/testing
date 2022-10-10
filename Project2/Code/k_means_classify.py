@@ -75,6 +75,8 @@ class Model:
 
       while (Initial_weights != new_weights):
 
+        print('ehelelr')
+
         Initial_weights = new_weights.copy() 
 
         weights_matrix = pd.DataFrame(np.nan, index=range(k_nn), columns = range(len(training_df.columns)))
