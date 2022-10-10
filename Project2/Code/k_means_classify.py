@@ -78,6 +78,9 @@ class Model:
 
       while (Initial_weights != new_weights):
 
+        print(Initial_weights)
+        print(new_weights)
+
         print('ehelelr')
 
         Initial_weights = new_weights.copy() 
