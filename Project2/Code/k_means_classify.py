@@ -217,6 +217,9 @@ class Model:
         thing1.append(decision[i][0][0])
         thing2.append(testing_df_with_class.iloc[i, -1])
 
+      print(thing2)
+      print(testing_df_with_class)
+
       thing3.append(thing1)
       thing4.append(thing2)
 
