@@ -6,9 +6,9 @@ from scipy import stats as st
 class Model:
 
   def __init__(self):
-    self.df = pd.DataFrame
-    self.predictions = []
-    self.labels = []
+    df = pd.DataFrame
+    predictions = []
+    labels = []
 
   def run(self, data, k_nn):
 
@@ -27,10 +27,15 @@ class Model:
     thing4 =[]
 
     for iterations in range(10):
+      
+
       all_folds = [0,1,2,3,4,5,6,7,8,9]
       all_folds.pop(iterations)
 
       testing_data = folds[iterations]
+
+      if len(testing_data) == 0:
+        break
 
       training_data = []
       for other_folds in all_folds:
