@@ -174,7 +174,8 @@ class Model:
           numerator.append(y_i_w_i) 
 
         f = sum(numerator)/sum(denominator)
-        print(f)
+        print("numerator: ", numerator)
+        print("denominator: ", denominator)
 
         thing1.append(f)
         thing2.append(testing_df_with_class.iloc[count1, -1])
