@@ -119,7 +119,7 @@ class Model:
 
         for i in df_matrix.columns:
           new_weights[i] = df_matrix.iloc[:,i].idxmin()
-          Centroid_holder[df_matrix.iloc[:,i].idxmin()].append(i)
+          Centroid_holder[int(df_matrix.iloc[:,i].idxmin())].append(i)
 
         for i in range(len(Centroid_holder)):
           df_holder = pd.DataFrame(np.nan, index=range(len(Centroid_holder[i])), columns = range(len(training_df.columns)))
