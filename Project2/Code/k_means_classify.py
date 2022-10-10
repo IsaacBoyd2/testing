@@ -116,6 +116,8 @@ class Model:
             distance = np.sqrt(summation)
 
             df_matrix.loc[count1, count2] = distance 
+        
+        print(df_matrix)
 
         for i in df_matrix.columns:
           new_weights[i] = df_matrix.iloc[:,i].idxmin()
