@@ -4,7 +4,7 @@ import numpy as np
 from scipy import stats as st
 import requests
 import os
-import random
+import random as random
 
 class Model:
 
