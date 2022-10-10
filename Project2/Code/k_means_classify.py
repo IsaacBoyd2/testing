@@ -85,9 +85,11 @@ class Model:
 
         Initial_weights = new_weights.copy() 
 
-        weights_matrix = pd.DataFrame(np.nan, index=range(k_nn), columns = range(len(training_df.columns)))
+        
 
         if clicks == 0:
+
+          weights_matrix = pd.DataFrame(np.nan, index=range(k_nn), columns = range(len(training_df.columns)))
 
           print('asdlkjfaslkdjfaslkdfjaslkdfj')
 
