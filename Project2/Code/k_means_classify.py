@@ -105,7 +105,7 @@ class Model:
           for count2 in range(len(training_df)):
             dist1 = []
             for count3 in range(len(weights_matrix.columns)):
-              dist1.append((base[count3] - training_df.iloc[count2][count3])**2)
+              dist1.append((float(base[count3]) - float(training_df.iloc[count2][count3]))**2)
         
             summation = sum(dist1)
             distance = np.sqrt(summation)
@@ -146,7 +146,7 @@ class Model:
         for count2 in range(len(training_df)):
           dist1 = []
           for count3 in range(len(weights_matrix.columns)):
-            dist1.append((base[count3] - training_df.iloc[count2][count3])**2)
+            dist1.append((float(base[count3]) - float(training_df.iloc[count2][count3]))**2)
         
           summation = sum(dist1)
           distance = np.sqrt(summation)
@@ -178,7 +178,7 @@ class Model:
         for count2 in range(len(weights_matrix)):
           dist1 = []
           for count3 in range(len(testing_df.columns)):
-            dist1.append((base[count3] - weights_matrix.iloc[count2][count3])**2)
+            dist1.append((float(base[count3]) - float(training_df.iloc[count2][count3]))**2)
         
           summation = sum(dist1)
           distance = np.sqrt(summation)
@@ -194,7 +194,9 @@ class Model:
 
         reduced_list = reduced_idx.tolist()
 
-        print(len(weights_matrix))
+        print(reduced_list)
+
+        #print(len(weights_matrix))
 
         majority =[]
         for i in reduced_list:
@@ -208,6 +210,8 @@ class Model:
 
       thing1 = []
       thing2 = []
+
+      print(decision)
 
       for i in range(len(decision)):
         thing1.append(decision[i][0][0])
