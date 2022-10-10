@@ -167,15 +167,19 @@ class Model:
           for ii in desicion_list:
             if i != ii:
               w_i_part = 2.72**(-(i-ii)**2)
+
+              #print(w_i)
               weight_holder.append(w_i_part)
           w_i = sum(weight_holder)
+
+          print(w_i)
           denominator.append(w_i)
           y_i_w_i = w_i * i
           numerator.append(y_i_w_i) 
 
         f = sum(numerator)/sum(denominator)
-        print("numerator: ", numerator)
-        print("denominator: ", denominator)
+        #print("numerator: ", numerator)
+        #print("denominator: ", denominator)
 
         thing1.append(f)
         thing2.append(testing_df_with_class.iloc[count1, -1])
