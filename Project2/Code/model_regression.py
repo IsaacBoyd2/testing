@@ -6,9 +6,9 @@ from scipy import stats as st
 class Model:
 
   def __init__(self):
-    self.df = pd.DataFrame
-    self.predictions = []
-    self.labels = []
+    df = pd.DataFrame
+    predictions = []
+    labels = []
 
   def run(self, data, k_nn):
 
@@ -164,6 +164,9 @@ class Model:
           y_i_w_i = w_i * i
           numerator.append(y_i_w_i) 
 
+      thing1 = []
+      thing2 = []
+
       counts = 0
       for i in range(len(decision)):
         print(decision[i][0])
@@ -172,10 +175,18 @@ class Model:
         if decision[i][0] == testing_df_with_class.iloc[i, -1]:
           counts += 1
 
-      print(counts)
-      print(counts/len(testing_df_with_class))
 
-      accuracies.append(counts/len(testing_df_with_class))
-    print(accuracies)
+      thing3.append(thing1)
+      thing4.append(thing2)
+
+    self.labels = thing4
+    self.predictions = thing3
+
+
+      #print(counts)
+      #print(counts/len(testing_df_with_class))
+
+      #accuracies.append(counts/len(testing_df_with_class))
+    #print(accuracies)
 
       #return [self.tuning, self.labels]
