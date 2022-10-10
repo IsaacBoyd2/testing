@@ -190,8 +190,8 @@ class Model:
       thing4.append(thing2)
     
 
-      self.labels = thing4
-      self.predictions = thing3
+    self.labels = thing4
+    self.predictions = thing3
 
     print(self.labels)
     print(self.predictions)
