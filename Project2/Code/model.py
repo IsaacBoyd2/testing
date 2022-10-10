@@ -6,9 +6,9 @@ from scipy import stats as st
 class Model:
 
   def __init__(self):
-    df = pd.DataFrame
-    predictions = []
-    labels = []
+    self.df = pd.DataFrame
+    self.predictions = []
+    self.labels = []
 
   def run(self, data, k_nn):
 
