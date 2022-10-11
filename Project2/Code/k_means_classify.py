@@ -13,7 +13,7 @@ class Model:
     predictions = []
     labels = []
 
-  def run(self, data, k_nn, k_cluster):
+  def run(self, data, k_nn, k_cluster, value):
 
     #preProcess = pp.Preprocessing()
     #preProcess.process()
@@ -107,9 +107,10 @@ class Model:
             dist1 = []
             for count3 in range(len(weights_matrix.columns)):
 
-              print(base[count3])
-              print(training_df.iloc[count2][count3])
-              dist1.append((float(base[count3]) - float(training_df.iloc[count2][count3]))**2)
+              if value != 6:
+                dist1.append(base[count3]) - training_df.iloc[count2][count3])**2)
+              else:
+                  dist1.append(int(base[count3])) - int(training_df.iloc[count2][count3]))**2)
         
             summation = sum(dist1)
             distance = np.sqrt(summation)
@@ -150,7 +151,10 @@ class Model:
         for count2 in range(len(training_df)):
           dist1 = []
           for count3 in range(len(weights_matrix.columns)):
-            dist1.append((float(base[count3]) - float(training_df.iloc[count2][count3]))**2)
+            if value != 6:
+                dist1.append(base[count3]) - training_df.iloc[count2][count3])**2)
+            else:
+                dist1.append(int(base[count3])) - int(training_df.iloc[count2][count3]))**2)
         
           summation = sum(dist1)
           distance = np.sqrt(summation)
@@ -183,9 +187,10 @@ class Model:
           dist1 = []
           for count3 in range(len(testing_df.columns)):
 
-            print(base[count3])
-            print(training_df.iloc[count2][count3])
-            dist1.append((float(base[count3]) - float(training_df.iloc[count2][count3]))**2)
+            if value != 6:
+                dist1.append(base[count3]) - training_df.iloc[count2][count3])**2)
+            else:
+                dist1.append(int(base[count3])) - int(training_df.iloc[count2][count3]))**2)
         
           summation = sum(dist1)
           distance = np.sqrt(summation)
