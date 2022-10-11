@@ -273,6 +273,16 @@ class Model:
     print(thing4)
     print(thing3)
 
+    for countss, i in enumerate(thing3):
+      if i == 'D1': 
+        thing3[countss] = 1
+      if i == 'D2': 
+        thing3[countss] = 2
+      if i == 'D3': 
+        thing3[countss] = 3
+      if i == 'D4': 
+        thing3[countss] = 4
+
     self.labels = thing4
     self.predictions = thing3
 
