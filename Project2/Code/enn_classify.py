@@ -264,7 +264,27 @@ class Model:
         thing2.append(testing_df_with_class.iloc[i, -1])
         if decision[i][0] == testing_df_with_class.iloc[i, -1]:
           counts += 1
-      
+
+      for countss, i in enumerate(thing1):
+        if i == 'D1': 
+          thing1[countss] = 1
+        if i == 'D2': 
+          thing1[countss] = 2
+        if i == 'D3': 
+          thing1[countss] = 3
+        if i == 'D4': 
+          thing1[countss] = 4
+
+      for countss, i in enumerate(thing2):
+        if i == 'D1': 
+          thing2[countss] = 1
+        if i == 'D2': 
+          thing2[countss] = 2
+        if i == 'D3': 
+          thing2[countss] = 3
+        if i == 'D4': 
+          thing2[countss] = 4
+        
       thing3.append(thing1)
 
       print(thing3)
@@ -273,15 +293,7 @@ class Model:
     print(thing4)
     print(thing3)
 
-    for countss, i in enumerate(thing3):
-      if i == 'D1': 
-        thing3[countss] = 1
-      if i == 'D2': 
-        thing3[countss] = 2
-      if i == 'D3': 
-        thing3[countss] = 3
-      if i == 'D4': 
-        thing3[countss] = 4
+
 
     self.labels = thing4
     self.predictions = thing3
