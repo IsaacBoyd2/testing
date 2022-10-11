@@ -116,6 +116,8 @@ class Model:
             #print(summation)
             distance = summation**0.5
 
+            print(distance)
+
             #if distance > 10**5:
             #  distance = 0
 
