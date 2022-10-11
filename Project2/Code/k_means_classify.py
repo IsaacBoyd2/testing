@@ -113,12 +113,16 @@ class Model:
                 dist1.append(((int(base[count3])) - int(training_df.iloc[count2][count3]))**2)
         
             summation = sum(dist1)
-            print(summation)
+            #print(summation)
             distance = summation**0.5
 
-            print(distance)
+            #print(distance)
 
             df_matrix.iloc[count1, count2] = distance 
+
+        print(df_matrix)
+
+        
 
         for i in df_matrix.columns:
           new_weights[i] = df_matrix.iloc[:,i].idxmin()
