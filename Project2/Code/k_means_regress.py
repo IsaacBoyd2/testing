@@ -267,6 +267,8 @@ class Model:
           numerator.append(y_i_w_i) 
 
         f = sum(numerator)/sum(denominator)
+
+        print(f)
         #print("numerator: ", numerator)
         #print("denominator: ", denominator)
 
