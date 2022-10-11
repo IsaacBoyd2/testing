@@ -68,12 +68,12 @@ class Model:
       testing_df = testing_df.iloc[: , :-1]
       #training_df = training_df.drop(columns=['Rings'])
       #testing_df = testing_df.drop(columns=['Rings'])
-      training_df = training_df.reset_index()
-      testing_df = testing_df.reset_index()
-      training_df_with_class = training_df_with_class.reset_index()
-      testing_df_with_class = testing_df_with_class.reset_index()
-      training_df = training_df.drop(columns=['index'])
-      testing_df = testing_df.drop(columns=['index'])
+      training_df = training_df.reset_index(drop=True)
+      testing_df = testing_df.reset_index(drop=True)
+      training_df_with_class = training_df_with_class.reset_index(drop=True)
+      testing_df_with_class = testing_df_with_class.reset_index(drop=True)
+      #training_df = training_df.drop(columns=['index'])
+      #testing_df = testing_df.drop(columns=['index'])
       #training_df_with_class = training_df_with_class.drop(columns=['ID Number'])
       
       #print(training_df)
