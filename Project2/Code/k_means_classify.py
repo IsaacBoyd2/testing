@@ -159,6 +159,9 @@ class Model:
             weights_matrix.iloc[i] = df2_holder
 
 
+      print(weights_matrix)
+
+
 
       weights_matrix_labels = weights_matrix.copy()
 
@@ -267,14 +270,14 @@ class Model:
       
       thing3.append(thing1)
 
-      print(thing3)
+      #print(thing3)
       thing4.append(thing2)
 
-    print(thing4)
-    print(thing3)
+    #print(thing4)
+    #print(thing3)
 
     self.labels = thing4
     self.predictions = thing3
 
-    print(self.labels)
-    print(self.predictions)
+    #print(self.labels)
+    #print(self.predictions)
