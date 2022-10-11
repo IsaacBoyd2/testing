@@ -13,7 +13,7 @@ class Model:
     predictions = []
     labels = []
 
-  def run(self, data, k_nn, k_cluster):
+  def run(self, data, k_nn, k_cluster,value):
 
     folds = data[1]
     thing3 = []
@@ -182,7 +182,7 @@ class Model:
               dist1 = []
               for count3 in range(len(training_df.columns)):
                 if int(base[count3]) > 10**5:
-                base[count3] = 0
+                  base[count3] = 0
 
                 if value != 6:
                   dist1.append((base[count3]) - (training_df.iloc[count2][count3])**2)
