@@ -109,7 +109,7 @@ class Model:
           for count2 in range(len(training_df)):
             dist1 = []
             for count3 in range(len(weights_matrix.columns)):
-              if base[count3] > 10**5:
+              if int(base[count3]) > 10**5:
                 base[count3] = 0
 
               if value != 6:
@@ -169,7 +169,7 @@ class Model:
         for count2 in range(len(training_df)):
           dist1 = []
           for count3 in range(len(weights_matrix.columns)):
-            if base[count3] > 10**5:
+            if int(base[count3]) > 10**5:
               base[count3] = 0
 
             if value != 6:
@@ -212,7 +212,7 @@ class Model:
         for count2 in range(len(weights_matrix)):
           dist1 = []
           for count3 in range(len(testing_df.columns)):
-            if base[count3] > 10**5:
+            if int(base[count3]) > 10**5:
               base[count3] = 0
 
             if value != 6:
