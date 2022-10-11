@@ -78,7 +78,7 @@ class Model:
       
       #print(training_df)
       #print(training_df_with_class)
-      print("testingDF with class: ", testing_df_with_class)
+      #print("testingDF with class: ", testing_df_with_class)
         
 
       #for count2, ii in enumerate(testing_data):
@@ -156,7 +156,7 @@ class Model:
       thing1 = []
       thing2 = []
 
-      print(range(len(decision)))
+      #print(range(len(decision)))
       for i in range(len(decision)):
         #print(testing_df_with_class.iloc[i, -1])
         #print(decision[i][0][0])
@@ -172,16 +172,14 @@ class Model:
       thing3.append(thing1)
       thing4.append(thing2)
 
+    
       
 
-
-      
-
-      print(counts)
-      print(counts/len(testing_df_with_class))
+      #print(counts)
+      #print(counts/len(testing_df_with_class))
 
       accuracies.append(counts/len(testing_df_with_class))
-      print('hello')
+      #print('hello')
 
     
 
@@ -189,7 +187,7 @@ class Model:
     self.predictions = thing3
 
 
-    print(accuracies)
+    #print(accuracies)
 
       #return [self.tuning, self.labels]
   
