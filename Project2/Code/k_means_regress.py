@@ -109,8 +109,8 @@ class Model:
             dist1 = []
             for count3 in range(len(weights_matrix.columns)):
 
-              print(base[count3])
-              print(training_df.iloc[count2][count3])
+              #print(base[count3])
+              #print(training_df.iloc[count2][count3])
               dist1.append((float(base[count3]) - float(training_df.iloc[count2][count3]))**2)
         
             summation = sum(dist1)
@@ -190,7 +190,7 @@ class Model:
               weight_holder.append(w_i_part)
           w_i = sum(weight_holder)
 
-          print(w_i)
+          #print(w_i)
           denominator.append(w_i)
           y_i_w_i = w_i * i
           numerator.append(y_i_w_i) 
@@ -211,8 +211,8 @@ class Model:
           dist1 = []
           for count3 in range(len(testing_df.columns)):
 
-            print(base[count3])
-            print(training_df.iloc[count2][count3])
+            #print(base[count3])
+            #print(training_df.iloc[count2][count3])
             dist1.append((float(base[count3]) - float(training_df.iloc[count2][count3]))**2)
         
           summation = sum(dist1)
@@ -261,7 +261,7 @@ class Model:
               weight_holder.append(w_i_part)
           w_i = sum(weight_holder)
 
-          print(w_i)
+          #print(w_i)
           denominator.append(w_i)
           y_i_w_i = w_i * i
           numerator.append(y_i_w_i) 
@@ -274,7 +274,7 @@ class Model:
         thing2.append(testing_df_with_class.iloc[count1, -1])
 
       #print(thing2)
-      #print(testing_df_with_class)
+      #print(testing_df_with_class)5
 
       
       #for i in range(len(decision)):
