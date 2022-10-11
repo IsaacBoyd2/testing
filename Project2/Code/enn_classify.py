@@ -246,10 +246,25 @@ class Model:
         decision.append(class_decision)
 
       counts = 0
+      thing1 = []
+      thing2 = []
 
       for i in range(len(decision)):
+        thing1.append(decision[i][0][0].item())
+        thing2.append(testing_df_with_class.iloc[i, -1])
         if decision[i][0] == testing_df_with_class.iloc[i, -1]:
           counts += 1
+      
+      thing3.append(thing1)
 
+      print(thing3)
+      thing4.append(thing2)
 
-      print("testing_accuracy",counts/len(testing_df_with_class))
+    print(thing4)
+    print(thing3)
+
+    self.labels = thing4
+    self.predictions = thing3
+
+    print(self.labels)
+    print(self.predictions)
