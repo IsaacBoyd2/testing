@@ -115,7 +115,10 @@ class Model:
 
         
             summation = sum(dist1)
-            #print(summation)
+
+
+
+            print(summation)
             distance = summation**0.5
 
             #print(distance)
