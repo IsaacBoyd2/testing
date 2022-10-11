@@ -98,7 +98,7 @@ class Model:
 
         Centroid_holder = []
 
-        print(max(weights_matrix))
+        #print(max(weights_matrix))
 
         for i in range(k_cluster):
             Centroid_holder.append([])
@@ -123,8 +123,8 @@ class Model:
 
             df_matrix.iloc[count1, count2] = distance 
 
-        print(df_matrix)
-        print(max(df_matrix))
+        #print(df_matrix)
+        #print(max(df_matrix))
 
         
 
@@ -143,6 +143,8 @@ class Model:
             df2_holder[iii] = df_holder[iii].mean()
 
           p = df2_holder.to_numpy()
+
+          print(p)
 
           if np.isnan(p).all() == False:
             weights_matrix.iloc[i] = df2_holder
