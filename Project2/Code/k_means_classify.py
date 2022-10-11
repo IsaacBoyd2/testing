@@ -195,13 +195,15 @@ class Model:
 
         reduced_list = reduced_idx.tolist()
 
-        print(reduced_list)
+        #print(reduced_list)
 
         #print(len(weights_matrix))
 
         majority =[]
         for i in reduced_list:
           majority.append(weights_matrix_labels.iloc[i, -1])
+
+        print(majority)
 
         class_decision = st.mode(majority)
         
@@ -225,6 +227,7 @@ class Model:
       thing4.append(thing2)
 
     print(thing4)
+    print(thing3)
 
     self.labels = thing4
     self.predictions = thing3
