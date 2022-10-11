@@ -109,6 +109,8 @@ class Model:
           for count2 in range(len(training_df)):
             dist1 = []
             for count3 in range(len(weights_matrix.columns)):
+              if base[count3] > 10**5:
+                base[count3] = 0
 
               if value != 6:
                 dist1.append((base[count3]) - (training_df.iloc[count2][count3])**2)
@@ -119,8 +121,8 @@ class Model:
             #print(summation)
             distance = summation**0.5
 
-            if distance > 10**5:
-              distance = 0
+            #if distance > 10**5:
+            #  distance = 0
 
             #print(distance)
 
@@ -167,6 +169,9 @@ class Model:
         for count2 in range(len(training_df)):
           dist1 = []
           for count3 in range(len(weights_matrix.columns)):
+            if base[count3] > 10**5:
+              base[count3] = 0
+
             if value != 6:
               dist1.append((base[count3]) - (training_df.iloc[count2][count3])**2)
             else:
@@ -175,8 +180,8 @@ class Model:
           summation = sum(dist1)
 
           distance = summation**0.5
-          if distance > 10**5:
-            distance = 0
+          #if distance > 10**5:
+           # distance = 0
 
           df_matrix.loc[count1, count2] = distance 
 
@@ -202,9 +207,13 @@ class Model:
 
       for count1 in range(len(testing_df)):
         base = testing_df.iloc[count1]
+       # if base > 10**5:
+             #= 0
         for count2 in range(len(weights_matrix)):
           dist1 = []
           for count3 in range(len(testing_df.columns)):
+            if base[count3] > 10**5:
+              base[count3] = 0
 
             if value != 6:
               dist1.append((base[count3]) - (training_df.iloc[count2][count3])**2)
@@ -214,8 +223,7 @@ class Model:
           summation = sum(dist1)
           
           distance = summation**0.5
-          if distance > 10**5:
-            distance = 0
+          
 
 
           df_matrix.loc[count1, count2] = distance 
