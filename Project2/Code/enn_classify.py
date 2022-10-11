@@ -212,7 +212,7 @@ class Model:
             training_df_with_class = training_df_with_class.reset_index(drop=True)
             training_df = training_df.reset_index(drop=True)
 
-            training_df_with_class = training_df_with_class.drop(columns=['index'])
+            #training_df_with_class = training_df_with_class.drop(columns=['index'])
             #training_df = training_df.drop(columns=['index'])
 
       
