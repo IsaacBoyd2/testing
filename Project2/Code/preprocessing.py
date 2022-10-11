@@ -18,10 +18,10 @@ class Preprocessing:
 
   #initialization
   def __init__ (self):
-    df = pd.DataFrame
-    folds = []
-    tuning = []
-    value = int()
+    self.df = pd.DataFrame
+    self.folds = []
+    self.tuning = []
+    self.value = int()
 
   #method that allows the user to chose the dataset, and preprocesses that said data set.
   def process(self):
@@ -39,7 +39,7 @@ class Preprocessing:
         for j in range(len(df.iloc[0])):
           df.iloc[i][j] = int(df.iloc[i][j])
 
-      self.value = 0
+      self.value = 6
       self.df = df
 
     elif DataNumber == '2':
@@ -55,7 +55,7 @@ class Preprocessing:
     elif DataNumber == '3':
       df = pd.read_csv('https://github.com/IsaacBoyd2/ActualFactualML/blob/main/Project2/Data/soybean-small.csv?raw=true')
       print("Using Soybean data (Classification)")
-      self.value = 6
+      self.value = 0
       self.df = df
 
     elif DataNumber == '4':
@@ -269,6 +269,6 @@ class Preprocessing:
 
       self.folds = foldTotal
 
-preProcess = Preprocessing()
-preProcess.process()
-preProcess.fold()
+#preProcess = Preprocessing()
+#preProcess.process()
+#preProcess.fold()
