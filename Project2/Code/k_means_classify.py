@@ -105,7 +105,9 @@ class Model:
 
         for count1 in range(len(weights_matrix)):
           base = weights_matrix.iloc[count1]
-          #print(base)
+
+
+          print(base)
           for count2 in range(len(training_df)):
             dist1 = []
             for count3 in range(len(weights_matrix.columns)):
@@ -116,7 +118,7 @@ class Model:
             #print(summation)
             distance = summation**0.5
 
-            print(distance)
+            #print(distance)
 
             #if distance > 10**5:
             #  distance = 0
