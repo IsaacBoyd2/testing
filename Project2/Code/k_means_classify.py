@@ -217,7 +217,7 @@ class Model:
       #print(decision)
 
       for i in range(len(decision)):
-        thing1.append(decision[i][0][0])
+        thing1.append(decision[i][0][0]).item()
        # print(thing1)
        # print(thing1[i])
         thing2.append(testing_df_with_class.iloc[i, -1])
@@ -226,8 +226,9 @@ class Model:
       #print(testing_df_with_class)
 
       
-      for i in range(len(decision)):
-        thing3.append(thing1[i])
+      #for i in range(len(decision)):
+      
+      thing3.append(thing1)
 
       print(thing3)
       thing4.append(thing2)
