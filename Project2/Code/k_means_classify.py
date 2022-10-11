@@ -108,9 +108,9 @@ class Model:
             for count3 in range(len(weights_matrix.columns)):
 
               if value != 6:
-                dist1.append(base[count3]) - training_df.iloc[count2][count3])**2)
+                dist1.append((base[count3]) - (training_df.iloc[count2][count3])**2)
               else:
-                  dist1.append(int(base[count3])) - int(training_df.iloc[count2][count3]))**2)
+                dist1.append(((int(base[count3])) - int(training_df.iloc[count2][count3]))**2)
         
             summation = sum(dist1)
             distance = np.sqrt(summation)
@@ -152,9 +152,9 @@ class Model:
           dist1 = []
           for count3 in range(len(weights_matrix.columns)):
             if value != 6:
-                dist1.append(base[count3]) - training_df.iloc[count2][count3])**2)
+              dist1.append((base[count3]) - (training_df.iloc[count2][count3])**2)
             else:
-                dist1.append(int(base[count3])) - int(training_df.iloc[count2][count3]))**2)
+              dist1.append(((int(base[count3])) - int(training_df.iloc[count2][count3]))**2)
         
           summation = sum(dist1)
           distance = np.sqrt(summation)
@@ -188,9 +188,9 @@ class Model:
           for count3 in range(len(testing_df.columns)):
 
             if value != 6:
-                dist1.append(base[count3]) - training_df.iloc[count2][count3])**2)
+              dist1.append((base[count3]) - (training_df.iloc[count2][count3])**2)
             else:
-                dist1.append(int(base[count3])) - int(training_df.iloc[count2][count3]))**2)
+              dist1.append(((int(base[count3])) - int(training_df.iloc[count2][count3]))**2)
         
           summation = sum(dist1)
           distance = np.sqrt(summation)
