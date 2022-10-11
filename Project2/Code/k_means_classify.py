@@ -123,6 +123,8 @@ class Model:
 
             df_matrix.iloc[count1, count2] = distance 
 
+        print(df_matrx)
+
         #print(df_matrix)
         #print(max(df_matrix))
 
