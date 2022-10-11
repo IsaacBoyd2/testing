@@ -16,6 +16,8 @@ class Model:
   def run(self, data, k_nn, k_cluster):
 
     folds = data[1]
+    thing3 = []
+    thing4 = []
 
     for iterations in range(10):
 
