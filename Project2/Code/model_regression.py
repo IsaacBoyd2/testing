@@ -174,7 +174,7 @@ class Model:
               weight_holder.append(w_i_part)
           w_i = sum(weight_holder)
 
-          print(w_i)
+          #print(w_i)
           denominator.append(w_i)
           y_i_w_i = w_i * i
           numerator.append(y_i_w_i) 
