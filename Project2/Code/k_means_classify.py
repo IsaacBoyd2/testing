@@ -98,11 +98,14 @@ class Model:
 
         Centroid_holder = []
 
+        print(max(weights_matrix))
+
         for i in range(k_cluster):
             Centroid_holder.append([])
 
         for count1 in range(len(weights_matrix)):
           base = weights_matrix.iloc[count1]
+          print(base)
           for count2 in range(len(training_df)):
             dist1 = []
             for count3 in range(len(weights_matrix.columns)):
@@ -121,6 +124,7 @@ class Model:
             df_matrix.iloc[count1, count2] = distance 
 
         print(df_matrix)
+        print(max(df_matrix))
 
         
 
