@@ -194,6 +194,9 @@ class Model:
 
           majority =[]
           for i in reduced_list:
+            
+            print(i-counting)
+
             majority.append(training_df_with_class.iloc[i-counting, -1])
 
 
