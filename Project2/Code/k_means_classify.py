@@ -226,8 +226,8 @@ class Model:
       #print(testing_df_with_class)
 
       
-
-      thing3.append(thing1[0])
+      for i in range(len(decision)):
+        thing3.append(thing1[i])
       thing4.append(thing2)
 
     print(thing4)
