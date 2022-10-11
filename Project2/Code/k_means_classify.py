@@ -113,7 +113,11 @@ class Model:
                 dist1.append(((int(base[count3])) - int(training_df.iloc[count2][count3]))**2)
         
             summation = sum(dist1)
-            distance = np.sqrt(summation)
+            if summation == 0:
+              distance = 0
+
+            else:
+              distance = np.sqrt(summation)
 
             df_matrix.iloc[count1, count2] = distance 
 
@@ -157,7 +161,12 @@ class Model:
               dist1.append(((int(base[count3])) - int(training_df.iloc[count2][count3]))**2)
         
           summation = sum(dist1)
-          distance = np.sqrt(summation)
+
+          if summation == 0:
+            distance = 0
+
+          else:
+            distance = np.sqrt(summation)
 
           df_matrix.loc[count1, count2] = distance 
 
@@ -193,7 +202,11 @@ class Model:
               dist1.append(((int(base[count3])) - int(training_df.iloc[count2][count3]))**2)
         
           summation = sum(dist1)
-          distance = np.sqrt(summation)
+          if summation == 0:
+            distance = 0
+
+          else:
+            distance = np.sqrt(summation)
 
           df_matrix.loc[count1, count2] = distance 
 
