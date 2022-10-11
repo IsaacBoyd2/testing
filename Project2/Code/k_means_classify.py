@@ -107,7 +107,7 @@ class Model:
           base = weights_matrix.iloc[count1]
 
 
-          print(base)
+          #print(base)
           for count2 in range(len(training_df)):
             dist1 = []
             for count3 in range(len(weights_matrix.columns)):
@@ -118,7 +118,7 @@ class Model:
 
 
 
-            print(summation)
+            #print(summation)
             distance = summation**0.5
 
             #print(distance)
@@ -130,7 +130,7 @@ class Model:
 
             df_matrix.iloc[count1, count2] = distance 
 
-        print(df_matrix)
+        #print(df_matrix)
 
         #print(df_matrix)
         #print(max(df_matrix))
@@ -153,7 +153,7 @@ class Model:
 
           p = df2_holder.to_numpy()
 
-          print(p)
+          #print(p)
 
           if np.isnan(p).all() == False:
             weights_matrix.iloc[i] = df2_holder
