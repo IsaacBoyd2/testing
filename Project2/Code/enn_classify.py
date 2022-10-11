@@ -207,8 +207,8 @@ class Model:
             training_df_with_class = training_df_with_class.drop(count1- counting)
             counting = counting + 1
 
-            #training_df_with_class = training_df_with_class.reset_index()
-            #training_df = training_df.reset_index()
+            training_df_with_class = training_df_with_class.reset_index()
+            training_df = training_df.reset_index()
 
             training_df_with_class = training_df_with_class.drop(columns=['index'])
             training_df = training_df.drop(columns=['index'])
