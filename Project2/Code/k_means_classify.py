@@ -203,7 +203,7 @@ class Model:
         for i in reduced_list:
           majority.append(weights_matrix_labels.iloc[i, -1])
 
-        print(majority)
+        #print(majority)
 
         class_decision = st.mode(majority)
         
@@ -214,14 +214,17 @@ class Model:
       thing1 = []
       thing2 = []
 
-      print(decision)
+      #print(decision)
 
       for i in range(len(decision)):
         thing1.append(decision[i][0][0])
         thing2.append(testing_df_with_class.iloc[i, -1])
 
-      print(thing2)
-      print(testing_df_with_class)
+      #print(thing2)
+      #print(testing_df_with_class)
+
+      print(thing1)
+      print(thing1[0])
 
       thing3.append(thing1[0])
       thing4.append(thing2)
