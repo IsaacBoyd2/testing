@@ -223,7 +223,7 @@ class Model:
       print(thing2)
       print(testing_df_with_class)
 
-      thing3.append(thing1)
+      thing3.append(thing1[0])
       thing4.append(thing2)
 
     print(thing4)
