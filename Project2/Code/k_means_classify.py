@@ -109,13 +109,8 @@ class Model:
           for count2 in range(len(training_df)):
             dist1 = []
             for count3 in range(len(weights_matrix.columns)):
-              if int(base[count3]) > 10**5:
-                base[count3] = 0
-
-              if value != 6:
                 dist1.append((base[count3]) - (training_df.iloc[count2][count3])**2)
-              else:
-                dist1.append(((int(base[count3])) - int(training_df.iloc[count2][count3]))**2)
+
         
             summation = sum(dist1)
             #print(summation)
@@ -169,13 +164,7 @@ class Model:
         for count2 in range(len(training_df)):
           dist1 = []
           for count3 in range(len(weights_matrix.columns)):
-            if int(base[count3]) > 10**5:
-              base[count3] = 0
-
-            if value != 6:
               dist1.append((base[count3]) - (training_df.iloc[count2][count3])**2)
-            else:
-              dist1.append(((int(base[count3])) - int(training_df.iloc[count2][count3]))**2)
         
           summation = sum(dist1)
 
@@ -212,13 +201,8 @@ class Model:
         for count2 in range(len(weights_matrix)):
           dist1 = []
           for count3 in range(len(testing_df.columns)):
-            if int(base[count3]) > 10**5:
-              base[count3] = 0
-
-            if value != 6:
               dist1.append((base[count3]) - (training_df.iloc[count2][count3])**2)
-            else:
-              dist1.append(((int(base[count3])) - int(training_df.iloc[count2][count3]))**2)
+
         
           summation = sum(dist1)
           
