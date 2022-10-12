@@ -28,7 +28,7 @@ class Loss:
   def calculate(self, classes, pred, facts):
 
 
-    classes = preProcess.df['Class'].unique()
+    #classes = preProcess.df['Class'].unique()
 
 
     confusionMat = np.zeros([len(classes),len(classes)])
