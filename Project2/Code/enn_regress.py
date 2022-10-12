@@ -32,7 +32,7 @@ class Model:
 
       print(iterations)
 
-      
+
 
       all_folds = [0,1,2,3,4,5,6,7,8,9]
 
@@ -51,7 +51,7 @@ class Model:
       training_df_with_class = pd.DataFrame()
 
       testing_df_with_class = pd.DataFrame()
-      
+
       for i in training_data:
         temp_df = pd.DataFrame(i)
         temp_df_T = temp_df.transpose()
@@ -77,7 +77,7 @@ class Model:
       #print(training_df)
       #print(testing_df)
 
-      
+
       old_val_acc = 0
       val_acc = 1
 
@@ -116,9 +116,9 @@ class Model:
             dist1 = []
             for count3 in range(len(tuning_df.columns)):     
                 dist1.append(((base[count3]) - (training_df.iloc[count2][count3]))**2)   #Find the distance   #1 error right here
-                
 
-          
+
+
             summation = sum(dist1)   #this seesm fine
             distance = np.sqrt(summation)   #this is fine for now as long as you are not getting a wierd error
 
@@ -157,7 +157,7 @@ class Model:
         val_acc = counts/len(tuning_df_with_class)   #calculate validation accuracy
 
         print(val_acc)
-        
+
 
         tracker.append(val_acc)
         #print(tracker)
@@ -168,14 +168,14 @@ class Model:
         ############################### Now we edit #######################################
 
         clicks = clicks + 1 #increment 1
-        
+
 
         #Go through the training dataset and edit out as you go
 
         df_matrix = pd.DataFrame(np.nan, index=range(len(training_df)), columns = range(len(training_df)))
 
         decision = []
-        
+
         counting = 0
 
         for count1 in range(len(training_df)):
@@ -186,12 +186,12 @@ class Model:
               for count3 in range(len(training_df.columns)):
                   dist1.append(((base[count3]) - (training_df.iloc[count2][count3]))**2)   #compare everything in the training set.
 
-            
+
               summation = sum(dist1)
               distance = np.sqrt(summation)
 
               df_matrix.loc[count1, count2] = distance 
-          
+
 
           comparison_array = np.array(df_matrix.loc[count1])
           k = k_nn
@@ -202,14 +202,14 @@ class Model:
 
           #print(reduced_list)
 
-          
-          
+
+
 
           majority =[]
           #print(counting)
           #print(training_df_with_class)
           for i in reduced_list:
-            
+
             #print(i-counting)
 
             majority.append(training_df_with_class.iloc[i, -1])   #removed counting. Maybe now that drop is true we do not need to reset the counting or something?
@@ -218,7 +218,7 @@ class Model:
           class_decision = st.mode(majority)
 
           #print(len(training_df_with_class))
-          
+
           #print(abs(training_df_with_class.iloc[count1-counting, -1]-class_decision[0])/training_df_with_class.iloc[count1-counting, -1])
 
           if abs(training_df_with_class.iloc[count1-counting, -1]-class_decision[0])/training_df_with_class.iloc[count1-counting, -1] > epsilon: #second epsilon should go here but have the same criterion but obviously we are editing if it is wrong so this needs to be greater than
@@ -242,7 +242,7 @@ class Model:
             #raining_df = training_df.drop(columns=['level_0'])
         #sys.exit()
 
-      
+
 
 
       df_matrix = pd.DataFrame(np.nan, index=range(len(testing_df)), columns = range(len(training_df)))
@@ -258,7 +258,7 @@ class Model:
           for count3 in range(len(testing_df.columns)):
               dist1.append(((base[count3]) - (training_df.iloc[count2][count3]))**2)
 
-        
+
           summation = sum(dist1)
           distance = np.sqrt(summation)
 
@@ -279,7 +279,7 @@ class Model:
               #last_column = df.iloc[: , -1]
               #desicion_list.append(training_df_with_class['Rings'][i])
           desicion_list.append(training_df_with_class.iloc[i, -1])        
-            
+
         denominator = []
         numerator = []
 
@@ -315,3 +315,6 @@ class Model:
 
     self.labels = thing4
     self.predictions = thing3
+
+    print(self.labels)
+    print(self.predictions)
