@@ -144,7 +144,7 @@ class Model:
         print("decision",class_decision)
         
         
-        print(testing_df_with_class[count1])
+        print(testing_df_with_class.iloc[count1])
         sys.exit()
 
         decision.append(class_decision)
