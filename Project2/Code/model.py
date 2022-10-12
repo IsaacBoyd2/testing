@@ -142,6 +142,9 @@ class Model:
         class_decision = st.mode(majority)
 
         print("decision",class_decision)
+        
+        
+        print(testing_df_with_class[count1])
         sys.exit()
 
         decision.append(class_decision)
