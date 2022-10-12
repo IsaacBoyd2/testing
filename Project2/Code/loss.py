@@ -56,12 +56,14 @@ class Loss:
           falseNeg = falseNeg + confusionMat[j][i]
     if truePos + falsePos != 0:     
       precision = truePos/(truePos+falsePos)
+      self.prec.append(precision)
       
     if truePos + falseNeg != 0: 
       recall = truePos/(truePos+falseNeg)
+      self.rec.append(recall)
 
-    self.prec.append(precision)
-    self.rec.append(recall)
+ 
+    
 
     #gets the average precision and recall, then calculates the F1 score
     avgPrec = 0
