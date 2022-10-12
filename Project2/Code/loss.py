@@ -76,6 +76,8 @@ class Loss:
       avgRec = avgRec + self.rec[i]
     avgPrec = avgPrec/len(self.prec)
     avgRec = avgRec/len(self.rec)
+    
+    self.prec = avgprec
 
     self.F1 = 2*((avgPrec*avgRec)/(avgPrec+avgRec))
 
