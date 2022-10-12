@@ -43,6 +43,9 @@ class Loss:
         #adds an occurance in the confusion matrix
         confusionMat[indHorz, indVert] += 1
 
+    the_counter1 = 0
+    the_counter2 = 0
+        
     #calculates precision and recall
     for i in range(len(confusionMat)):
       truePos = 0
@@ -55,10 +58,12 @@ class Loss:
           falsePos = falsePos + confusionMat[i][j]
           falseNeg = falseNeg + confusionMat[j][i]
       if truePos + falsePos != 0:     
+        the_counter1 = the_counter1 + 1
         precision = truePos/(truePos+falsePos)
         self.prec.append(precision)
 
       if truePos + falseNeg != 0: 
+        the_counter2 = the_counter2 + 1
         recall = truePos/(truePos+falseNeg)
         self.rec.append(recall)
 
@@ -71,8 +76,10 @@ class Loss:
     #gets the average precision and recall, then calculates the F1 score
     avgPrec = 0
     avgRec = 0
-    for i in range(len(self.prec)):
+    
+    for i in range(len(confusionMat)-the_counter1):
       avgPrec = avgPrec + self.prec[i]
+    for i in range(len(confusionMat)-the_counter2):
       avgRec = avgRec + self.rec[i]
     avgPrec = avgPrec/len(self.prec)
     avgRec = avgRec/len(self.rec)
