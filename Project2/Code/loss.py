@@ -54,16 +54,16 @@ class Loss:
         else:
           falsePos = falsePos + confusionMat[i][j]
           falseNeg = falseNeg + confusionMat[j][i]
-    if truePos + falsePos != 0:     
-      precision = truePos/(truePos+falsePos)
-      self.prec.append(precision)
-      
-    if truePos + falseNeg != 0: 
-      recall = truePos/(truePos+falseNeg)
-      self.rec.append(recall)
-      
-    print(truePos)
-    print(len(self.prec))
+      if truePos + falsePos != 0:     
+        precision = truePos/(truePos+falsePos)
+        self.prec.append(precision)
+
+      if truePos + falseNeg != 0: 
+        recall = truePos/(truePos+falseNeg)
+        self.rec.append(recall)
+
+      print(truePos)
+      print(len(self.prec))
 
  
     
