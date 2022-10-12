@@ -86,13 +86,16 @@ class Loss:
     total = 0
     for i in range(len(pred)):
       for j in range(len(pred[i])):
-        distance = distance + ((float(facts[i][j]) - float(pred[i][j]))**float(2))
-        distanceabs = distanceabs + abs((float(facts[i][j]) - float(pred[i][j])))
-        self.error.append((float(facts[i][j]) - float(pred[i][j]))**float(2))
-        total = total+1
+        if pd.isna(pred[i][j]):
+          print('hello')
+        else:
+          distance = distance + ((float(facts[i][j]) - float(pred[i][j]))**float(2))
+          distanceabs = distanceabs + abs((float(facts[i][j]) - float(pred[i][j])))
+          error.append((float(facts[i][j]) - float(pred[i][j]))**float(2))
+          total = total+1
 
     if len(facts) > 0:
-      self.mse = distance/total
-      self.mae = distanceabs/total
+      mse = distance/total
+      mae = distanceabs/total
     else:
-      self.mse = 0
+      mse = 0
