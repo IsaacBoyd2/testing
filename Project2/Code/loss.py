@@ -18,7 +18,7 @@ class Loss:
 
   #initialization
   def __init__(self):
-    self.prec = int()
+    self.prec = []
     self.rec = []
     self.error = []
     self.F1 = int()
@@ -78,7 +78,7 @@ class Loss:
     avgRec = avgRec/len(rec)
 
     self.F1 = 2*((avgPrec*avgRec)/(avgPrec+avgRec))
-    self.prec = avgPrec
+    #self.prec = avgPrec
 
 
     #self.F1 = 2*((avgPrec*avgRec)/(avgPrec+avgRec))
