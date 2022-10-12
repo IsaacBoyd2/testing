@@ -47,41 +47,41 @@ class Loss:
         #adds an occurance in the confusion matrix
         confusionMat[indHorz, indVert] += 1
 
-        #calculates precision and recall
-        for i in range(len(confusionMat)):
-          truePos = 0
-          falsePos = 0
-          falseNeg = 0
-          for j in range(len(confusionMat[i])):
-            if i == j:
-              truePos = confusionMat[i][j]
-            else:
-              falsePos = falsePos + confusionMat[i][j]
-              falseNeg = falseNeg + confusionMat[j][i]
+    #calculates precision and recall
+    for i in range(len(confusionMat)):
+      truePos = 0
+      falsePos = 0
+      falseNeg = 0
+      for j in range(len(confusionMat[i])):
+        if i == j:
+          truePos = confusionMat[i][j]
+        else:
+          falsePos = falsePos + confusionMat[i][j]
+          falseNeg = falseNeg + confusionMat[j][i]
 
-          if truePos + falsePos != 0:   
-            precision = truePos/(truePos+falsePos)
+      if truePos + falsePos != 0:   
+        precision = truePos/(truePos+falsePos)
 
-          if truePos + falseNeg != 0: 
-            recall = truePos/(truePos+falseNeg)
+      if truePos + falseNeg != 0: 
+        recall = truePos/(truePos+falseNeg)
 
-          self.prec.append(precision)
-          self.rec.append(recall)
+      self.prec.append(precision)
+      self.rec.append(recall)
 
-        #gets the average precision and recall, then calculates the F1 score
-        avgPrec = 0
-        avgRec = 0
-        for i in range(len(prec)):
-          avgPrec = avgPrec + self.prec[i]
-          avgRec = avgRec + self.rec[i]
-        avgPrec = avgPrec/len(prec)
-        avgRec = avgRec/len(rec)
+    #gets the average precision and recall, then calculates the F1 score
+    avgPrec = 0
+    avgRec = 0
+    for i in range(len(prec)):
+      avgPrec = avgPrec + self.prec[i]
+      avgRec = avgRec + self.rec[i]
+    avgPrec = avgPrec/len(prec)
+    avgRec = avgRec/len(rec)
 
-        self.F1 = 2*((avgPrec*avgRec)/(avgPrec+avgRec))
-        self.prec = avgPrec
+    self.F1 = 2*((avgPrec*avgRec)/(avgPrec+avgRec))
+    self.prec = avgPrec
 
 
-        #self.F1 = 2*((avgPrec*avgRec)/(avgPrec+avgRec))
+    #self.F1 = 2*((avgPrec*avgRec)/(avgPrec+avgRec))
 
   def calculateReg(self, pred, facts):
     print("pred: ", pred, " \n\nfacts: ", facts)
