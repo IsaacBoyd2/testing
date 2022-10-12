@@ -22,7 +22,7 @@ class Model:
     predictions = []
     labels = []
 
-  def run(self, data, k_nn, k_cluster,value):
+  def run(self, data, k_nn, k_cluster,value, sigma, epsilon):
 
     folds = data[1]
     thing3 = []
