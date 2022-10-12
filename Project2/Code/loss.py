@@ -60,8 +60,8 @@ class Loss:
     if truePos + falseNeg != 0: 
       recall = truePos/(truePos+falseNeg)
 
-      self.prec.append(precision)
-      self.rec.append(recall)
+    self.prec.append(precision)
+    self.rec.append(recall)
 
     #gets the average precision and recall, then calculates the F1 score
     avgPrec = 0
