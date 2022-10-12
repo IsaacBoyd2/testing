@@ -105,12 +105,13 @@ class Model:
       #df = df.reset_index()
       #df2 = df.iloc[: , 2:-1]
 
+
       decision = []
 
       for count1 in range(len(testing_df)):
         base = testing_df.iloc[count1]
         #rint('hello')
-        #print(base)
+        print(base)
         #print('hello')
         for count2 in range(len(training_df)):
           dist1 = []
@@ -129,22 +130,20 @@ class Model:
 
         reduced_list = reduced_idx.tolist()
 
-        #print(reduced_list)
-        #print(count1)
+        print("index values",reduced_list)
 
-
-        #reduced_list.remove(count1)
 
         majority =[]
         for i in reduced_list:
-          #print(df['Class'][i])
           majority.append(training_df_with_class.iloc[i, -1])
-          #print(training_df_with_class['Class'][i])
+
+        print("class values: ",majority)
 
         class_decision = st.mode(majority)
-        
 
-        #print(class_decision[0])
+        print("decision",class_decision)
+        sys.exit()
+
         decision.append(class_decision)
 
 
