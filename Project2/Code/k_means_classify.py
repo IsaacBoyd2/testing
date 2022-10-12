@@ -261,3 +261,6 @@ class Model:
       thing3.append(thing1)
 
       thing4.append(thing2)
+      
+    self.predictions = thing3
+    self.labels = thing4
