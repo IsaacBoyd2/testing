@@ -34,15 +34,15 @@ class Loss:
     confusionMat = np.zeros([len(classes),len(classes)])
 
     #populates the confusion matrix that will be used for precision, recall, and F1 calculations.
-    for i in range(len(thing4)):
-      for j in range(len(thing4[i])):
+    for i in range(len(facts)):
+      for j in range(len(facts[i])):
         indHorz = 0
         indVert = 0
         #checks for position in the confusion matrix
         for k in range(len(classes)):
-          if classes[k] == thing3[i][j]:
+          if classes[k] == pred[i][j]:
             indVert = k
-          if classes[k] == thing4[i][j]:
+          if classes[k] == facts[i][j]:
             indHorz = k
         #adds an occurance in the confusion matrix
         confusionMat[indHorz, indVert] += 1
