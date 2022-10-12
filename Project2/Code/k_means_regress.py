@@ -13,7 +13,7 @@ class Model:
     predictions = []
     labels = []
 
-  def run(self, data, k_nn, k_cluster):
+  def run(self, data, k_nn, k_cluster,sigma):
 
     #preProcess = pp.Preprocessing()
     #preProcess.process()
