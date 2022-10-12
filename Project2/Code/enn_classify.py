@@ -217,7 +217,7 @@ class Model:
               training_df_with_class = training_df_with_class.drop(columns=['level_0'])
              
             if 'level_0' in training_df:
-              training_df_with_class = training_df_with_class.drop(columns=['level_0'])
+              training_df = training_df.drop(columns=['level_0'])
 
             training_df_with_class = training_df_with_class.reset_index()
             training_df = training_df.reset_index()
