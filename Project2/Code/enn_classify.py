@@ -23,7 +23,7 @@ class Model:
 
       print(iterations)
 
-      
+
 
       all_folds = [0,1,2,3,4,5,6,7,8,9]
 
@@ -42,7 +42,7 @@ class Model:
       training_df_with_class = pd.DataFrame()
 
       testing_df_with_class = pd.DataFrame()
-      
+
       for i in training_data:
         temp_df = pd.DataFrame(i)
         temp_df_T = temp_df.transpose()
@@ -65,10 +65,10 @@ class Model:
       testing_df = testing_df.drop(columns=['index'])
 
 
-      print(training_df)
-      print(testing_df)
+      #print(training_df)
+      #print(testing_df)
 
-      
+
       old_val_acc = 0
       val_acc = 1
 
@@ -76,15 +76,11 @@ class Model:
 
       tracker = [0,0]
 
+      #The test is when the validation accuracy or the accuract when testing against the tuning dataset falls below the previous break out.
 
       while (tracker[clicks] > tracker[clicks-1] or clicks==1):
 
-        print(tracker)
-        print(len(training_df))
-
-        #################################### val test ################################################
-
-        tuning_data = data[0]
+        tuning_data = data[0]   #grab the tuning data
 
         tuning_df_with_class = pd.DataFrame()
 
@@ -99,24 +95,25 @@ class Model:
         tuning_df = tuning_df.reset_index()
         tuning_df_with_class = tuning_df_with_class.reset_index()
 
-        tuning_df = tuning_df.drop(columns=['index'])
+        tuning_df = tuning_df.drop(columns=['index'])    #Conver the tuning data into a df
 
         decision = []
 
         df_matrix = pd.DataFrame(np.nan, index=range(len(tuning_df)), columns = range(len(training_df)))
 
-        for count1 in range(len(tuning_df)):
+        for count1 in range(len(tuning_df)): #go throught the tuning df
           base = tuning_df.iloc[count1]
-          for count2 in range(len(training_df)):
+          for count2 in range(len(training_df)): #compare against training df
             dist1 = []
-            for count3 in range(len(tuning_df.columns)):
-                dist1.append((base[count3]) - (training_df.iloc[count2][count3])**2)
+            for count3 in range(len(tuning_df.columns)):     
+                dist1.append(((base[count3]) - (training_df.iloc[count2][count3]))**2)   #Find the distance   #1 error right here
 
-          
-            summation = sum(dist1)
-            distance = np.sqrt(summation)
 
-            df_matrix.loc[count1, count2] = distance 
+
+            summation = sum(dist1)   #this seesm fine
+            distance = np.sqrt(summation)   #this is fine for now as long as you are not getting a wierd error
+
+            df_matrix.loc[count1, count2] = distance  
 
           comparison_array = np.array(df_matrix.loc[count1])
           k = k_nn
@@ -139,51 +136,45 @@ class Model:
           if decision[i][0] == tuning_df_with_class.iloc[i, -1]:
             counts += 1
 
-        print(len(decision))
-        print(len(tuning_df_with_class))
-        print(counts)
+        #print(len(decision))
+        #print(len(tuning_df_with_class))
+        #print(counts)
 
-
-        val_acc = counts/len(tuning_df_with_class)
+        val_acc = counts/len(tuning_df_with_class)   #calculate validation accuracy
 
         tracker.append(val_acc)
         #print(tracker)
-        print("Validation_accuracy",val_acc)
+        #print("Validation_accuracy",val_acc)
+
+        #the above code was to give us a comparison as to when to stop
+
+        ############################### Now we edit #######################################
+
+        clicks = clicks + 1 #increment 1
 
 
+        #Go through the training dataset and edit out as you go
 
-
-
-
-
-
-        ###########################################################################################
-
-        clicks = clicks + 1
-        
         df_matrix = pd.DataFrame(np.nan, index=range(len(training_df)), columns = range(len(training_df)))
 
-
         decision = []
-        
+
         counting = 0
 
         for count1 in range(len(training_df)):
           base = training_df.iloc[count1-counting]
           for count2 in range(len(training_df)):
             if count1-counting != count2-counting:
-              
-              
               dist1 = []
               for count3 in range(len(training_df.columns)):
-                  dist1.append((base[count3]) - (training_df.iloc[count2][count3])**2)
+                  dist1.append(((base[count3]) - (training_df.iloc[count2][count3]))**2)   #compare everything in the training set.
 
-            
+
               summation = sum(dist1)
               distance = np.sqrt(summation)
 
               df_matrix.loc[count1, count2] = distance 
-          
+
 
           comparison_array = np.array(df_matrix.loc[count1])
           k = k_nn
@@ -192,17 +183,25 @@ class Model:
 
           reduced_list = reduced_idx.tolist()
 
-          majority =[]
-          for i in reduced_list:
-            
-            print(i-counting)
+          #print(reduced_list)
 
-            majority.append(training_df_with_class.iloc[i-counting, -1])
+
+
+
+          majority =[]
+          print(counting)
+          #print(training_df_with_class)
+          for i in reduced_list:
+
+            #print(i-counting)
+
+            majority.append(training_df_with_class.iloc[i, -1])   #removed counting. Maybe now that drop is true we do not need to reset the counting or something?
 
 
           class_decision = st.mode(majority)
 
-          print(len(training_df_with_class))
+          #print(len(training_df_with_class))
+
 
           if class_decision[0] != training_df_with_class.iloc[count1 - counting, -1]:
             #print(training_df[0:10])
@@ -210,15 +209,19 @@ class Model:
             training_df_with_class = training_df_with_class.drop(count1- counting)
             counting = counting + 1
 
-            print(len(training_df_with_class))
+            #print(len(training_df_with_class))
 
-            training_df_with_class = training_df_with_class.reset_index(drop=True)
-            training_df = training_df.reset_index(drop=True)
+            #print(training_df_with_class)
 
-            #training_df_with_class = training_df_with_class.drop(columns=['index'])
-            #training_df = training_df.drop(columns=['index'])
+            training_df_with_class = training_df_with_class.reset_index()
+            training_df = training_df.reset_index()
 
-      
+            training_df_with_class = training_df_with_class.drop(columns=['index'])
+            training_df = training_df.drop(columns=['index'])
+            #training_df_with_class = training_df_with_class.drop(columns=['level_0'])
+            #raining_df = training_df.drop(columns=['level_0'])
+
+
 
 
       df_matrix = pd.DataFrame(np.nan, index=range(len(training_df)), columns = range(len(training_df)))
@@ -230,9 +233,9 @@ class Model:
         for count2 in range(len(training_df)):
           dist1 = []
           for count3 in range(len(testing_df.columns)):
-              dist1.append((base[count3]) - (training_df.iloc[count2][count3])**2)
+              dist1.append(((base[count3]) - (training_df.iloc[count2][count3]))**2)
 
-        
+
           summation = sum(dist1)
           distance = np.sqrt(summation)
 
@@ -284,7 +287,7 @@ class Model:
           thing2[countss] = 3
         if i == 'D4': 
           thing2[countss] = 4
-        
+
       thing3.append(thing1)
 
       print(thing3)
@@ -297,6 +300,3 @@ class Model:
 
     self.labels = thing4
     self.predictions = thing3
-
-    print(self.labels)
-    print(self.predictions)
