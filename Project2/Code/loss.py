@@ -61,6 +61,9 @@ class Loss:
     if truePos + falseNeg != 0: 
       recall = truePos/(truePos+falseNeg)
       self.rec.append(recall)
+      
+    print(truePos)
+    print(len(self.prec))
 
  
     
