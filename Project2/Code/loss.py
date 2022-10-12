@@ -62,10 +62,16 @@ class Loss:
       if truePos + falsePos != 0:   
         precision = truePos/(truePos+falsePos)
         self.prec.append(precision)
+        
+      else:
+        self.prec.append(0)
 
       if truePos + falseNeg != 0: 
         recall = truePos/(truePos+falseNeg)
         self.rec.append(recall)
+        
+      else:
+        self.prec.append(0)
 
       
       
