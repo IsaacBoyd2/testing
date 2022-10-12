@@ -2,6 +2,7 @@
 import pandas as pd
 import numpy as np
 from scipy import stats as st
+import sys
 
 class Model:
 
@@ -170,7 +171,7 @@ class Model:
             if i != ii:
               w_i_part = 2.72**((-(i-ii)**2)/sigma**2)
 
-              #print(w_i)
+              print(w_i)
               weight_holder.append(w_i_part)
           w_i = sum(weight_holder)
 
@@ -178,8 +179,11 @@ class Model:
           denominator.append(w_i)
           y_i_w_i = w_i * i
           numerator.append(y_i_w_i) 
-
+          
         f = sum(numerator)/sum(denominator)
+        
+        print(f)
+        sys.exit()
         #print("numerator: ", numerator)
         #print("denominator: ", denominator)
 
