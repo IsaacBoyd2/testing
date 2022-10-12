@@ -71,7 +71,7 @@ class Loss:
     #gets the average precision and recall, then calculates the F1 score
     avgPrec = 0
     avgRec = 0
-    for i in range(len(prec)):
+    for i in range(len(self.prec)):
       avgPrec = avgPrec + self.prec[i]
       avgRec = avgRec + self.rec[i]
     avgPrec = avgPrec/len(prec)
