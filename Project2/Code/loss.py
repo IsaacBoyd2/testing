@@ -91,11 +91,11 @@ class Loss:
         else:
           distance = distance + ((float(facts[i][j]) - float(pred[i][j]))**float(2))
           distanceabs = distanceabs + abs((float(facts[i][j]) - float(pred[i][j])))
-          error.append((float(facts[i][j]) - float(pred[i][j]))**float(2))
+          self.error.append((float(facts[i][j]) - float(pred[i][j]))**float(2))
           total = total+1
 
     if len(facts) > 0:
-      mse = distance/total
-      mae = distanceabs/total
+      self.mse = distance/total
+      self.mae = distanceabs/total
     else:
-      mse = 0
+      self.mse = 0
