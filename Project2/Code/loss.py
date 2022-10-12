@@ -61,20 +61,12 @@ class Loss:
 
       if truePos + falsePos != 0:   
         precision = truePos/(truePos+falsePos)
-        self.prec.append(precision)
-        
-      else:
-        self.prec.append(0)
 
       if truePos + falseNeg != 0: 
         recall = truePos/(truePos+falseNeg)
-        self.rec.append(recall)
-        
-      else:
-        self.prec.append(0)
 
-      
-      
+      self.prec.append(precision)
+      self.rec.append(recall)
 
     #gets the average precision and recall, then calculates the F1 score
     avgPrec = 0
@@ -82,14 +74,10 @@ class Loss:
     for i in range(len(self.prec)):
       avgPrec = avgPrec + self.prec[i]
       avgRec = avgRec + self.rec[i]
-    avgPrec = avgPrec/len(prec)
-    avgRec = avgRec/len(rec)
+    avgPrec = avgPrec/len(self.prec)
+    avgRec = avgRec/len(self.rec)
 
     self.F1 = 2*((avgPrec*avgRec)/(avgPrec+avgRec))
-    #self.prec = avgPrec
-
-
-    #self.F1 = 2*((avgPrec*avgRec)/(avgPrec+avgRec))
 
   def calculateReg(self, pred, facts):
     print("pred: ", pred, " \n\nfacts: ", facts)
