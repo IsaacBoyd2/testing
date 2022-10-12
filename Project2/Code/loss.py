@@ -65,15 +65,15 @@ class Loss:
           if truePos + falseNeg != 0: 
             recall = truePos/(truePos+falseNeg)
 
-          prec.append(precision)
-          rec.append(recall)
+          self.prec.append(precision)
+          self.rec.append(recall)
 
         #gets the average precision and recall, then calculates the F1 score
         avgPrec = 0
         avgRec = 0
         for i in range(len(prec)):
-          avgPrec = avgPrec + prec[i]
-          avgRec = avgRec + rec[i]
+          avgPrec = avgPrec + self.prec[i]
+          avgRec = avgRec + self.rec[i]
         avgPrec = avgPrec/len(prec)
         avgRec = avgRec/len(rec)
 
