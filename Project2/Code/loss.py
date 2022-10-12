@@ -26,67 +26,62 @@ class Loss:
     self.mae = int()
   
   def calculate(self, classes, pred, facts):
-prec = []
-rec = []
-error = []
-F1 = int()
-mse = int()
-mae = int()
-
-classes = preProcess.df['Class'].unique()
 
 
-confusionMat = np.zeros([len(classes),len(classes)])
+    classes = preProcess.df['Class'].unique()
 
-#populates the confusion matrix that will be used for precision, recall, and F1 calculations.
-for i in range(len(thing4)):
-  for j in range(len(thing4[i])):
-    indHorz = 0
-    indVert = 0
-    #checks for position in the confusion matrix
-    for k in range(len(classes)):
-      if classes[k] == thing3[i][j]:
-        indVert = k
-      if classes[k] == thing4[i][j]:
-        indHorz = k
-    #adds an occurance in the confusion matrix
-    confusionMat[indHorz, indVert] += 1
 
-    #calculates precision and recall
-    for i in range(len(confusionMat)):
-      truePos = 0
-      falsePos = 0
-      falseNeg = 0
-      for j in range(len(confusionMat[i])):
-        if i == j:
-          truePos = confusionMat[i][j]
-        else:
-          falsePos = falsePos + confusionMat[i][j]
-          falseNeg = falseNeg + confusionMat[j][i]
+    confusionMat = np.zeros([len(classes),len(classes)])
 
-      if truePos + falsePos != 0:   
-        precision = truePos/(truePos+falsePos)
+    #populates the confusion matrix that will be used for precision, recall, and F1 calculations.
+    for i in range(len(thing4)):
+      for j in range(len(thing4[i])):
+        indHorz = 0
+        indVert = 0
+        #checks for position in the confusion matrix
+        for k in range(len(classes)):
+          if classes[k] == thing3[i][j]:
+            indVert = k
+          if classes[k] == thing4[i][j]:
+            indHorz = k
+        #adds an occurance in the confusion matrix
+        confusionMat[indHorz, indVert] += 1
 
-      if truePos + falseNeg != 0: 
-        recall = truePos/(truePos+falseNeg)
+        #calculates precision and recall
+        for i in range(len(confusionMat)):
+          truePos = 0
+          falsePos = 0
+          falseNeg = 0
+          for j in range(len(confusionMat[i])):
+            if i == j:
+              truePos = confusionMat[i][j]
+            else:
+              falsePos = falsePos + confusionMat[i][j]
+              falseNeg = falseNeg + confusionMat[j][i]
 
-      prec.append(precision)
-      rec.append(recall)
+          if truePos + falsePos != 0:   
+            precision = truePos/(truePos+falsePos)
 
-    #gets the average precision and recall, then calculates the F1 score
-    avgPrec = 0
-    avgRec = 0
-    for i in range(len(prec)):
-      avgPrec = avgPrec + prec[i]
-      avgRec = avgRec + rec[i]
-    avgPrec = avgPrec/len(prec)
-    avgRec = avgRec/len(rec)
+          if truePos + falseNeg != 0: 
+            recall = truePos/(truePos+falseNeg)
 
-    self.F1 = 2*((avgPrec*avgRec)/(avgPrec+avgRec))
-    self.prec = avgPrec
-    
-    
-    #self.F1 = 2*((avgPrec*avgRec)/(avgPrec+avgRec))
+          prec.append(precision)
+          rec.append(recall)
+
+        #gets the average precision and recall, then calculates the F1 score
+        avgPrec = 0
+        avgRec = 0
+        for i in range(len(prec)):
+          avgPrec = avgPrec + prec[i]
+          avgRec = avgRec + rec[i]
+        avgPrec = avgPrec/len(prec)
+        avgRec = avgRec/len(rec)
+
+        self.F1 = 2*((avgPrec*avgRec)/(avgPrec+avgRec))
+        self.prec = avgPrec
+
+
+        #self.F1 = 2*((avgPrec*avgRec)/(avgPrec+avgRec))
 
   def calculateReg(self, pred, facts):
     print("pred: ", pred, " \n\nfacts: ", facts)
