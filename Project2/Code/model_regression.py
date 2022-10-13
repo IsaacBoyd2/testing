@@ -162,17 +162,9 @@ class Model:
         f = sum(numerator)/sum(denominator)
 
         print(f)
-        sys.exit()
-
-
-
-
 
         thing1.append(f)
         thing2.append(testing_df_with_class.iloc[count1, -1])
-
-
-
 
 
       #counts = 0
