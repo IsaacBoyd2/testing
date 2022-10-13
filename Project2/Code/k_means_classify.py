@@ -74,7 +74,7 @@ class Model:
 
       while (Initial_weights != new_weights):
         print(Initial_weights)
-        print(new_wieghts)
+        print(new_weights)
 
         Initial_weights = new_weights.copy() 
         
