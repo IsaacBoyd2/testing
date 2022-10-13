@@ -73,7 +73,7 @@ class Model:
 
 
       while (Initial_weights != new_weights):
-        print(Initial_wieghts)
+        print(Initial_weights)
         print(new_wieghts)
 
         Initial_weights = new_weights.copy() 
