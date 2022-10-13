@@ -29,7 +29,7 @@ class Model:
 
     for iterations in range(10):
 
-      print(iterations*10, '%')
+      #print(iterations*10, '%')
 
       all_folds = [0,1,2,3,4,5,6,7,8,9]
 
@@ -106,6 +106,9 @@ class Model:
 
         for i in range(k_cluster):
             Centroid_holder.append([])
+            if i == 3:
+              print(Centroid_holder)
+              sys.exit()
 
         for count1 in range(len(weights_matrix)):
           base = weights_matrix.iloc[count1]
@@ -119,20 +122,15 @@ class Model:
                 print(base[count3])
                 print(training_df.iloc[count2][count3])
                 print(dist1)
-                
+                sys.exit()
 
         
             summation = sum(dist1)
 
-        
 
-            print(summation)
+
+            #print(summation)
             distance = summation**0.5
-            
-            print(distance)
-            sys.exit()
-            
-            
 
             #print(distance)
 
@@ -194,8 +192,6 @@ class Model:
           summation = sum(dist1)
 
           distance = summation**0.5
-          #if distance > 10**5:
-           # distance = 0
 
           df_matrix.loc[count1, count2] = distance 
 
@@ -227,8 +223,7 @@ class Model:
           dist1 = []
           for count3 in range(len(testing_df.columns)):
               dist1.append(((base[count3]) - (training_df.iloc[count2][count3]))**2)
-              #print((base[count3]) - (training_df.iloc[count2][count3])**2)
-
+              
         
           summation = sum(dist1)
           
@@ -275,11 +270,6 @@ class Model:
        # print(thing1[i])
         thing2.append(testing_df_with_class.iloc[i, -1])
 
-      #print(thing2)
-      #print(testing_df_with_class)
-
-      
-      #for i in range(len(decision)):
       
       thing3.append(thing1)
 
