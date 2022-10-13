@@ -106,6 +106,7 @@ class Model:
 
         for i in range(k_cluster):
             Centroid_holder.append([])
+
             print(Centroid_holder)
         sys.exit()
 
