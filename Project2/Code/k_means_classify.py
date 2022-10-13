@@ -15,13 +15,6 @@ class Model:
     labels = []
 
   def run(self, data, k_nn, k_cluster, value):
-
-    #preProcess = pp.Preprocessing()
-    #preProcess.process()
-    #preProcess.fold()
-    #data = [preProcess.tuning, preProcess.folds]
-
-
   
     folds = data[1]
     thing3 = []
@@ -30,6 +23,8 @@ class Model:
     for iterations in range(10):
 
       print(iterations*10, '%')
+
+      print('ehllo')
 
       all_folds = [0,1,2,3,4,5,6,7,8,9]
 
@@ -80,10 +75,6 @@ class Model:
       while (Initial_weights != new_weights):
 
         Initial_weights = new_weights.copy() 
-
-        print(new_weights)
-        print(Initial_weights)
-
         
 
         if clicks == 0:
@@ -116,9 +107,9 @@ class Model:
             dist1 = []
             for count3 in range(len(weights_matrix.columns)):
                 dist1.append(((base[count3]) - (training_df.iloc[count2][count3]))**2)
-                #print(base[count3])
-                #print(training_df.iloc[count2][count3])
-                #print(dist1)
+                print(base[count3])
+                print(training_df.iloc[count2][count3])
+                print(dist1)
                 
 
         
@@ -126,32 +117,16 @@ class Model:
 
         
 
-            #print(summation)
+            print(summation)
             distance = summation**0.5
             
-            #print(distance)
+            print(distance)
 
-            
-
-            #print(distance)
-
-            #if distance > 10**5:
-            #  distance = 0
-
-            #print(distance)
 
             df_matrix.iloc[count1, count2] = distance 
 
-        #print(df_matrix)
-
-        #print(df_matrix)
-        #print(max(df_matrix))
-
-        
-
         for i in df_matrix.columns:
           new_weights[i] = df_matrix.iloc[:,i].idxmin()
-          print(new_weights[i])
           Centroid_holder[int(df_matrix.iloc[:,i].idxmin())].append(i)
 
         for i in range(len(Centroid_holder)):
