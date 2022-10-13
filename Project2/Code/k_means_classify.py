@@ -116,9 +116,9 @@ class Model:
             dist1 = []
             for count3 in range(len(weights_matrix.columns)):
                 dist1.append(((base[count3]) - (training_df.iloc[count2][count3]))**2)
-                print(base[count3])
-                print(training_df.iloc[count2][count3])
-                print(dist1)
+                #print(base[count3])
+                #print(training_df.iloc[count2][count3])
+                #print(dist1)
                 
 
         
@@ -126,10 +126,10 @@ class Model:
 
         
 
-            print(summation)
+            #print(summation)
             distance = summation**0.5
             
-            print(distance)
+            #print(distance)
 
             
 
@@ -151,6 +151,7 @@ class Model:
 
         for i in df_matrix.columns:
           new_weights[i] = df_matrix.iloc[:,i].idxmin()
+          print(new_weights[i])
           Centroid_holder[int(df_matrix.iloc[:,i].idxmin())].append(i)
 
         for i in range(len(Centroid_holder)):
