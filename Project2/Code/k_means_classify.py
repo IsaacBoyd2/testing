@@ -81,8 +81,8 @@ class Model:
 
         Initial_weights = new_weights.copy() 
 
-        #print(new_weights)
-        #print(Initial_weights)
+        print(new_weights)
+        print(Initial_weights)
 
         
 
