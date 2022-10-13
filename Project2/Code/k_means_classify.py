@@ -150,6 +150,7 @@ class Model:
 
         for i in df_matrix.columns:
           new_weights[i] = df_matrix.iloc[:,i].idxmin()
+          print(new_weights[i])
           Centroid_holder[int(df_matrix.iloc[:,i].idxmin())].append(i)
 
         for i in range(len(Centroid_holder)):
