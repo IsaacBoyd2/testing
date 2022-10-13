@@ -15,6 +15,8 @@ class Model:
     labels = []
 
   def run(self, data, k_nn, k_cluster, value):
+    
+    print('ehllo')
 
     #preProcess = pp.Preprocessing()
     #preProcess.process()
