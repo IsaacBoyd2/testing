@@ -76,9 +76,6 @@ class Model:
 
         Initial_weights = new_weights.copy() 
         
-        print(Initial_weights)
-        print(new_weights)
-        
 
         if clicks == 0:
 
@@ -110,9 +107,9 @@ class Model:
             dist1 = []
             for count3 in range(len(weights_matrix.columns)):
                 dist1.append(((base[count3]) - (training_df.iloc[count2][count3]))**2)
-                print(base[count3])
-                print(training_df.iloc[count2][count3])
-                print(dist1)
+                #print(base[count3])
+                #print(training_df.iloc[count2][count3])
+                #print(dist1)
                 
 
         
@@ -120,10 +117,10 @@ class Model:
 
         
 
-            print(summation)
+            #print(summation)
             distance = summation**0.5
             
-            print(distance)
+            #print(distance)
 
 
             df_matrix.iloc[count1, count2] = distance 
