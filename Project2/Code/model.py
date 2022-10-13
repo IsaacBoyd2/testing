@@ -111,7 +111,7 @@ class Model:
       for count1 in range(len(testing_df)):
         base = testing_df.iloc[count1]
         #rint('hello')
-        print(base)
+        
         #print('hello')
         for count2 in range(len(training_df)):
           dist1 = []
