@@ -76,6 +76,9 @@ class Model:
 
         Initial_weights = new_weights.copy() 
         
+        print(Initial_weights)
+        print(new_weights)
+        
 
         if clicks == 0:
 
