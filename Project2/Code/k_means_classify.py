@@ -106,9 +106,8 @@ class Model:
 
         for i in range(k_cluster):
             Centroid_holder.append([])
-            if i == 3:
-              print(Centroid_holder)
-              sys.exit()
+            print(Centroid_holder)
+        sys.exit()
 
         for count1 in range(len(weights_matrix)):
           base = weights_matrix.iloc[count1]
