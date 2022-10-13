@@ -112,9 +112,7 @@ class Model:
 
       for count1 in range(len(testing_df)):
         base = testing_df.iloc[count1]
-        #rint('hello')
-        #print(base)
-        #print('hello')
+        print(base)
         for count2 in range(len(training_df)):
           dist1 = []
           for count3 in range(len(testing_df.columns)):
@@ -132,38 +130,19 @@ class Model:
 
         reduced_list = reduced_idx.tolist()
 
-        #print(reduced_list)
-        #print(count1)
+        print("Index",reduced_list)
 
-
-        #reduced_list.remove(count1)
 
 
         desicion_list = []
         for i in reduced_list:
 
-          #last_column = df.iloc[: , -1]
-          #desicion_list.append(training_df_with_class['Rings'][i])
-          desicion_list.append(training_df_with_class.iloc[i, -1])
-
-        #print(desicion_list)
-
-        #majority =[]
-        #for i in reduced_list:
-          #print(df['Class'][i])
-          #majority.append(training_df_with_class['Rings'][i])
-          #print(training_df_with_class['Class'][i])
-
-        #class_decision = st.mode(majority)
-        
-
-        #print(class_decision[0])
-        #decision.append(class_decision)
-
-        
+          desicion_list.append(training_df_with_class.iloc[i, -1])        
         
         denominator = []
         numerator = []
+
+        print("classes",desicion_list)
 
         for i in desicion_list:
           weight_holder = []
@@ -171,26 +150,28 @@ class Model:
             if i != ii:
               w_i_part = 2.72**((-(i-ii)**2)/sigma**2)
 
-              
+              #print(w_i)
               weight_holder.append(w_i_part)
           w_i = sum(weight_holder)
-          
-          print(w_i)
 
           #print(w_i)
           denominator.append(w_i)
           y_i_w_i = w_i * i
           numerator.append(y_i_w_i) 
-          
+
         f = sum(numerator)/sum(denominator)
-        
+
         print(f)
         sys.exit()
-        #print("numerator: ", numerator)
-        #print("denominator: ", denominator)
+
+
+
+
 
         thing1.append(f)
         thing2.append(testing_df_with_class.iloc[count1, -1])
+
+
 
 
 
