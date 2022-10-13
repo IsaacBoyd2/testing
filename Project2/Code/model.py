@@ -130,22 +130,12 @@ class Model:
 
         reduced_list = reduced_idx.tolist()
 
-        print("index values",reduced_list)
-
 
         majority =[]
         for i in reduced_list:
           majority.append(training_df_with_class.iloc[i, -1])
 
-        print("class values: ",majority)
-
         class_decision = st.mode(majority)
-
-        print("decision",class_decision)
-        
-        
-        print(testing_df_with_class.iloc[count1])
-        sys.exit()
 
         decision.append(class_decision)
 
