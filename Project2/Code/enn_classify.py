@@ -247,6 +247,7 @@ for iterations in range(10):
       
 
       if class_decision[0] != training_df_with_class.iloc[count1 - counting, -1]:
+        print("index", count1-counting)
         print(training_df_with_class)
         #print(training_df[0:10])
         training_df = training_df.drop(count1 - counting)
