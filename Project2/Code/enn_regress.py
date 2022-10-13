@@ -14,6 +14,7 @@ class Model:
     labels = []
 
   def run(self, data, k_nn, sigma, epsilon):
+    print('ehhlo')
 
     folds = data[1]
     thing3 = []
