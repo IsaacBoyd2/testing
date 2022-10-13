@@ -243,10 +243,11 @@ for iterations in range(10):
       pd.set_option('display.width', None)
       pd.set_option('display.max_colwidth', -1)
 
-      print(training_df_with_class)
+      
       
 
       if class_decision[0] != training_df_with_class.iloc[count1 - counting, -1]:
+        print(training_df_with_class)
         #print(training_df[0:10])
         training_df = training_df.drop(count1 - counting)
         training_df_with_class = training_df_with_class.drop(count1- counting)
