@@ -130,8 +130,7 @@ class Model:
             distance = summation**0.5
             
             print(distance)
-            sys.exit()
-            
+
             
 
             #print(distance)
