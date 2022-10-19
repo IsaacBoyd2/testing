@@ -3,7 +3,7 @@
 #Code by: Isaac Boyd, James Lucas 
 
 ##Code For: Preprocessing
-##Completed: 10-6-2022
+##Completed: 10-19-2022
 ##References: NA
 
 #-----------------------imports-------------------------
@@ -23,6 +23,40 @@ class Preprocessing:
     self.tuning = []
     self.value = int()
 
+  #method that applies a z-score noramlization to the data
+  def normalize(self):
+    smalldf = self.df.iloc[:,:len(self.df.iloc[0])-1]
+
+    #makes an array used to hold all of the means for each attribute
+    meanArray = np.zeros(len(smalldf.iloc[0]))
+    #loop that calculates the mean 
+    for i in range(len(smalldf)):
+      for j in range(len(smalldf.iloc[i])):
+        meanArray[j] = meanArray[j] + smalldf.iloc[i][j]
+
+    for i in range(len(meanArray)):
+      meanArray[i] = meanArray[i]/len(smalldf)
+
+    #makes an array used to hold all of the standard deviations for each attribute
+    deviation = np.zeros(len(smalldf.iloc[0]))
+    for i in range(len(smalldf)):
+      for j in range(len(smalldf.iloc[0])):
+        deviation[j] = deviation[j] + (smalldf.iloc[i][j] - meanArray[j])**2
+
+
+    for i in range(len(deviation)):
+      tempDev = deviation[i]/(len(smalldf)-1)
+      deviation[i] = math.sqrt(tempDev)
+
+    #changes the original dataframe values to the new z-score values
+    #also leaves the class/regression-values as the original value 
+    for i in range(len(smalldf)):
+      for j in range(len(smalldf.iloc[i])):
+        self.df.iat[i,j] = (smalldf.iloc[i][j] - meanArray[j])/deviation[j]
+        if pd.isnull(self.df.iloc[i][j]):
+          self.df.iat[i,j] = 0
+
+
   #method that allows the user to choose the dataset, and preprocesses that said data set.
   def process(self):
     #gets user input 
@@ -30,7 +64,7 @@ class Preprocessing:
 
     #import dataset 1
     if DataNumber == '1':
-      df = pd.read_csv('https://github.com/IsaacBoyd2/ActualFactualML/blob/main/Project2/Data/breast-cancer-wisconsin.csv?raw=true')
+      df = pd.read_csv('https://github.com/IsaacBoyd2/ActualFactualML/blob/main/Project3/Data/breast-cancer-wisconsin.csv?raw=true')
       print("Using Breast Cancer data (Classification)")
 
       #removes the rows with question marks
@@ -46,7 +80,7 @@ class Preprocessing:
 
     #import dataset 2
     elif DataNumber == '2':
-      df = pd.read_csv('https://github.com/IsaacBoyd2/ActualFactualML/blob/main/Project2/Data/glass.csv?raw=true')
+      df = pd.read_csv('https://github.com/IsaacBoyd2/ActualFactualML/blob/main/Project3/Data/glass.csv?raw=true')
       print("Using Glass data (Classification)")
 
       self.value = 0
@@ -54,7 +88,7 @@ class Preprocessing:
 
     #import dataset 3
     elif DataNumber == '3':
-      df = pd.read_csv('https://github.com/IsaacBoyd2/ActualFactualML/blob/main/Project2/Data/soybean-small.csv?raw=true')
+      df = pd.read_csv('https://github.com/IsaacBoyd2/ActualFactualML/blob/main/Project3/Data/soybean_small.csv?raw=true')
       print("Using Soybean data (Classification)")
 
       self.value = 0
@@ -62,7 +96,7 @@ class Preprocessing:
 
     #import dataset 4
     elif DataNumber == '4':
-      df = pd.read_csv("https://github.com/IsaacBoyd2/ActualFactualML/blob/main/Project2/Data/abalone.csv?raw=true")
+      df = pd.read_csv("https://github.com/IsaacBoyd2/ActualFactualML/blob/main/Project3/Data/abalone.csv?raw=true")
       print("Using Abalone data (Regression)")
 
       oneEncodeList = []
@@ -94,7 +128,7 @@ class Preprocessing:
 
     #import dataset 5
     elif DataNumber == '5':
-      df = pd.read_csv("https://github.com/IsaacBoyd2/ActualFactualML/blob/main/Project2/Data/machine.csv?raw=true")
+      df = pd.read_csv("https://github.com/IsaacBoyd2/ActualFactualML/blob/main/Project3/Data/machine.csv?raw=true")
       print("Using Machine data (Regression)")
 
       #takes out the 'VendorName' and 'ModelName' columns
@@ -107,7 +141,7 @@ class Preprocessing:
 
     #import dataset 6
     elif DataNumber == '6':
-      df = pd.read_csv("https://github.com/IsaacBoyd2/ActualFactualML/blob/main/Project2/Data/forestfires.csv?raw=true")
+      df = pd.read_csv("https://github.com/IsaacBoyd2/ActualFactualML/blob/main/Project3/Data/forestfires.csv?raw=true")
       print("Using Forest Fires data (Regression)")
 
       #sets key values for the months and days
@@ -132,7 +166,6 @@ class Preprocessing:
   def fold(self):
     #number of folds (mostly 10 in this case)
     foldNumber = 10
-    tuningList = []
     fold = []
     foldTotal = []
     randomList = random.sample(range(len(self.df)), len(self.df))
@@ -163,45 +196,9 @@ class Preprocessing:
 
       #gets the amount that we need from each class for the tuning array
       for i in range(len(classSize)):
-        classAmount[i] = math.ceil(classPercent[i] * total)
+        classAmount[i] = round(float(classPercent[i] * total))
 
-      dfHolder = self.df
-
-      #used to get the randomized tuning list
-      for i in range(len(classAmount)):
-        for j in range(int(classAmount[i][0])):
-          for k in range(len(randomList)):
-            if classArray.iloc[randomList[k]] == classes[i]:
-              tuningList.append(dfHolder.iloc[randomList[k]])
-              dfHolder = dfHolder.drop(randomList[k])
-              dfHolder = dfHolder.reset_index(drop=True)
-              classArray = classArray.drop(randomList[k])
-              classArray = classArray.reset_index(drop=True)
-              for l in range(len(randomList)):
-                if randomList[l] > k:
-                  randomList[l] = randomList[l] - 1
-              randomList.remove(k)
-              break
-
-      self.tuning = tuningList
-
-      total = len(dfHolder)
-
-      classSize = np.zeros((len(classes),1))
-
-      #gets the new size for each class after the tuning list values are taken out
-      for i in range(len(dfHolder)):
-        for j in range(len(classes)):
-          if classArray.iloc[i] == classes[j]:
-            classSize[j] = classSize[j] + 1
-
-      #gets new class percentages
-      for i in range(len(classSize)):
-        classPercent[i] = classSize[i]/total
-
-      #gets the new amount of each class that we need for each fold
-      for i in range(len(classPercent)):
-        classAmount[i] = math.ceil(classPercent[i] * (len(dfHolder)/foldNumber))
+      dfHolder = self.df.copy()
 
       #used to get the 'foldNumber' amount of folds
       for m in range(foldNumber):
@@ -227,7 +224,6 @@ class Preprocessing:
         foldTotal.append(fold)
 
       self.folds = foldTotal
-      print(self.folds)
 
 
     #regression
@@ -236,9 +232,8 @@ class Preprocessing:
       index = 0
       total = len(self.df)
       percentage = total*.1
-      percentage = math.ceil(len(self.df)/percentage)
-      foldAmount = math.ceil(total*.1)
-
+      percentage = round(len(self.df)/percentage)
+      foldAmount = round(total*.1)
       dfFolds = []
       lastIndex = 0
 
@@ -253,22 +248,7 @@ class Preprocessing:
       #shuffles the classes
       for i in range(len(dfFolds)):
         dfFolds[i] = dfFolds[i].sample(frac=1).reset_index()
-          
-      #loops to create the tuningList
-      for i in range(len(dfFolds)):
-        for j in range(math.floor(foldAmount/foldNumber)):
-          tuningList.append(dfFolds[i].iloc[j])
-          dfFolds[i] = dfFolds[i].drop(j)
-        dfFolds[i].reset_index(drop=True)
 
-      self.tuning = tuningList
-
-      #used to get a new total and reindex all of the classes
-      total = 0
-      for i in range(len(dfFolds)):
-        total = total + len(dfFolds[i])
-        dfFolds[i] = dfFolds[i].reset_index(drop=True)
-      foldAmount = math.ceil(total*.1)
 
       foldTotal = []
       #loops for the amount of folds
@@ -277,7 +257,7 @@ class Preprocessing:
         #goes through each class in order to stratisfy the data
         for i in range(len(dfFolds)):
           #gives each fold the correct amount of points
-          for j in range(math.ceil(foldAmount/foldNumber)):
+          for j in range(round(foldAmount/foldNumber)):
             if j < len(dfFolds[i]):
               fold.append(dfFolds[i].iloc[j])
               dfFolds[i] = dfFolds[i].drop(j)
@@ -287,9 +267,8 @@ class Preprocessing:
 
       self.folds = foldTotal
 
-      print(self.folds)
 
-
-preProcess = Preprocessing()
-preProcess.process()
-preProcess.fold()
+#preProcess = Preprocessing()
+#preProcess.process()
+#preProcess.normalize()
+#preProcess.fold()
