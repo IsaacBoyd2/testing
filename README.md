@@ -4,7 +4,7 @@ Project1 : Naive Bayes Classifier
 
 Project2 : K-NN
 
-Project3 : ?
+Project3 : MLP
 
 Project4 : ?
 
