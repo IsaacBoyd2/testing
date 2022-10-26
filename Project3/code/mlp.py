@@ -174,12 +174,12 @@ class Model:
 #weight = weight - learning_rate * error * input
 
 
-learning_rate = 0.5
+#learning_rate = 0.5
 
-modeling = Model()
-modeling.run(3, [4,3,2], 1)
-input = [1,0.5,0.75]
-modeling.forwardProp(input,0)
+#modeling = Model()
+#modeling.run(3, [4,3,2], 1)
+#input = [1,0.5,0.75]
+#modeling.forwardProp(input,0)
 #print(modeling.values)
 #modeling.Back_Prop(learning_rate)
 
