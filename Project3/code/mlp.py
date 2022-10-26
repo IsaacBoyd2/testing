@@ -128,7 +128,7 @@ class Model:
 
 
       if classNumber == 1:
-        print(self.mlp_init)
+        #print(self.mlp_init)
         print(values)
         for i in range(1):
           #print(len(self.mlp_init[-1]))
@@ -136,7 +136,7 @@ class Model:
           for k in range(len(values[-1])):   #for every xi
             #print('hello')
             #print(values)
-            print(self.mlp_init[-2][k][i])
+            #print(self.mlp_init[-2][k][i])
             l.append(float(values[-1][k])*float(self.mlp_init[-2][k][i]))  #do xiwi
           summation = sum(l)
         
