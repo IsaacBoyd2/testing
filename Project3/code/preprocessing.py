@@ -22,6 +22,8 @@ class Preprocessing:
     self.folds = []
     self.tuning = []
     self.value = int()
+    self.oneHotDict = {}
+    self.classes = []
 
   #method that applies a z-score noramlization to the data
   def normalize(self):
@@ -264,11 +266,32 @@ class Preprocessing:
           dfFolds[i] = dfFolds[i].reset_index(drop=True)
         
         foldTotal.append(fold)
+        
 
       self.folds = foldTotal
 
+  #makes the classes, for classification, into one hot encoded values
+  def oneHot(self):
+    #gets the unique classes
+    classes = self.df['Class'].unique()
+    #makes a dictionary that holds the classes and their associated one hot encoded value
+    oneHotDict = {}
+    for i in range(len(classes)):
+      oneHotDict.update({classes[i]: []})
+      for j in range(len(classes)):
+        if j != i:
+          oneHotDict[classes[i]].append(0)
+        else:
+          oneHotDict[classes[i]].append(1)
+
+    #saves these values to the Preprocessing object
+    self.classes = classes
+    self.oneHotDict = oneHotDict
 
 #preProcess = Preprocessing()
 #preProcess.process()
 #preProcess.normalize()
+#preProcess.oneHot()
 #preProcess.fold()
+
+#print(preProcess.oneHotDict[preProcess.classes[0]])
