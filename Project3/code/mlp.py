@@ -91,7 +91,6 @@ class Model:
           layer_outputs.append(sigmoid) #append for each input
 
         values.append(layer_outputs) #append all the outputs. (this will be what is "inside" of each node)
-        print(values)
 
       #output layer
 
@@ -126,35 +125,9 @@ class Model:
 
         values[-1] = output_values
 
-
-      if classNumber == 1:
-        #print(self.mlp_init)
-        print(values)
-        for i in range(1):
-          #print(len(self.mlp_init[-1]))
-          l = []
-          for k in range(len(values[-1])):   #for every xi
-            #print('hello')
-            #print(values)
-            #print(self.mlp_init[-2][k][i])
-            l.append(float(values[-1][k])*float(self.mlp_init[-2][k][i]))  #do xiwi
-          summation = sum(l)
-        
-        output = summation
-
-        
-
-
-        #print(output_values)
-
-        #print(values)
-
-
-    #print(values)
-
     self.values = values
 
-  '''def Back_Prop(self,eta):  
+  def Back_Prop(self,eta):  
     deltas = [[]]    #store the deltas for each layer so that they can be used recursively
     for i in reversed(range(len(self.mlp_init))):   #go through every layer backwards
       farthest_layer_right = self.mlp_init[i]
@@ -162,9 +135,9 @@ class Model:
         for k in j:                              #go through every weight in every node.  
           if i == len(self.ml_init)- 1:    #output layer  
             delta = actual -                      #use softmax values
-          else #hidden layers
-
-          self.mlp_init[i][j][k] = k + eta*delta*self.values[i][j]'''
+          else: #hidden layers
+            pass
+          self.mlp_init[i][j][k] = k + eta*delta*self.values[i][j]
         
 
 
@@ -174,13 +147,13 @@ class Model:
 #weight = weight - learning_rate * error * input
 
 
-#learning_rate = 0.5
+# learning_rate = 0.5
 
-#modeling = Model()
-#modeling.run(3, [4,3,2], 1)
-#input = [1,0.5,0.75]
-#modeling.forwardProp(input,0)
-#print(modeling.values)
-#modeling.Back_Prop(learning_rate)
+# modeling = Model()
+# modeling.run(3, [4,3,2], 1)
+# input = [1,0.5,0.75]
+# modeling.forwardProp(input,1)
+# print(modeling.values)
+# modeling.Back_Prop(learning_rate)
 
-#print(ForwardPropout)
+# print(ForwardPropout)
