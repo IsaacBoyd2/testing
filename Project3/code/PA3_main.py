@@ -15,8 +15,9 @@ import random
 
 #----Python Classes import----
 
-classInputArray = [['https://github.com/IsaacBoyd2/ActualFactualML/blob/main/Project2/Code/preprocessing.py?raw=true','preprocessing.py'],
-                   ['https://github.com/IsaacBoyd2/ActualFactualML/blob/main/Project2/Code/loss.py?raw=true', 'loss.py']]
+classInputArray = [['https://github.com/IsaacBoyd2/ActualFactualML/blob/main/Project3/code/preprocessing.py?raw=true','preprocessing.py'],
+                   ['https://github.com/IsaacBoyd2/ActualFactualML/blob/main/Project3/code/loss.py?raw=true', 'loss.py'],
+                   ['https://github.com/IsaacBoyd2/ActualFactualML/blob/main/Project3/code/mlp.py?raw=true', 'mlp.py']]
 
 
 for i in range(len(classInputArray)):
@@ -26,108 +27,50 @@ for i in range(len(classInputArray)):
 
 import preprocessing as pp
 import loss as lss
+import mlp as MLP
 
 #------------------------Main--------------------------
 
 def main():
 
-#-----Hyper_parameters-------#
+  #-----Hyper_parameters-------#
 
-  k_nn = 7
-  k_clusters = 30
-  slct = 4
-  sigma = 40
-  epsilon = 0.1
+  hiddenArray = [2,3]
 
-#----------------------------#
+  #----------------------------#
 
   #runs preProcessing
   preProcess = pp.Preprocessing()
   preProcess.process()
   preProcess.fold()
-  data = [preProcess.tuning, preProcess.folds]
+  data = preProcess.folds
 
-  #runs the classification model and the loss function
-  if slct == 0:
-    #model 
-    modeling = classifier.Model()
-    modeling.run(data,k_nn)
+  #classification
+  if preProcess.value == 0:
+    preProcess.oneHot()
+    modeling = MLP.Model()
+    modeling.run(len(preProcess.df.iloc[0]),hiddenArray,len(preProcess.classes))
+    for i in range(len(preProcess.folds[0:8])): 
+      modeling.forwardProp(preProcess.df.values[i,0:-1].astype('float'),preProcess.value)
+      print("modeling values: ", modeling.values)
+      #add back prop here 
 
-    #print(preProcess.folds())
+  #regression
+  else:
+    modeling = MLP.Model()
+    modeling.run(len(preProcess.df.iloc[0]),hiddenArray,1)
+    for i in range(len(preProcess.folds[0:8])):
+      modeling.forwardProp(preProcess.df.values[i,0:-1].astype('float'),preProcess.value)
+      #add back prop here
+  
+ 
 
-    #loss 
-    classesU = preProcess.df['Class'].unique()
-    lossValues = lss.Loss()
-    lossValues.calculate(classesU, modeling.predictions, modeling.labels)
 
-    print("\n\n\n\nF1 Score: ", lossValues.F1)
-
-  #runs the regression model and loss function
-  if slct == 1:
-    #model
-    modeling = regressor.Model()
-    modeling.run(data,k_nn)
-    
-    #loss
-    lossValues = lss.Loss()
-    lossValues.calculateReg(modeling.predictions, modeling.labels)
-
-    print("\n\n\n\nmse Score: ", lossValues.mse, lossValues.mae)
-
-  #runs the k-means regression model and loss function
-  if slct == 2:
-    #model
-    modeling = kmeansr.Model()
-    modeling.run(data,k_nn,k_clusters,sigma)
-    
-    #loss
-    lossValues = lss.Loss()
-    lossValues.calculateReg(modeling.predictions, modeling.labels)
-
-    print("\n\n\n\nmse Score: ", lossValues.mse, lossValues.mae)
-
-  #runs the k-means classification model and loss function
-  if slct == 3:
-    #model
-    modeling = kmeans.Model()
-    modeling.run(data,k_nn,k_clusters,preProcess.value)
-    
-    #loss
-    classesU = preProcess.df['Class'].unique()
-    lossValues = lss.Loss()
-    lossValues.calculate(classesU, modeling.predictions, modeling.labels)
-
-    print("\n\n\n\nF1 Score: ", lossValues.F1, "\n\nPrecision", lossValues.prec)
-
-  #runs the categorical edited nearest neighbor model
-  if slct == 4:
-    #model
-    modeling = enncc.Model()
-    modeling.run(data,k_nn,k_clusters,preProcess.value)
-    
-    #loss
-    
-    classesU = preProcess.df['Class'].unique()
-    lossValues = lss.Loss()
-    lossValues.calculate(classesU, modeling.predictions, modeling.labels)
-
-    print("\n\n\n\nF1 Score: ", lossValues.F1, "\n\nPrecision", lossValues.prec)
-
-  #runs the regression edited nearest neighbor model
-  if slct == 5:   
-    #model
-    modeling = ennrr.Model()
-    modeling.run(data, k_nn, sigma, epsilon)
-    
-    #loss
-    lossValues = lss.Loss()
-    lossValues.calculateReg(modeling.predictions, modeling.labels)
-    print("\n\n\n\nmse Score: ", lossValues.mse, lossValues.mae)
 
 #calls main
 main()
 
 #makes sure that the python classes are taken out after execution
-for i in range(len(classInputArray)):
-  fileName = classInputArray[i][1]
-  os.remove(fileName)
+# for i in range(len(classInputArray)):
+  # fileName = classInputArray[i][1]
+  # os.remove(fileName)
