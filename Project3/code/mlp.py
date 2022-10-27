@@ -134,7 +134,8 @@ class Model:
       for j in farthest_layer_right:             #go through every node
         for k in j:                              #go through every weight in every node.  
           if i == len(self.ml_init)- 1:    #output layer  
-            delta = actual -                      #use softmax values
+            # delta = actual -                #use softmax values
+            pass                     
           else: #hidden layers
             pass
           self.mlp_init[i][j][k] = k + eta*delta*self.values[i][j]
