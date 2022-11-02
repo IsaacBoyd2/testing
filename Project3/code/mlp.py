@@ -183,7 +183,12 @@ class Model:
               #print(diff)
               
             else:
-              diff = actual[k] - self.values[i][j]
+              actualClass = actual[1]
+              actualOneHot = actual[0]
+
+              print("\n\nActual: ", actualOneHot.get(actualClass)[j])
+
+              diff = actualOneHot.get(actualClass)[j] - self.values[i][j]
 
               deltas[0].append(diff)
 
