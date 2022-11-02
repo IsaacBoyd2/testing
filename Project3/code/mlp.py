@@ -1,3 +1,13 @@
+#------------------------Header-------------------------
+
+#Code by: Isaac Boyd, James Lucas 
+
+##Code For: K-nearest neighbor
+##Completed: 10-9-2022
+##References: NA
+
+#-----------------------imports-------------------------
+
 import pandas as pd
 import numpy as np
 from scipy import stats as st
@@ -7,6 +17,7 @@ import math
 import random as random
 import sys
 
+#----------------------classes-------------------------
 
 class Model:
 
@@ -70,10 +81,7 @@ class Model:
     output layer ->   ouput_nodes[weight_going_out,weight_going_out,weight_going_out ... weight_going_out]
 
     '''
-
-
-
-
+    
   def forwardProp(self,input, classNumber):      #potentially need to do something for just the input layers
     values = [[]]
     values[0] = input
@@ -91,10 +99,31 @@ class Model:
           layer_outputs.append(sigmoid) #append for each input
 
         values.append(layer_outputs) #append all the outputs. (this will be what is "inside" of each node)
+        #print(values)
 
       #output layer
 
+      elif classNumber == 1:
+        #print(self.mlp_init)
+        #print(values)
+        for i in range(1):
+          #print(len(self.mlp_init[-1]))
+          l = []
+          for k in range(len(values[-1])):   #for every xi
+            #print('hello')
+            #print(values)
+            #print(self.mlp_init[-2][k][i])
+            l.append(float(values[-1][k])*float(self.mlp_init[-2][k][i]))  #do xiwi
+          summation = sum(l)
+        
+        output = summation
 
+        self.output = output
+
+        #print('output',output)
+
+
+        #Decision Circuit
       else:
         layer_outputs = []
         for i in range(len(self.mlp_init[-1][0])):
@@ -107,6 +136,7 @@ class Model:
           layer_outputs.append(sigmoid) #append for each input
 
         values.append(layer_outputs) #append all the outputs. (this will be what is "inside" of each node)
+        #print(values)
       
       if classNumber == 0:
 
@@ -125,20 +155,78 @@ class Model:
 
         values[-1] = output_values
 
+      
     self.values = values
+    print(self.values)
 
-  def Back_Prop(self,eta):  
-    deltas = [[]]    #store the deltas for each layer so that they can be used recursively
+  def Back_Prop(self,eta,classNumber,actual,output_size):  
+    #print(self.mlp_init)
+    deltas = [[],[],[],[]]    #store the deltas for each layer so that they can be used recursively
+    counter = 0
     for i in reversed(range(len(self.mlp_init))):   #go through every layer backwards
+      print(i)
       farthest_layer_right = self.mlp_init[i]
-      for j in farthest_layer_right:             #go through every node
-        for k in j:                              #go through every weight in every node.  
-          if i == len(self.ml_init)- 1:    #output layer  
-            # delta = actual -                #use softmax values
-            pass                     
-          else: #hidden layers
-            pass
-          self.mlp_init[i][j][k] = k + eta*delta*self.values[i][j]
+      for j in range(len(farthest_layer_right)):             #go through every node
+        print(j)
+        node = farthest_layer_right[j]
+        for k in range(len(node)):                              #go through every weight in every node.  
+          #print(k)
+
+
+          if i == len(self.mlp_init)- 1:    #output layer
+            #print(len(self.mlp_init))
+            #print('hello :)')
+            if classNumber == 1:
+              diff = actual - self.output                   #delta is actual - predicted * derivative of the actication function. So for the sigmoid layers this would be (ri-yi)(oj(1-oj)) and linear it would just be (ri-yi) * possibly C
+
+              deltas[0].append(diff)
+              #print(diff)
+              
+            else:
+              diff = actual[k] - self.values[i][j]
+
+              deltas[0].append(diff)
+
+            #print('laskd',self.mlp_init[i][j][k])
+
+            self.mlp_init[i][j][k] = self.mlp_init[i][j][k] + eta*diff*self.values[i][j]
+
+            #print(self.mlp_init[i][j][k] + eta*diff*self.values[i][j])
+
+          else:   #hidden layer
+
+            weight_sum = 0
+            #print(self.mlp_init[i+1])
+            #print()
+            for l in range(len(self.mlp_init[i+1])): #to calculate the sum of the weights.
+              for m in range(len(farthest_layer_right)): 
+                weight_sum += self.mlp_init[i][m][l]
+             
+              if counter == 1:
+                deltas[counter].append(self.values[i][j] * (1 - self.values[i][j]) * weight_sum * deltas[counter-1][output_size])
+
+              else: 
+                deltas[counter].append(self.values[i][j] * (1 - self.values[i][j]) * weight_sum * deltas[counter-1][len(self.mlp_init[i+2])])
+
+            #deltas[counter].append(self.values[j] * (1 - self.values[j]) * weight_sum * delta_x)
+            self.mlp_init[i][j][k] = self.mlp_init[i][j][k] + eta* deltas[counter][k]*self.values[i][j]
+            print(self.mlp_init[i][j][k] + eta* deltas[counter][k]*self.values[i][j])
+
+            #self.mlp_init[i][j][k] = self.mlp_init[i][j][k] + eta*diff*self.values[i][j]
+
+      counter += 1
+      #print(counter)
+
+
+
+
+
+            #delta = learning_rate* diff *
+          #else: #hidden layers
+          #  self.mlp_init[i][j][k] = k + eta*delta*self.values[i][j]
+
+
+    print(self.mlp_init)
         
 
 
