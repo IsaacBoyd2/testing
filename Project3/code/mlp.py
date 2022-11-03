@@ -167,16 +167,16 @@ class Model:
     for i in range(len(self.values)):
       deltas.append([])
 
-    #go through every layer backwards
+    #loops through every layer backwards
     for i in reversed(range(len(self.mlp_init))):   
       farthest_layer_right = self.mlp_init[i]
 
-      #go through every node
+      #loops through every node
       for j in range(len(farthest_layer_right)):             
         node = farthest_layer_right[j]
 
         # if j < len(self.values[i]) and i < len(self.values):
-        #go through every weight in every node.
+        #loops through every weight per node.
         for k in range(len(node)):   
           
           #output layer                             
@@ -190,7 +190,7 @@ class Model:
               delta is actual - predicted * derivative of the actication 
               function. So for the sigmoid layers this would be (ri-yi)(oj(1-oj)) 
               and linear it would just be (ri-yi) * possibly C
-              '''               
+              '''              
 
               deltas[0].append(diff)
               
@@ -199,7 +199,9 @@ class Model:
               actualClass = actual[1]
               actualOneHot = actual[0]
 
-              print("\nOne Hot: ",actualOneHot, "\nLen of One Hot: ", len(actualOneHot), "\nj: ", j)
+              print("\nOne Hot: ", actualOneHot, "\nLen of One Hot: ", len(actualOneHot), "\nj: ", j)
+
+              print("\nself.values: ", self.values)
 
               diff = actualOneHot.get(actualClass)[j] - self.values[i][j]
 
