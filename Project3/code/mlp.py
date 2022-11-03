@@ -177,7 +177,7 @@ class Model:
       for j in range(len(farthest_layer_right)):             
         node = farthest_layer_right[j]
 
-        if j < len(self.values[i]):
+        if j < len(self.values[i]) and i < len(self.values):
           #go through every weight in every node.
           for k in range(len(node)):   
             
