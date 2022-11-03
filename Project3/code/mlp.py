@@ -200,6 +200,7 @@ class Model:
 
           else:   #hidden layer
 
+            print("\n\nCounter/deltas: ", counter, len(deltas), deltas[counter])
             weight_sum = 0
             #print(self.mlp_init[i+1])
             #print()
@@ -215,7 +216,7 @@ class Model:
 
             #deltas[counter].append(self.values[j] * (1 - self.values[j]) * weight_sum * delta_x)
             self.mlp_init[i][j][k] = self.mlp_init[i][j][k] + eta* deltas[counter][k]*self.values[i][j]
-            print(self.mlp_init[i][j][k] + eta* deltas[counter][k]*self.values[i][j])
+            # print(self.mlp_init[i][j][k] + eta* deltas[counter][k]*self.values[i][j])
 
             #self.mlp_init[i][j][k] = self.mlp_init[i][j][k] + eta*diff*self.values[i][j]
 
@@ -231,7 +232,7 @@ class Model:
           #  self.mlp_init[i][j][k] = k + eta*delta*self.values[i][j]
 
 
-    print(self.mlp_init)
+    # print(self.mlp_init)
         
 
 
