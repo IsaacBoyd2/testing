@@ -163,8 +163,6 @@ class Model:
     deltas = []   
     counter = 0
 
-    print("\n\n\nMLP Init: ", self.mlp_init)
-
     #makes deltas the correct size
     for i in range(len(self.values)):
       deltas.append([])
@@ -200,6 +198,8 @@ class Model:
               else:
                 actualClass = actual[1]
                 actualOneHot = actual[0]
+
+                print("\nOne Hot: ",actualOneHot, "\nLen of One Hot: ", len(actualOneHot), "\nj: ", j)
 
                 diff = actualOneHot.get(actualClass)[j] - self.values[i][j]
 
