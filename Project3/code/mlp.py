@@ -200,7 +200,7 @@ class Model:
 
           else:   #hidden layer
 
-            print("\n\nCounter/deltas: ", counter, len(deltas), deltas[counter])
+            print("\n\ni/j/self.values: ", i, j, len(self.values), len(self.values[i]))
             weight_sum = 0
             #print(self.mlp_init[i+1])
             #print()
