@@ -175,62 +175,62 @@ class Model:
       for j in range(len(farthest_layer_right)):             
         node = farthest_layer_right[j]
 
-        if j < len(self.values[i]) and i < len(self.values):
-          #go through every weight in every node.
-          for k in range(len(node)):   
-            
-            #output layer                             
-            if i == len(self.mlp_init)- 1:   
+        # if j < len(self.values[i]) and i < len(self.values):
+        #go through every weight in every node.
+        for k in range(len(node)):   
+          
+          #output layer                             
+          if i == len(self.mlp_init)- 1:   
 
-              #regression 
-              if classNumber == 1:
-                diff = actual - self.output    
-                
-                ''' delta explanation
-                delta is actual - predicted * derivative of the actication 
-                function. So for the sigmoid layers this would be (ri-yi)(oj(1-oj)) 
-                and linear it would just be (ri-yi) * possibly C
-                '''               
-
-                deltas[0].append(diff)
-                
-              #classification
-              else:
-                actualClass = actual[1]
-                actualOneHot = actual[0]
-
-                print("\nOne Hot: ",actualOneHot, "\nLen of One Hot: ", len(actualOneHot), "\nj: ", j)
-
-                diff = actualOneHot.get(actualClass)[j] - self.values[i][j]
-
-                deltas[0].append(diff)
-
-              self.mlp_init[i][j][k] = self.mlp_init[i][j][k] + eta*diff*self.values[i][j]
-
-            #hidden layer
-            else:   
-              print("\n\ni/j/self.values: ", i, j, len(self.values), len(self.values[i]))
-              weight_sum = 0
-
-              #to calculate the sum of the weights.
-              for l in range(len(self.mlp_init[i+1])): 
-                for m in range(len(farthest_layer_right)): 
-                  weight_sum += self.mlp_init[i][m][l]
-
-                
-                if counter == 1:
-                  deltas[counter].append(self.values[i][j] * (1 - self.values[i][j]) * weight_sum * deltas[counter-1][output_size])
-
-                else: 
-                  deltas[counter].append(self.values[i][j] * (1 - self.values[i][j]) * weight_sum * deltas[counter-1][len(self.mlp_init[i+2])])
-
-              #deltas[counter].append(self.values[j] * (1 - self.values[j]) * weight_sum * delta_x)
+            #regression 
+            if classNumber == 1:
+              diff = actual - self.output    
               
-              self.mlp_init[i][j][k] = self.mlp_init[i][j][k] + eta* deltas[counter][k]*self.values[i][j]
+              ''' delta explanation
+              delta is actual - predicted * derivative of the actication 
+              function. So for the sigmoid layers this would be (ri-yi)(oj(1-oj)) 
+              and linear it would just be (ri-yi) * possibly C
+              '''               
 
-              #self.mlp_init[i][j][k] = self.mlp_init[i][j][k] + eta*diff*self.values[i][j]
+              deltas[0].append(diff)
+              
+            #classification
+            else:
+              actualClass = actual[1]
+              actualOneHot = actual[0]
 
-      counter += 1
+              print("\nOne Hot: ",actualOneHot, "\nLen of One Hot: ", len(actualOneHot), "\nj: ", j)
+
+              diff = actualOneHot.get(actualClass)[j] - self.values[i][j]
+
+              deltas[0].append(diff)
+
+            self.mlp_init[i][j][k] = self.mlp_init[i][j][k] + eta*diff*self.values[i][j]
+
+          #hidden layer
+          else:   
+            print("\n\ni/j/self.values: ", i, j, len(self.values), len(self.values[i]))
+            weight_sum = 0
+
+            #to calculate the sum of the weights.
+            for l in range(len(self.mlp_init[i+1])): 
+              for m in range(len(farthest_layer_right)): 
+                weight_sum += self.mlp_init[i][m][l]
+
+              
+              if counter == 1:
+                deltas[counter].append(self.values[i][j] * (1 - self.values[i][j]) * weight_sum * deltas[counter-1][output_size])
+
+              else: 
+                deltas[counter].append(self.values[i][j] * (1 - self.values[i][j]) * weight_sum * deltas[counter-1][len(self.mlp_init[i+2])])
+
+            #deltas[counter].append(self.values[j] * (1 - self.values[j]) * weight_sum * delta_x)
+            
+            self.mlp_init[i][j][k] = self.mlp_init[i][j][k] + eta* deltas[counter][k]*self.values[i][j]
+
+            #self.mlp_init[i][j][k] = self.mlp_init[i][j][k] + eta*diff*self.values[i][j]
+
+    counter += 1
 
 
       #print(counter)
