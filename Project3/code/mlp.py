@@ -163,6 +163,8 @@ class Model:
     deltas = []   
     counter = 0
 
+    print("\n\n\nMLP Init: ", self.mlp_init)
+
     #makes deltas the correct size
     for i in range(len(self.values)):
       deltas.append([])
