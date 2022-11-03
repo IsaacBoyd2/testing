@@ -160,28 +160,44 @@ class Model:
     print(self.values)
 
   def Back_Prop(self,eta,classNumber,actual,output_size):  
-    #print(self.mlp_init)
-    deltas = [[],[],[],[]]    #store the deltas for each layer so that they can be used recursively
+    
+    #variables
+    deltas = []   
     counter = 0
-    for i in reversed(range(len(self.mlp_init))):   #go through every layer backwards
-      print(i)
+
+    #makes deltas the correct size
+    for i in range(len(self.values)):
+      deltas.append([])
+
+    print("\n\ndeltas: ", deltas)
+
+    #go through every layer backwards
+    for i in reversed(range(len(self.mlp_init))):   
       farthest_layer_right = self.mlp_init[i]
-      for j in range(len(farthest_layer_right)):             #go through every node
-        print(j)
+
+      #go through every node
+      for j in range(len(farthest_layer_right)):             
         node = farthest_layer_right[j]
-        for k in range(len(node)):                              #go through every weight in every node.  
-          #print(k)
 
+        #go through every weight in every node.
+        for k in range(len(node)):   
+          
+          #output layer                             
+          if i == len(self.mlp_init)- 1:   
 
-          if i == len(self.mlp_init)- 1:    #output layer
-            #print(len(self.mlp_init))
-            #print('hello :)')
+            #regression 
             if classNumber == 1:
-              diff = actual - self.output                   #delta is actual - predicted * derivative of the actication function. So for the sigmoid layers this would be (ri-yi)(oj(1-oj)) and linear it would just be (ri-yi) * possibly C
+              diff = actual - self.output    
+              
+              '''
+              delta is actual - predicted * derivative of the actication 
+              function. So for the sigmoid layers this would be (ri-yi)(oj(1-oj)) 
+              and linear it would just be (ri-yi) * possibly C
+              '''               
 
               deltas[0].append(diff)
-              #print(diff)
               
+            #classification
             else:
               actualClass = actual[1]
               actualOneHot = actual[0]
@@ -192,13 +208,10 @@ class Model:
 
               deltas[0].append(diff)
 
-            #print('laskd',self.mlp_init[i][j][k])
-
             self.mlp_init[i][j][k] = self.mlp_init[i][j][k] + eta*diff*self.values[i][j]
 
-            #print(self.mlp_init[i][j][k] + eta*diff*self.values[i][j])
-
-          else:   #hidden layer
+          #hidden layer
+          else:   
 
             print("\n\ni/j/self.values: ", i, j, len(self.values), len(self.values[i]))
             weight_sum = 0
