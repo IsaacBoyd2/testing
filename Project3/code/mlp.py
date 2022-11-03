@@ -168,9 +168,9 @@ class Model:
       deltas.append([])
 
     #loops through every layer backwards
-    for i in reversed(range(len(self.mlp_init)+2)): 
-      farthest_layer_right = self.mlp_init[i]
+    for i in reversed(range(len(self.mlp_init)+1)): 
       print("I: ", i)
+      farthest_layer_right = self.mlp_init[i]
 
       #loops through every node
       for j in range(len(farthest_layer_right)):             
