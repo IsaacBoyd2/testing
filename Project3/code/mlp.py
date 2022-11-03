@@ -170,6 +170,7 @@ class Model:
     #loops through every layer backwards
     for i in reversed(range(len(self.mlp_init))):   
       farthest_layer_right = self.mlp_init[i]
+      print("I: ", i)
 
       #loops through every node
       for j in range(len(farthest_layer_right)):             
