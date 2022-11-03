@@ -177,57 +177,58 @@ class Model:
       for j in range(len(farthest_layer_right)):             
         node = farthest_layer_right[j]
 
-        #go through every weight in every node.
-        for k in range(len(node)):   
-          
-          #output layer                             
-          if i == len(self.mlp_init)- 1:   
+        if j < len(self.values[i]):
+          #go through every weight in every node.
+          for k in range(len(node)):   
+            
+            #output layer                             
+            if i == len(self.mlp_init)- 1:   
 
-            #regression 
-            if classNumber == 1:
-              diff = actual - self.output    
-              
-              ''' delta explanation
-              delta is actual - predicted * derivative of the actication 
-              function. So for the sigmoid layers this would be (ri-yi)(oj(1-oj)) 
-              and linear it would just be (ri-yi) * possibly C
-              '''               
+              #regression 
+              if classNumber == 1:
+                diff = actual - self.output    
+                
+                ''' delta explanation
+                delta is actual - predicted * derivative of the actication 
+                function. So for the sigmoid layers this would be (ri-yi)(oj(1-oj)) 
+                and linear it would just be (ri-yi) * possibly C
+                '''               
 
-              deltas[0].append(diff)
-              
-            #classification
-            else:
-              actualClass = actual[1]
-              actualOneHot = actual[0]
+                deltas[0].append(diff)
+                
+              #classification
+              else:
+                actualClass = actual[1]
+                actualOneHot = actual[0]
 
-              diff = actualOneHot.get(actualClass)[j] - self.values[i][j]
+                diff = actualOneHot.get(actualClass)[j] - self.values[i][j]
 
-              deltas[0].append(diff)
+                deltas[0].append(diff)
 
-            self.mlp_init[i][j][k] = self.mlp_init[i][j][k] + eta*diff*self.values[i][j]
+              self.mlp_init[i][j][k] = self.mlp_init[i][j][k] + eta*diff*self.values[i][j]
 
-          #hidden layer
-          else:   
-            print("\n\ni/j/self.values: ", i, j, len(self.values), len(self.values[i]))
-            weight_sum = 0
+            #hidden layer
+            else:   
+              print("\n\ni/j/self.values: ", i, j, len(self.values), len(self.values[i]))
+              weight_sum = 0
 
-            #to calculate the sum of the weights.
-            for l in range(len(self.mlp_init[i+1])): 
-              for m in range(len(farthest_layer_right)): 
-                weight_sum += self.mlp_init[i][m][l]
+              #to calculate the sum of the weights.
+              for l in range(len(self.mlp_init[i+1])): 
+                for m in range(len(farthest_layer_right)): 
+                  weight_sum += self.mlp_init[i][m][l]
 
-              if j < len(self.values[i]):
+                
                 if counter == 1:
                   deltas[counter].append(self.values[i][j] * (1 - self.values[i][j]) * weight_sum * deltas[counter-1][output_size])
 
                 else: 
                   deltas[counter].append(self.values[i][j] * (1 - self.values[i][j]) * weight_sum * deltas[counter-1][len(self.mlp_init[i+2])])
 
-            #deltas[counter].append(self.values[j] * (1 - self.values[j]) * weight_sum * delta_x)
-            if j < len(self.values[i]):
+              #deltas[counter].append(self.values[j] * (1 - self.values[j]) * weight_sum * delta_x)
+              
               self.mlp_init[i][j][k] = self.mlp_init[i][j][k] + eta* deltas[counter][k]*self.values[i][j]
 
-            #self.mlp_init[i][j][k] = self.mlp_init[i][j][k] + eta*diff*self.values[i][j]
+              #self.mlp_init[i][j][k] = self.mlp_init[i][j][k] + eta*diff*self.values[i][j]
 
       counter += 1
 
