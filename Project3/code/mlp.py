@@ -180,6 +180,7 @@ class Model:
         # if j < len(self.values[i]) and i < len(self.values):
         #loops through every weight per node.
         for k in range(len(node)):   
+          print("k: ", k)
           
           #output layer                             
           if i == len(self.mlp_init)- 1:   
@@ -201,11 +202,7 @@ class Model:
               actualClass = actual[1]
               actualOneHot = actual[0]
 
-              print("\nOne Hot: ", actualOneHot, "\nLen of One Hot: ", len(actualOneHot), "\nj: ", j)
-
-              print("\nself.values: ", self.values)
-
-              diff = actualOneHot.get(actualClass)[j] - self.values[i][j]
+              diff = actualOneHot.get(actualClass)[k] - self.values[i][j]
 
               deltas[0].append(diff)
 
