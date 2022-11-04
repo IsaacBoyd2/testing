@@ -129,6 +129,7 @@ class Model:
           for k in range(len(values[-1])):   #for every xi
             l.append(float(values[-1][k])*float(self.mlp_init[-1][k][i]))  #do xiwi
           summation = sum(l) #Sum of all xiwis
+          print("SUMMATION: ", summation)
           sigmoid = 1/(1+math.e**(-summation))    #sigmoid function
           layer_outputs.append(sigmoid) #append for each input
 
@@ -166,18 +167,15 @@ class Model:
 
     #loops through every layer backwards
     for i in reversed(range(len(self.mlp_init))): 
-      print("I: ", i)
       farthest_layer_right = self.mlp_init[i]
 
       #loops through every node
-      for j in range(len(farthest_layer_right)): 
-        print("J: ", j)            
+      for j in range(len(farthest_layer_right)):           
         node = farthest_layer_right[j]
 
         # if j < len(self.values[i]) and i < len(self.values):
         #loops through every weight per node.
         for k in range(len(node)):   
-          print("k: ", k)
           
           #output layer                             
           if i == len(self.mlp_init)-1:   
@@ -202,13 +200,11 @@ class Model:
               diff = actualOneHot.get(actualClass)[k] - self.values[i][j]
 
               deltas[0].append(diff)
-              print("\n\ndeltas: \n", deltas)
 
             self.mlp_init[i][j][k] = self.mlp_init[i][j][k] + eta*diff*self.values[i][j]
 
           #hidden layer
           else:   
-            print("\n\ni/j/self.values: ", i, j, len(self.values), len(self.values[i]))
             weight_sum = 0
 
             #to calculate the sum of the weights.
@@ -221,7 +217,6 @@ class Model:
                 deltas[counter].append(self.values[i][j] * (1 - self.values[i][j]) * weight_sum * deltas[counter-1][output_size])
 
               else: 
-                print("\n\nTEST: \n", deltas[counter-1], "\n\n")
                 if j < len(self.values[i]):
                   deltas[counter].append(self.values[i][j] * (1 - self.values[i][j]) * weight_sum * deltas[counter-1][len(self.mlp_init[i+2])])
 
