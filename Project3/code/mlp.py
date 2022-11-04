@@ -168,12 +168,13 @@ class Model:
       deltas.append([])
 
     #loops through every layer backwards
-    for i in reversed(range(len(self.mlp_init)+1)): 
+    for i in reversed(range(len(self.mlp_init))): 
       print("I: ", i)
       farthest_layer_right = self.mlp_init[i]
 
       #loops through every node
-      for j in range(len(farthest_layer_right)):             
+      for j in reversed(range(len(farthest_layer_right))): 
+        print("J: ", j)            
         node = farthest_layer_right[j]
 
         # if j < len(self.values[i]) and i < len(self.values):
