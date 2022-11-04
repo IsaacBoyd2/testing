@@ -200,8 +200,6 @@ class Model:
               diff = actualOneHot.get(actualClass)[k] - self.values[i][j]
 
               deltas[0].append(diff)
-              print("diff: ",diff)
-              print("self.values: ", self.values)
 
             self.mlp_init[i][j][k] = self.mlp_init[i][j][k] + eta*diff*self.values[i][j]
 
@@ -224,6 +222,7 @@ class Model:
 
             #deltas[counter].append(self.values[j] * (1 - self.values[j]) * weight_sum * delta_x)
             if j < len(self.values[i]): 
+              print("deltas: ", deltas[counter])
               self.mlp_init[i][j][k] = self.mlp_init[i][j][k] + eta* deltas[counter][k]*self.values[i][j]
 
             #self.mlp_init[i][j][k] = self.mlp_init[i][j][k] + eta*diff*self.values[i][j]
