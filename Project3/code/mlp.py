@@ -95,7 +95,8 @@ class Model:
           for k in range(len(values[i])):   #for every xi
             l.append(float(values[i][k])*float(self.mlp_init[i][k][j]))  #do xiwi
           summation = sum(l) #Sum of all xiwis
-          sigmoid = 1/(1+math.e**(-summation))    #sigmoid function
+          print("SUMMATION: ", summation)
+          sigmoid = 1/(1+round(math.e**(-summation)),30)    #sigmoid function
           layer_outputs.append(sigmoid) #append for each input
 
         values.append(layer_outputs) #append all the outputs. (this will be what is "inside" of each node)
@@ -129,7 +130,6 @@ class Model:
           for k in range(len(values[-1])):   #for every xi
             l.append(float(values[-1][k])*float(self.mlp_init[-1][k][i]))  #do xiwi
           summation = sum(l) #Sum of all xiwis
-          print("SUMMATION: ", summation)
           sigmoid = 1/(1+math.e**(-summation))    #sigmoid function
           layer_outputs.append(sigmoid) #append for each input
 
