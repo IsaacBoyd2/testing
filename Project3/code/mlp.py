@@ -174,15 +174,27 @@ class Model:
       #print(len(farthest_layer_right)) 
 
       if i == len(self.mlp_init)- 1:    #output layer
-        #print(len(self.mlp_init))
-        #print('hello :)')
+        #regression
         if classNumber == 1:
           diff = actual - self.output                   #delta is actual - predicted * derivative of the actication function. So for the sigmoid layers this would be (ri-yi)(oj(1-oj)) and linear it would just be (ri-yi) * possibly C
 
           deltas[counter].append(diff)
-          #print(diff)
+
+ 
+
+#df['class'].unique[(max(values[-1]))]
+
+
+        #classification 
         else:
-          pass #this will be classification
+          actualClass = actual[1]
+          actualOneHot = actual[0]
+
+          diff = actualOneHot.get(actualClass)[j] - self.values[i][j]      #might need to use softmax derivative.   
+
+          deltas[0].append(diff)
+
+        self.mlp_init[i][j][k] = self.mlp_init[i][j][k] + eta*diff*self.values[i][j]
 
       else:
 
@@ -212,8 +224,13 @@ class Model:
           
           delcalc = sumwih_deltai*(xi)*(xi-1) 
           deltas[counter+1].append(delcalc)
+          self.mlp_init[i][j][k] = self.mlp_init[i][j][k] + eta*delcalc*self.values[i][j]
+
         counter = counter + 1
         print(deltas)
+
+
+        
 
 
       #print(counter)
