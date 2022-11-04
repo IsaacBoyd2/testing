@@ -222,7 +222,7 @@ class Model:
 
               else: 
                 print("\n\nTEST: \n", deltas[counter-1], "\n\n")
-                if j < len(values[i]):
+                if j < len(self.values[i]):
                   deltas[counter].append(self.values[i][j] * (1 - self.values[i][j]) * weight_sum * deltas[counter-1][len(self.mlp_init[i+2])])
 
             #deltas[counter].append(self.values[j] * (1 - self.values[j]) * weight_sum * delta_x)
