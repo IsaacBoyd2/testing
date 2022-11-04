@@ -96,7 +96,7 @@ class Model:
             l.append(float(values[i][k])*float(self.mlp_init[i][k][j]))  #do xiwi
           summation = sum(l) #Sum of all xiwis
           print("SUMMATION: ", summation)
-          sigmoid = 1/(1+round(math.e**(-summation)),30)    #sigmoid function
+          sigmoid = 1/(1+round(math.e**(-summation),30))    #sigmoid function
           layer_outputs.append(sigmoid) #append for each input
 
         values.append(layer_outputs) #append all the outputs. (this will be what is "inside" of each node)
