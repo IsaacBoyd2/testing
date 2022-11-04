@@ -110,9 +110,6 @@ class Model:
           #print(len(self.mlp_init[-1]))
           l = []
           for k in range(len(values[-1])):   #for every xi
-            #print('hello')
-            #print(values)
-            #print(self.mlp_init[-2][k][i])
             l.append(float(values[-1][k])*float(self.mlp_init[-2][k][i]))  #do xiwi
           summation = sum(l)
         
@@ -173,7 +170,7 @@ class Model:
       farthest_layer_right = self.mlp_init[i]
 
       #loops through every node
-      for j in reversed(range(len(farthest_layer_right))): 
+      for j in range(len(farthest_layer_right)): 
         print("J: ", j)            
         node = farthest_layer_right[j]
 
@@ -223,6 +220,7 @@ class Model:
                 deltas[counter].append(self.values[i][j] * (1 - self.values[i][j]) * weight_sum * deltas[counter-1][output_size])
 
               else: 
+                print("\n\nTEST: \n", self.values[i][j], "\n\n")
                 deltas[counter].append(self.values[i][j] * (1 - self.values[i][j]) * weight_sum * deltas[counter-1][len(self.mlp_init[i+2])])
 
             #deltas[counter].append(self.values[j] * (1 - self.values[j]) * weight_sum * delta_x)
