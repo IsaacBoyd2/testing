@@ -180,7 +180,7 @@ class Model:
           print("k: ", k)
           
           #output layer                             
-          if i == len(self.mlp_init)- 1:   
+          if i == len(self.mlp_init)-1:   
 
             #regression 
             if classNumber == 1:
@@ -202,6 +202,7 @@ class Model:
               diff = actualOneHot.get(actualClass)[k] - self.values[i][j]
 
               deltas[0].append(diff)
+              print("\n\ndeltas: \n", deltas)
 
             self.mlp_init[i][j][k] = self.mlp_init[i][j][k] + eta*diff*self.values[i][j]
 
