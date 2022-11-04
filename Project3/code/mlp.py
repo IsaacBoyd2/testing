@@ -229,8 +229,7 @@ class Model:
             self.mlp_init[i][j][k] = self.mlp_init[i][j][k] + eta* deltas[counter][k]*self.values[i][j]
 
             #self.mlp_init[i][j][k] = self.mlp_init[i][j][k] + eta*diff*self.values[i][j]
-
-    counter += 1
+      counter += 1
 
 
       #print(counter)
