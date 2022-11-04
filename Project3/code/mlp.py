@@ -220,7 +220,7 @@ class Model:
                 deltas[counter].append(self.values[i][j] * (1 - self.values[i][j]) * weight_sum * deltas[counter-1][output_size])
 
               else: 
-                print("\n\nTEST: \n", self.values[i][j], "\n\n")
+                print("\n\nTEST: \n", deltas[counter-1], "\n\n")
                 deltas[counter].append(self.values[i][j] * (1 - self.values[i][j]) * weight_sum * deltas[counter-1][len(self.mlp_init[i+2])])
 
             #deltas[counter].append(self.values[j] * (1 - self.values[j]) * weight_sum * delta_x)
