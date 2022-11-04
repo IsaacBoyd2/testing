@@ -201,6 +201,7 @@ class Model:
 
               deltas[0].append(diff)
               print("diff: ",diff)
+              print("self.values: ", self.values)
 
             self.mlp_init[i][j][k] = self.mlp_init[i][j][k] + eta*diff*self.values[i][j]
 
