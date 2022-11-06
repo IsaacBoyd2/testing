@@ -236,7 +236,7 @@ class Model:
 
             print('counter :', counter)
             print('l :', l)
-            #print(deltas)
+            print('deltas: ',deltas)
             
 
             deltai = deltas[counter][l]
