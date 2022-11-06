@@ -72,7 +72,7 @@ class Model:
 
     self.mlp_init = mlp_init
 
-    print(self.mlp_init)
+    #print(self.mlp_init)
 
     '''
 
@@ -194,12 +194,13 @@ class Model:
           actualClass = actual[1]
           actualOneHot = actual[0]
 
-          for j in range(len(actualOneHot)):
+          for j in range(actualOneHot.size):
             diff = actualOneHot.get(actualClass)[j] - self.values[i][j]
             deltas[0].append(diff)
 
       else:
 
+        print(len(len(farthest_layer_right)))
         for j in range(len(farthest_layer_right[0])): 
           #print(j) 
           #print(i)
@@ -237,7 +238,7 @@ class Model:
     #print(deltas)
     deltas.reverse()
     print(deltas)
-    print(self.mlp_init)
+    #print(self.mlp_init)
 
     for i in range(len(self.mlp_init)):
       layer = self.mlp_init[i]
