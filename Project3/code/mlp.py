@@ -241,7 +241,7 @@ class Model:
 
             a_sum = weight_s*deltai
             print(deltai)
-            print(a_sum)
+            print(weight_s)
             sumwih_deltai = sumwih_deltai + a_sum
 
           #for l in range(len(self.mlp_init[i+1][0])):
