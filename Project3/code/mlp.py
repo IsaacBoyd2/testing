@@ -205,6 +205,7 @@ class Model:
 
         #print(len(farthest_layer_right))
         for j in range(len(farthest_layer_right[0])): 
+          print(len(farthest_layer_right[0]))
           #print(j) 
           #print(i)
           #print(self.values)
