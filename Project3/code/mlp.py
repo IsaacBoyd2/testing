@@ -244,7 +244,7 @@ class Model:
           delcalc = sumwih_deltai*(xi)*(xi-1) 
 
 
-          print('This should be the calculated delta', delta)
+          print('This should be the calculated delta', delcalc)
           deltas[counter+1].append(delcalc)
           #except:
           #  pass
