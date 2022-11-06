@@ -227,6 +227,8 @@ class Model:
 
           for l in range(len(self.mlp_init[i][j])):
 
+            print(len(self.mlp_init[i][j]))
+
             weight_s = self.mlp_init[i][j][l]
 
             print(counter)
