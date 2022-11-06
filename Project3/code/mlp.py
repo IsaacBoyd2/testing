@@ -234,8 +234,8 @@ class Model:
 
             weight_s = self.mlp_init[i][j][l]
 
-            #print(counter)
-            #print(l)
+            print('counter :', counter)
+            print('l :', l)
             #print(deltas)
             
 
