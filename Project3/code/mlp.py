@@ -306,6 +306,7 @@ class Model:
             print('eta: ',eta)
             print('delta: ',deltas[i][k])
             print('xi: ',self.values[i][j])
+            print('hello')
             self.mlp_init[i][j][k] = self.mlp_init[i][j][k] + eta*deltas[i][j]*self.values[i][j]
 
 
