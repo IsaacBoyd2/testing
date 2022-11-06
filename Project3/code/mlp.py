@@ -99,6 +99,8 @@ class Model:
           for k in range(len(values[i])):   #for every xi
             l.append(float(values[i][k])*float(self.mlp_init[i][k][j]))  #do xiwi
           summation = sum(l) #Sum of all xiwis
+
+          print(summation)
           #print("SUMMATION: ", summation)
           sigmoid = 1/(1+round(math.e**(-summation),8))    #sigmoid function
           layer_outputs.append(sigmoid) #append for each input
@@ -288,7 +290,7 @@ class Model:
     #print(self.mlp_init)
 
     print('Here are the deltas that we should get... these should be correct since I just went through them',deltas)
-    print('Now we are going to start updating the wights')
+    #print('Now we are going to start updating the wights')
 
     for i in range(len(self.mlp_init)):
       layer = self.mlp_init[i]
@@ -302,11 +304,11 @@ class Model:
           #print(len(self.mlp_init[i][j]), len(deltas), len(self.values[i]))
           if j < len(self.values[i]):
 
-            print('Current weight: ',self.mlp_init[i][j][k])
-            print('eta: ',eta)
-            print('delta: ',deltas[i][j])
-            print('xi: ',self.values[i][j])
-            print('hello')
+            #print('Current weight: ',self.mlp_init[i][j][k])
+            #print('eta: ',eta)
+            #print('delta: ',deltas[i][j])
+            #print('xi: ',self.values[i][j])
+            #print('hello')
             self.mlp_init[i][j][k] = self.mlp_init[i][j][k] + eta*deltas[i][j]*self.values[i][j]
 
 
