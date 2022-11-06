@@ -221,20 +221,34 @@ class Model:
           #weight_sum = 0
           sumwih_deltai = 0
 
-          for l in range(len(self.mlp_init[i+1][0])):
+
+
+          #1. Grab all the weights connected to xi, multiply them by the delta connected to xi
+
+          for l in range(len(self.mlp_init[i][j][0])):
+
+            weight_s = self.mlp_init[i][j][l]
+            deltai = deltas[counter][l]
+
+            a_sum = weight_s*deltai
+
+            sumwih_deltai = sumwih_deltai + a_sum
+
+          #for l in range(len(self.mlp_init[i+1][0])):
             #print(len(self.mlp_init[i+1][0]))
 
             #print(self.mlp_init[i+1])
-            if l < len(deltas[counter]):
+            #if l < len(deltas[counter]):
               #print("\n\nLen of Deltas(coutner/l): ", len(deltas), len(deltas[counter]), "counter/l: ", counter, l)
-              deltai = deltas[counter][l]
+              #deltai = deltas[counter][l]
 
-              print('This shouldbe the previous delta calculation', deltai)
+              #print('This shouldbe the previous delta calculation', deltai)
 
-              for m in range(len(farthest_layer_right)): 
-                weight_s = self.mlp_init[i][m][l]
+              #for m in range(len(farthest_layer_right)): 
+                #weight_s = self.mlp_init[i][m][l]
 
-              sumwih_deltai += weight_s*deltai
+          
+          #sumwih_deltai += weight_s*deltai
 
           print('This should be the sum of all of the weights * the delta?',sumwih_deltai)
 
