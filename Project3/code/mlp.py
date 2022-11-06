@@ -225,7 +225,7 @@ class Model:
 
           #1. Grab all the weights connected to xi, multiply them by the delta connected to xi
 
-          for l in range(len(self.mlp_init[i][j][0])):
+          for l in range(len(self.mlp_init[i][j])):
 
             weight_s = self.mlp_init[i][j][l]
             deltai = deltas[counter][l]
