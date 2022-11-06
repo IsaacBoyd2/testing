@@ -160,8 +160,10 @@ class Model:
     self.values = values
 
   def Back_Prop(self,eta,classNumber,actual,output_size):  
-    #print(self.mlp_init)
-    #print(self.mlp_init)
+    print('Here are the weights at the start of backprop: ',self.mlp_init)
+    print('Here are the values in the nodes at the start of backprop: ',self.values)
+    print('Here is the value that we are tryin to approach: ',actual)
+    print('Here is the guess that forwards prop yeilded', self.output)
     deltas=[]  
     for x in range(len(self.mlp_init)):
       deltas.append([])
@@ -183,7 +185,7 @@ class Model:
         #print('hello :)')
         if classNumber == 1:
           diff = actual - self.output              #delta is actual - predicted * derivative of the actication function. So for the sigmoid layers this would be (ri-yi)(oj(1-oj)) and linear it would just be (ri-yi) * possibly C
-          print(diff)
+          print('This should be the difference between the actual and what our current prediction is',diff)
 
           deltas[counter].append(diff)
           
@@ -208,8 +210,11 @@ class Model:
           #print(self.values)
           #print(self.values[0][3])
 
+
+
           xi = self.values[i+1][j]
 
+          print('This value is xi. It should be in the same layer as deltai. It should come before the wieights so like      xh ----whi---> xi ',xi)
 
           #print('asdfasdf',self.values)
 
@@ -223,15 +228,26 @@ class Model:
             if l < len(deltas[counter]):
               #print("\n\nLen of Deltas(coutner/l): ", len(deltas), len(deltas[counter]), "counter/l: ", counter, l)
               deltai = deltas[counter][l]
+
+              print('This shouldbe the previous delta calculation', deltai)
+
               for m in range(len(farthest_layer_right)): 
                 weight_s = self.mlp_init[i][m][l]
 
               sumwih_deltai += weight_s*deltai
-          try:
-            delcalc = sumwih_deltai*(xi)*(xi-1) 
-            deltas[counter+1].append(delcalc)
-          except:
-            pass
+
+          print('This should be the sum of all of the weights * the delta?',sumwih_deltai)
+
+
+
+          #try:
+          delcalc = sumwih_deltai*(xi)*(xi-1) 
+
+
+          print('This should be the calculated delta', delta)
+          deltas[counter+1].append(delcalc)
+          #except:
+          #  pass
 
 
         
