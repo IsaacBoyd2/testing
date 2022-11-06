@@ -248,10 +248,10 @@ class Model:
       for j in range(len(layer)):
         neuron = layer[j]
         for k in range(len(neuron)):
-          print(i)
-          print(j)
-          print(k)
-          print(len(self.mlp_init[i][j]), len(deltas), len(self.values[i]))
+          #print(i)
+          #print(j)
+          #print(k)
+          #print(len(self.mlp_init[i][j]), len(deltas), len(self.values[i]))
           if j < len(self.values[i]):
             self.mlp_init[i][j][k] = self.mlp_init[i][j][k] + eta*deltas[i][k]*self.values[i][j]
 
