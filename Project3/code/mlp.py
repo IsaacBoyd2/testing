@@ -204,7 +204,7 @@ class Model:
       else:
 
         #print(len(farthest_layer_right))
-        for j in range(len(farthest_layer_right[0])): 
+        for j in range(len(farthest_layer_right)): #Used to be farthest_layer_right[0]
           print(len(farthest_layer_right[0]))
           #print(j) 
           #print(i)
