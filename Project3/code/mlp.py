@@ -100,7 +100,7 @@ class Model:
             l.append(float(values[i][k])*float(self.mlp_init[i][k][j]))  #do xiwi
           summation = sum(l) #Sum of all xiwis
 
-          print(summation)
+          #print(summation)
           #print("SUMMATION: ", summation)
           sigmoid = 1/(1+round(math.e**(-summation),8))    #sigmoid function
           layer_outputs.append(sigmoid) #append for each input
@@ -162,10 +162,10 @@ class Model:
     self.values = values
 
   def Back_Prop(self,eta,classNumber,actual,output_size):  
-    print('Here are the weights at the start of backprop: ',self.mlp_init)
-    print('Here are the values in the nodes at the start of backprop: ',self.values)
-    print('Here is the value that we are tryin to approach: ',actual)
-    print('Here is the guess that forwards prop yeilded', self.output)
+    #print('Here are the weights at the start of backprop: ',self.mlp_init)
+    #print('Here are the values in the nodes at the start of backprop: ',self.values)
+    #print('Here is the value that we are tryin to approach: ',actual)
+    #print('Here is the guess that forwards prop yeilded', self.output)
     deltas=[]  
     for x in range(len(self.mlp_init)):
       deltas.append([])
@@ -234,9 +234,9 @@ class Model:
 
             weight_s = self.mlp_init[i][j][l]
 
-            print('counter :', counter)
-            print('l :', l)
-            print('deltas: ',deltas)
+            #print('counter :', counter)
+            #print('l :', l)
+            #print('deltas: ',deltas)
             
 
             deltai = deltas[counter][l]
@@ -305,7 +305,8 @@ class Model:
           if j < len(self.values[i]):
 
             #print('Current weight: ',self.mlp_init[i][j][k])
-            #print('eta: ',eta)
+            #print('eta: ',eta)5
+
             #print('delta: ',deltas[i][j])
             #print('xi: ',self.values[i][j])
             #print('hello')
