@@ -2,7 +2,7 @@
 
 #Code by: Isaac Boyd, James Lucas 
 
-##Code For: K-nearest neighbor
+##Code For: Neural Net
 ##Completed: 10-9-2022
 ##References: NA
 
@@ -95,7 +95,7 @@ class Model:
           for k in range(len(values[i])):   #for every xi
             l.append(float(values[i][k])*float(self.mlp_init[i][k][j]))  #do xiwi
           summation = sum(l) #Sum of all xiwis
-          print("SUMMATION: ", summation)
+          #print("SUMMATION: ", summation)
           sigmoid = 1/(1+round(math.e**(-summation),8))    #sigmoid function
           layer_outputs.append(sigmoid) #append for each input
 
@@ -192,8 +192,8 @@ class Model:
       else:
 
         for j in range(len(farthest_layer_right[0])): 
-          print(j) 
-          print(i)
+          #print(j) 
+          #print(i)
           #print(self.values)
           #print(self.values[0][3])
 
@@ -222,6 +222,8 @@ class Model:
 
     deltas.reverse()
     #print(deltas)
+
+    print(self.mlp_init)
 
     for i in range(len(self.mlp_init)):
       layer = self.mlp_init[i]
