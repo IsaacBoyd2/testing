@@ -220,7 +220,7 @@ class Model:
 
             #print(self.mlp_init[i+1])
             if l < len(deltas[counter]):
-              print("\n\nLen of Deltas(coutner/l): ", len(deltas), len(deltas[counter]), "counter/l: ", counter, l)
+              #print("\n\nLen of Deltas(coutner/l): ", len(deltas), len(deltas[counter]), "counter/l: ", counter, l)
               deltai = deltas[counter][l]
               for m in range(len(farthest_layer_right)): 
                 weight_s = self.mlp_init[i][m][l]
@@ -241,7 +241,6 @@ class Model:
     #print(self.values)
     #print(deltas)
     deltas.reverse()
-    print(deltas)
     #print(self.mlp_init)
 
     for i in range(len(self.mlp_init)):
@@ -249,10 +248,12 @@ class Model:
       for j in range(len(layer)):
         neuron = layer[j]
         for k in range(len(neuron)):
-          #print(i)
-          #print(j)
-          #print(self.values[i][j])
-          self.mlp_init[i][j][k] = self.mlp_init[i][j][k] + eta*deltas[i][k]*self.values[i][j]
+          print(i)
+          print(j)
+          print(k)
+          print(len(self.mlp_init[i][j]), len(deltas), len(self.values[i]))
+          if j < len(self.values[i]):
+            self.mlp_init[i][j][k] = self.mlp_init[i][j][k] + eta*deltas[i][k]*self.values[i][j]
 
 
       #print(counter)
