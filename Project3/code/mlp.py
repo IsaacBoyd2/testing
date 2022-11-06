@@ -219,16 +219,18 @@ class Model:
             #print(len(self.mlp_init[i+1][0]))
 
             #print(self.mlp_init[i+1])
+            if l < len(deltas[counter])
+              print("\n\nLen of Deltas(coutner/l): ", len(deltas), len(deltas[counter]), "counter/l: ", counter, l)
+              deltai = deltas[counter][l]
+              for m in range(len(farthest_layer_right)): 
+                weight_s = self.mlp_init[i][m][l]
 
-            print("\n\nLen of Deltas(coutner/l): ", len(deltas), len(deltas[counter]), "counter/l: ", counter, l)
-            deltai = deltas[counter][l]
-            for m in range(len(farthest_layer_right)): 
-              weight_s = self.mlp_init[i][m][l]
-
-            sumwih_deltai += weight_s*deltai
-          
-          delcalc = sumwih_deltai*(xi)*(xi-1) 
-          deltas[counter+1].append(delcalc)
+              sumwih_deltai += weight_s*deltai
+          try:
+            delcalc = sumwih_deltai*(xi)*(xi-1) 
+            deltas[counter+1].append(delcalc)
+          except:
+            pass
 
 
         
