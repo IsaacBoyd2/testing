@@ -185,7 +185,7 @@ class Model:
         #print('hello :)')
         if classNumber == 1:
           diff = actual - self.output              #delta is actual - predicted * derivative of the actication function. So for the sigmoid layers this would be (ri-yi)(oj(1-oj)) and linear it would just be (ri-yi) * possibly C
-          print('This should be the difference between the actual and what our current prediction is',diff)
+          #print('This should be the difference between the actual and what our current prediction is',diff)
 
           deltas[counter].append(diff)
           
@@ -205,7 +205,7 @@ class Model:
 
         #print(len(farthest_layer_right))
         for j in range(len(farthest_layer_right)): #Used to be farthest_layer_right[0]
-          print(len(farthest_layer_right[0]))
+          #print(len(farthest_layer_right[0]))
           #print(j) 
           #print(i)
           #print(self.values)
@@ -215,7 +215,7 @@ class Model:
 
           xi = self.values[i][j] #used to be i+1 think it needs to move back
 
-          print('This value is xi. It should be in the same layer as deltai. It should come before the wieights so like      xh ----whi---> xi ',xi)
+          #print('This value is xi. It should be in the same layer as deltai. It should come before the wieights so like      xh ----whi---> xi ',xi)
 
           #print('asdfasdf',self.values)
 
@@ -228,13 +228,13 @@ class Model:
 
           for l in range(len(self.mlp_init[i][j])):
 
-            print(len(self.mlp_init[i][j]))
+            #print(len(self.mlp_init[i][j]))
 
             weight_s = self.mlp_init[i][j][l]
 
-            print(counter)
-            print(l)
-            print(deltas)
+            #print(counter)
+            #print(l)
+            #print(deltas)
             
 
             deltai = deltas[counter][l]
@@ -243,8 +243,8 @@ class Model:
 
 
             a_sum = weight_s*deltai
-            print(deltai)
-            print(weight_s)
+            #print(deltai)
+            #print(weight_s)
             sumwih_deltai = sumwih_deltai + a_sum
 
           #for l in range(len(self.mlp_init[i+1][0])):
@@ -263,7 +263,7 @@ class Model:
           
           #sumwih_deltai += weight_s*deltai
 
-          print('This should be the sum of all of the weights * the delta?',sumwih_deltai)
+          #print('This should be the sum of all of the weights * the delta?',sumwih_deltai)
 
 
 
@@ -271,7 +271,7 @@ class Model:
           delcalc = sumwih_deltai*(xi)*(1-xi) 
 
 
-          print('This should be the calculated delta', delcalc)
+          #print('This should be the calculated delta', delcalc)
           deltas[counter+1].append(delcalc)
           #except:
           #  pass
@@ -287,6 +287,9 @@ class Model:
     deltas.reverse()
     #print(self.mlp_init)
 
+    print('Here are the deltas that we should get... these should be correct since I just went through them',deltas)
+    print('Now we are going to start updating the wights')
+
     for i in range(len(self.mlp_init)):
       layer = self.mlp_init[i]
       for j in range(len(layer)):
@@ -298,6 +301,11 @@ class Model:
           #print(k)
           #print(len(self.mlp_init[i][j]), len(deltas), len(self.values[i]))
           if j < len(self.values[i]):
+
+            print('Current weight: ',self.mlp_init[i][j][k])
+            print('eta: ',eta)
+            print('delta: ',eta)
+            print('xi: ',eta)
             self.mlp_init[i][j][k] = self.mlp_init[i][j][k] + eta*deltas[i][k]*self.values[i][j]
 
 
