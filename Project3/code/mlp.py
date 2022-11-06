@@ -268,7 +268,7 @@ class Model:
 
 
           #try:
-          delcalc = sumwih_deltai*(xi)*(xi-1) 
+          delcalc = sumwih_deltai*(xi)*(1-xi) 
 
 
           print('This should be the calculated delta', delcalc)
