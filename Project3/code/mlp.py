@@ -228,6 +228,11 @@ class Model:
           for l in range(len(self.mlp_init[i][j])):
 
             weight_s = self.mlp_init[i][j][l]
+
+            print(counter)
+            print(l)
+            print(deltas)
+
             deltai = deltas[counter][l]
 
             a_sum = weight_s*deltai
