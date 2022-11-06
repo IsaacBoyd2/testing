@@ -305,9 +305,8 @@ class Model:
             print('Current weight: ',self.mlp_init[i][j][k])
             print('eta: ',eta)
             print('delta: ',deltas[i][k])
-            print('delta: ',deltas[i][k])
             print('xi: ',self.values[i][j])
-            self.mlp_init[i][j][k] = self.mlp_init[i][j][k] + eta*deltas[i][k]*self.values[i][j]
+            self.mlp_init[i][j][k] = self.mlp_init[i][j][k] + eta*deltas[i][j]*self.values[i][j]
 
 
       #print(counter)
