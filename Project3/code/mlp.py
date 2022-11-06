@@ -220,7 +220,7 @@ class Model:
 
             #print(self.mlp_init[i+1])
 
-            print("\n\nLen of Deltas: ", len(deltas[counter][l]), "counter/l: ", counter, l)
+            print("\n\nLen of Deltas(coutner/l): ", len(deltas), len(deltas[counter]), "counter/l: ", counter, l)
             deltai = deltas[counter][l]
             for m in range(len(farthest_layer_right)): 
               weight_s = self.mlp_init[i][m][l]
