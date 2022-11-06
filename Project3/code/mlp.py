@@ -68,7 +68,11 @@ class Model:
 
     #print(mlp_init)
 
+    
+
     self.mlp_init = mlp_init
+
+    print(self.mlp_init)
 
     '''
 
