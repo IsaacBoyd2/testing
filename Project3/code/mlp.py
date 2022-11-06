@@ -212,7 +212,7 @@ class Model:
 
 
 
-          xi = self.values[i+1][j]
+          xi = self.values[i][j] #used to be i+1 think it needs to move back
 
           print('This value is xi. It should be in the same layer as deltai. It should come before the wieights so like      xh ----whi---> xi ',xi)
 
