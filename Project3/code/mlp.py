@@ -237,11 +237,11 @@ class Model:
             deltai = deltas[counter][l]
 
 
-            print(deltai)
-            print(a_sum)
+
 
             a_sum = weight_s*deltai
-
+            print(deltai)
+            print(a_sum)
             sumwih_deltai = sumwih_deltai + a_sum
 
           #for l in range(len(self.mlp_init[i+1][0])):
@@ -290,7 +290,8 @@ class Model:
         neuron = layer[j]
         for k in range(len(neuron)):
           #print(i)
-          #print(j)
+          #print(j)5
+          
           #print(k)
           #print(len(self.mlp_init[i][j]), len(deltas), len(self.values[i]))
           if j < len(self.values[i]):
