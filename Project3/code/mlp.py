@@ -157,7 +157,6 @@ class Model:
 
   def Back_Prop(self,eta,classNumber,actual,output_size):  
     #print(self.mlp_init)
-    #print(self.mlp_init)
     deltas=[]  
     for x in range(len(self.mlp_init)):
       deltas.append([])
@@ -175,25 +174,26 @@ class Model:
       #print(len(farthest_layer_right)) 
 
       if i == len(self.mlp_init)- 1:    #output layer
-        #print(len(self.mlp_init))
-        #print('hello :)')
+        #regression
         if classNumber == 1:
-          diff = self.output - actual                   #delta is actual - predicted * derivative of the actication function. So for the sigmoid layers this would be (ri-yi)(oj(1-oj)) and linear it would just be (ri-yi) * possibly C
+          diff = actual - self.output                   #delta is actual - predicted * derivative of the actication function. So for the sigmoid layers this would be (ri-yi)(oj(1-oj)) and linear it would just be (ri-yi) * possibly C
 
           deltas[counter].append(diff)
-          
-          #print(self.mlp_init[-1])
 
-          #self.mlp_init[i][len(self.mlp_init[-1][-1])][self.mlp_init[-1][-1][-1]] = self.mlp_init[i][len(self.mlp_init[-1][-1])][self.mlp_init[-1][-1][-1]] + eta*diff*self.output
-          #print(diff)
+        #classification 
         else:
-          pass #this will be classification
+          actualClass = actual[1]
+          actualOneHot = actual[0]
+
+          diff = actualOneHot.get(actualClass)[j] - self.values[i][j]
+
+          deltas[0].append(diff)
 
       else:
 
         for j in range(len(farthest_layer_right[0])): 
-          #print(j) 
-          #print(i)
+          print(j) 
+          print(i)
           #print(self.values)
           #print(self.values[0][3])
 
@@ -217,15 +217,9 @@ class Model:
           
           delcalc = sumwih_deltai*(xi)*(xi-1) 
           deltas[counter+1].append(delcalc)
+        counter = counter + 1
+        print(deltas)
 
-
-        
-
-        counter = counter + 1  
-    #print('Fowards')
-    #print(self.mlp_init)
-    #print(self.values)
-    #print(deltas)
     deltas.reverse()
     #print(deltas)
 
@@ -234,35 +228,24 @@ class Model:
       for j in range(len(layer)):
         neuron = layer[j]
         for k in range(len(neuron)):
-          
-          #print(self.mlp_init[i][j][k])
-          #print(deltas[i][k])
-          print(i)
-          print(j)
-          print(self.values[i][j])
-
-          
-          
+          #print(i)
+          #print(j)
+          #print(self.values[i][j])
           self.mlp_init[i][j][k] = self.mlp_init[i][j][k] + eta*deltas[i][k]*self.values[i][j]
 
 
-    #input = 5
-
-    #print('w',self.mlp_init[i][j][k])
-    #print('e',eta)
-    #print(deltas[i][k])
-    #print(self.values[i][j])
-
-    #print('Backwards')
-    #print(self.mlp_init)
-    #print(self.values)
-    #print(self.output)
-
-    
+      #print(counter)
+            #delta = learning_rate* diff *
+          #else: #hidden layers
+          #  self.mlp_init[i][j][k] = k + eta*delta*self.values[i][j]
+    # print(self.mlp_init)
+#we need weight, xji, oj (for error), (oj(1-oj)), actual-predicted
+#weight = weight - learning_rate * error * input
 
 
 # learning_rate = 0.5
-
 # modeling = Model()
-# modeling.run(6, [4,3], 1)
-# input = [1,-0.7,0.75,1,-0.7,0.75]
+# modeling.run(3, [4,3,2], 1)
+# input = [1,0.5,0.75]
+# modeling.forwardProp(input,1)
+# modeling.Back_Prop(learning_rate)
