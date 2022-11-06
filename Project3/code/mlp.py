@@ -186,7 +186,7 @@ class Model:
         #print(len(self.mlp_init))
         #print('hello :)')
         if classNumber == 1:
-          diff = self.output -actual              #delta is actual - predicted * derivative of the actication function. So for the sigmoid layers this would be (ri-yi)(oj(1-oj)) and linear it would just be (ri-yi) * possibly C
+          diff =  self.output - actual            #delta is actual - predicted * derivative of the actication function. So for the sigmoid layers this would be (ri-yi)(oj(1-oj)) and linear it would just be (ri-yi) * possibly C
           #print('This should be the difference between the actual and what our current prediction is',diff)
 
           deltas[counter].append(diff)
@@ -309,7 +309,7 @@ class Model:
             #print('delta: ',deltas[i][j])
             #print('xi: ',self.values[i][j])
             #print('hello')
-            self.mlp_init[i][j][k] = self.mlp_init[i][j][k] + eta*deltas[i][j]*self.values[i][j]
+            self.mlp_init[i][j][k] = self.mlp_init[i][j][k] - eta*deltas[i][j]*self.values[i][j]
 
 
       #print(counter)
