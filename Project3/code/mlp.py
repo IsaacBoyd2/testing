@@ -232,8 +232,13 @@ class Model:
             print(counter)
             print(l)
             print(deltas)
+            
 
             deltai = deltas[counter][l]
+
+
+            print(deltai)
+            print(a_sum)
 
             a_sum = weight_s*deltai
 
