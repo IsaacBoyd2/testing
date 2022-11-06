@@ -194,9 +194,9 @@ class Model:
           actualClass = actual[1]
           actualOneHot = actual[0]
 
-          diff = actualOneHot.get(actualClass)[j] - self.values[i][j]
-
-          deltas[0].append(diff)
+          for j in range(len(actualClass)):
+            diff = actualOneHot.get(actualClass)[j] - self.values[i][j]
+            deltas[0].append(diff)
 
       else:
 
