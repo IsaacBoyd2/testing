@@ -115,7 +115,7 @@ class Model:
           #print(len(self.mlp_init[-1]))
           l = []
           for k in range(len(values[-1])):   #for every xi
-            l.append(float(values[-1][k])*float(self.mlp_init[-2][k][i]))  #do xiwi
+            l.append(float(values[-1][k])*float(self.mlp_init[-1][k][i]))  #do xiwi
           summation = sum(l)
         
         output = summation
