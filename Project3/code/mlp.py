@@ -157,6 +157,7 @@ class Model:
 
   def Back_Prop(self,eta,classNumber,actual,output_size):  
     #print(self.mlp_init)
+    #print(self.mlp_init)
     deltas=[]  
     for x in range(len(self.mlp_init)):
       deltas.append([])
@@ -174,13 +175,17 @@ class Model:
       #print(len(farthest_layer_right)) 
 
       if i == len(self.mlp_init)- 1:    #output layer
-        #regression
+        #print(len(self.mlp_init))
+        #print('hello :)')
         if classNumber == 1:
-          diff = actual - self.output                   #delta is actual - predicted * derivative of the actication function. So for the sigmoid layers this would be (ri-yi)(oj(1-oj)) and linear it would just be (ri-yi) * possibly C
+          diff = self.output - actual                   #delta is actual - predicted * derivative of the actication function. So for the sigmoid layers this would be (ri-yi)(oj(1-oj)) and linear it would just be (ri-yi) * possibly C
 
           deltas[counter].append(diff)
+          
+          #print(self.mlp_init[-1])
 
-        #classification 
+          #self.mlp_init[i][len(self.mlp_init[-1][-1])][self.mlp_init[-1][-1][-1]] = self.mlp_init[i][len(self.mlp_init[-1][-1])][self.mlp_init[-1][-1][-1]] + eta*diff*self.output
+          #print(diff)
         else:
           actualClass = actual[1]
           actualOneHot = actual[0]
@@ -217,12 +222,17 @@ class Model:
           
           delcalc = sumwih_deltai*(xi)*(xi-1) 
           deltas[counter+1].append(delcalc)
-        counter = counter + 1
-        print(deltas)
 
-    deltas.reverse()
+
+        
+
+        counter = counter + 1  
+    #print('Fowards')
+    #print(self.mlp_init)
+    #print(self.values)
     #print(deltas)
-
+    deltas.reverse()
+    print(deltas)
     print(self.mlp_init)
 
     for i in range(len(self.mlp_init)):
