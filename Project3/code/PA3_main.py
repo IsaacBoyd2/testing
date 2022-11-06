@@ -1,9 +1,10 @@
+
 #------------------------Header-------------------------
 
 #Code by: Isaac Boyd, James Lucas 
 
-##Code For: K-nearest neighbor
-##Completed: 10-9-2022
+##Code For: Neural Net
+##Completed: 11-1-2022
 ##References: NA
 
 #-----------------------imports-------------------------
@@ -19,12 +20,13 @@ classInputArray = [['https://github.com/IsaacBoyd2/ActualFactualML/blob/main/Pro
                    ['https://github.com/IsaacBoyd2/ActualFactualML/blob/main/Project3/code/loss.py?raw=true', 'loss.py'],
                    ['https://github.com/IsaacBoyd2/ActualFactualML/blob/main/Project3/code/mlp.py?raw=true', 'mlp.py']]
 
-
+#writes our code from github to our current local file
 for i in range(len(classInputArray)):
   with open(classInputArray[i][1], 'w') as f:
     r = requests.get(classInputArray[i][0])
     f.write(r.text)
 
+#imports our classes
 import preprocessing as pp
 import loss as lss
 import mlp as MLP
@@ -35,13 +37,15 @@ def main():
 
   #-----Hyper_parameters-------#
 
-  hiddenArray = [2,3]
+  hiddenArray = [4,3]
+  eta = .5
 
   #----------------------------#
 
   #runs preProcessing
   preProcess = pp.Preprocessing()
   preProcess.process()
+  preProcess.normalize()
   preProcess.fold()
   data = preProcess.folds
 
@@ -49,19 +53,56 @@ def main():
   if preProcess.value == 0:
     preProcess.oneHot()
     modeling = MLP.Model()
-    modeling.run(len(preProcess.df.iloc[0]),hiddenArray,len(preProcess.classes))
+    modeling.run(len(preProcess.df.iloc[0])-1,hiddenArray,len(preProcess.classes))
+    
+    
     for i in range(len(preProcess.folds[0:8])): 
       modeling.forwardProp(preProcess.df.values[i,0:-1].astype('float'),preProcess.value)
-      print("modeling values: ", modeling.values)
-      #add back prop here 
+      modeling.Back_Prop(eta,0,[preProcess.oneHotDict,preProcess.df.values[i,-1]],len(preProcess.classes))
+      
+    values = []
+    actual = []
+    for i in range(len(preProcess.folds[9])):
+      modeling.forwardProp(preProcess.df.values[i+len(preProcess.folds[0:8]),0:-1].astype('float'),preProcess.value)
+      values.append(modeling.values[-1].index(max(modeling.values[-1])))
+      actual.append(preProcess.folds[9][i][-1])
+
+    for i in range(len(values)):
+      print(preProcess.classes)
+      values[i] = preProcess.classes[values[i]]
+
+    print("\n\n\nTHIS IS THE VALUES: \n", values, "\nACTUAL:", actual)
 
   #regression
   else:
     modeling = MLP.Model()
-    modeling.run(len(preProcess.df.iloc[0]),hiddenArray,1)
-    for i in range(len(preProcess.folds[0:8])):
-      modeling.forwardProp(preProcess.df.values[i,0:-1].astype('float'),preProcess.value)
-      #add back prop here
+    modeling.run(len(preProcess.df.iloc[0])-1,hiddenArray,1)
+
+    for q in range(30):
+      for i in range(len(preProcess.folds[0:8])):
+
+
+        print('ehllo',preProcess.df.values[i,0:-1])
+        print(len(preProcess.df.values[i,0:-1].astype('float')))
+        print(preProcess.value)
+
+        modeling.forwardProp(preProcess.df.values[i,0:-1].astype('float'),preProcess.value)
+
+
+        print(preProcess.df.values[i,-1])
+        #print(len(preProcess.df.values[i,-1]))
+
+        modeling.Back_Prop(eta,1,preProcess.df.values[i,-1],1)
+
+    values = []
+    actual = []
+    for i in range(len(preProcess.folds[9])):
+      modeling.forwardProp(preProcess.df.values[i+len(preProcess.folds[0:8]),0:-1].astype('float'),preProcess.value)
+      values.append(modeling.output)
+      actual.append(preProcess.folds[9][i][-1])
+
+    print("\n\n\nTHIS IS THE VALUES: \n", values, "\nACTUAL:", actual)
+
   
  
 
@@ -70,7 +111,7 @@ def main():
 #calls main
 main()
 
-#makes sure that the python classes are taken out after execution
-# for i in range(len(classInputArray)):
-  # fileName = classInputArray[i][1]
-  # os.remove(fileName)
+# makes sure that the python classes are taken out after execution
+for i in range(len(classInputArray)):
+  fileName = classInputArray[i][1]
+  os.remove(fileName)
