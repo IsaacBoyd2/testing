@@ -102,7 +102,14 @@ class Model:
 
           #print(summation)
           #print("SUMMATION: ", summation)
-          sigmoid = 1/(1+round(math.e**(-summation),8))    #sigmoid function
+
+
+          if summation > 100:
+            sigmoid = 0
+          else:
+            sigmoid = 1/(1+math.e**(-summation))    #sigmoid function
+
+            
           layer_outputs.append(sigmoid) #append for each input
 
         values.append(layer_outputs) #append all the outputs. (this will be what is "inside" of each node)
