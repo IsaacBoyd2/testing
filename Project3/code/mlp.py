@@ -101,7 +101,7 @@ class Model:
 
     self.mlp_init = mlp_init
 
-    #print(self.mlp_init)
+    print(self.mlp_init)
 
     '''
 
@@ -132,6 +132,7 @@ class Model:
 
           #This will grab everything in values starting at values[0]
           for k in range(len(values[i])): 
+            print(i,k,j)
             l.append(float(values[i][k])*float(self.mlp_init[i][k][j]))  #do xiwi
           summation = sum(l) #Sum of all xiwis
 
