@@ -129,8 +129,8 @@ class Model:
 
         self.values = values
 
-        print('Output Values for layers 3->1 : ',self.values)
-        print('Output at layer 0 : ',self.output)
+        #print('Output Values for layers 3->1 : ',self.values)
+        #print('Output at layer 0 : ',self.output)
 
 
       else:
