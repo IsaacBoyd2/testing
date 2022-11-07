@@ -86,43 +86,39 @@ class Model:
 
     '''
     
-  def forwardProp(self,input, classNumber):      #potentially need to do something for just the input layers
+  def forwardProp(self,input, classNumber):
     values = [[]]
-
-    #print('intput ',input)
     values[0] = input
-    #loops through each layer.
+
+
+    #loops through each layer.  (ex. 0,1,2,3)
     for i in range(len(self.mlp_init)):
       layer_outputs = []
-      #loops through each node      
+ 
       if i != len(self.mlp_init)-1: #As long as we are not in the last layer
-        for j in range(len(self.mlp_init[i+1])):  #This grabs the length of the next layer
+
+        #loops through each node according to the next layer length (ex. 0,1,2,3)  
+        for j in range(len(self.mlp_init[i+1])): 
           l = []
-          for k in range(len(values[i])):   #for every xi
+
+          #This will grab everything in values starting at values[0]
+          for k in range(len(values[i])): 
             l.append(float(values[i][k])*float(self.mlp_init[i][k][j]))  #do xiwi
           summation = sum(l) #Sum of all xiwis
 
-
-          try:
-            sigmoid = 1/(1+math.e**(-summation))    #sigmoid function
-          except:
-            sigmoid = 1
-
-
+          sigmoid = 1/(1+(math.e**(-summation)))    #sigmoid function
           layer_outputs.append(sigmoid) #append for each input
 
-        values.append(layer_outputs) 
+        values.append(layer_outputs) #append all the outputs. (this will be what is "inside" of each node)
 
+      #output layer
       elif classNumber == 1:
 
-        for i in range(1):
-
-          l = []
-          for k in range(len(values[-1])):   #for every xi
-            l.append(float(values[-1][k])*float(self.mlp_init[-1][k][i]))  #do xiwi
-          summation = sum(l)
- 
-        
+        #Linear = No activation
+        l = []
+        for k in range(len(values[-1])):  
+          l.append(float(values[-1][k])*float(self.mlp_init[-1][k][0]))  #do xiwi
+        summation = sum(l)
         output = summation
 
         self.output = output
