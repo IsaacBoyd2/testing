@@ -289,7 +289,7 @@ class Model:
     deltas.reverse()
     #print(self.mlp_init)
 
-    print('Here are the deltas that we should get... these should be correct since I just went through them',deltas)
+    #print('Here are the deltas that we should get... these should be correct since I just went through them',deltas)
     #print('Now we are going to start updating the wights')
 
     for i in range(len(self.mlp_init)):
