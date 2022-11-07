@@ -85,7 +85,7 @@ class Model:
 
       #output layer
       output_nodes = []
-      for i in range(inputsize):
+      for i in range(input_size):
         output_node = []
         for i in range(output_size):
           output_node.append(random.random())
