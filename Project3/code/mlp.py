@@ -274,4 +274,4 @@ class Model:
 
           if j < len(self.values[i]):
 
-            self.mlp_init[i][j][k] = self.mlp_init[i][j][k] + eta*deltas[i][j]*self.values[i][j]
+            self.mlp_init[i][j][k] = self.mlp_init[i][j][k] - eta*deltas[i][j]*self.values[i][j]
