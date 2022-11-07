@@ -323,7 +323,7 @@ class Model:
             #print('delta: ',deltas[i][j])
             #print('xi: ',self.values[i][j])
             #print('hello')
-            self.mlp_init[i][j][k] = self.mlp_init[i][j][k] - eta*deltas[i][j]*self.values[i][j]
+            self.mlp_init[i][j][k] = self.mlp_init[i][j][k] + eta*deltas[i][j]*self.values[i][j]
 
 
       #print(counter)
