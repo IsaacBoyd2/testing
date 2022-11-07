@@ -207,7 +207,7 @@ class Model:
 
 
 
-          for l in range(len(self.mlp_init[i][j])):
+          for l in range(len(delta[counter])):
 
 
             weight_s = self.mlp_init[i][j][l]
