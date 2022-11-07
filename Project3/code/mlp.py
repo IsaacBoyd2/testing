@@ -33,18 +33,20 @@ class Model:
 
     mlp_init = []   #The network
 
-    #Input
-    hidden_nodes = []
-    for i in range(input_size):
-      hidden_node = []
-      for i in range(hidden_sizes[0]):
-        hidden_node.append(random.random())
-      hidden_nodes.append(hidden_node)
-
-    mlp_init.append(hidden_nodes)
-    
-
     if flag == 0:
+
+      #Input
+      hidden_nodes = []
+      for i in range(input_size):
+        hidden_node = []
+        for i in range(hidden_sizes[0]):
+          hidden_node.append(random.random())
+        hidden_nodes.append(hidden_node)
+
+      mlp_init.append(hidden_nodes)
+      
+
+      
 
       #Init number of weights between each hidden layer
       for sizes in range(len(hidden_sizes)-1):
@@ -57,16 +59,41 @@ class Model:
 
         mlp_init.append(hidden_nodes)
 
-    #output layer
-    output_nodes = []
-    for i in range(hidden_sizes[-1]):
-      output_node = []
-      for i in range(output_size):
-        output_node.append(random.random())
-      output_nodes.append(output_node)
-    
-    
-    mlp_init.append(output_nodes)
+      #output layer
+      output_nodes = []
+      for i in range(hidden_sizes[-1]):
+        output_node = []
+        for i in range(output_size):
+          output_node.append(random.random())
+        output_nodes.append(output_node)
+      
+      
+      mlp_init.append(output_nodes)
+
+    else:
+
+      #Input
+      hidden_nodes = []
+      for i in range(input_size):
+        hidden_node = []
+        for i in range(ouput_size):
+          hidden_node.append(random.random())
+        hidden_nodes.append(hidden_node)
+
+      mlp_init.append(hidden_nodes)
+      
+
+      #output layer
+      output_nodes = []
+      for i in range(inputsize):
+        output_node = []
+        for i in range(output_size):
+          output_node.append(random.random())
+        output_nodes.append(output_node)
+      
+      
+      mlp_init.append(output_nodes)
+
 
     #print(mlp_init)
 
