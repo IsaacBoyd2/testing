@@ -121,7 +121,16 @@ class Model:
         summation = sum(l)
         output = summation
 
+        layer_outputs = []
+        layer_outputs.append(output)
+        values.append(layer_outputs)
+
         self.output = output
+
+        self.values = values
+
+        print('Output Values for layers 3->1 : ',self.values)
+        print('Output at layer 0 : ',self.output)
 
 
       else:
@@ -160,24 +169,22 @@ class Model:
     self.values = values
 
   def Back_Prop(self,eta,classNumber,actual,output_size):  
-
+    
+    #Preapre Deltas for delta rule
     deltas=[]  
-    for x in range(len(self.mlp_init)):
+    for x in range(len(self.values)):
       deltas.append([])
 
- 
-
     counter = 0
-    for i in reversed(range(len(self.mlp_init))):  
-      farthest_layer_right = self.mlp_init[i]    
+    #go through every layer backwards (ex. 3,2,1,0)
+    for i in reversed(range(len(self.values))):   #we need #of deltas = # of layers so len delta = len values.... Used to be len deltas = len self.mlp_intit
 
-      if i == len(self.mlp_init)- 1:    
- 
+      #farthest_layer_right = self.mlp_init[0]
+
+      if i == len(self.values)- 1:    #output layer
         if classNumber == 1:
-          print('hello')
-          diff =  self.output -actual            
-
-          deltas[counter].append(diff)
+          diff = actual - self.output    #(t - a)    t = actual a = guess
+          deltas[counter].append(diff)   
           
 
         else:
@@ -189,62 +196,49 @@ class Model:
             deltas[0].append(diff)
 
       else:
+        #print(counter)
 
-  
-        for j in range(len(farthest_layer_right)): 
+        #Go through every node in the current Layer and assign each one a delta
+        for j in range(len(self.values[i])): 
 
-          print('right layer',len(farthest_layer_right))
-
-
-
-
-          xi = self.values[i][j] 
-
+          xi = self.values[i][j]
           sumwih_deltai = 0
 
+          
 
+          #This grabs how many nodes are in the layer ahead. That is how many components will be in each delta calc. (ex. 0,1)
+          for l in range(len(deltas[counter-1])):
 
+            deltai = deltas[counter-1][l]
+            weight_s = self.mlp_init[i][j][l]  
 
-          for l in range(len(deltas[counter])):
-
-
-            weight_s = self.mlp_init[i][j][l]
-
-
-            print(len(self.mlp_init[i][j]))
-            print(deltas)
-            print(counter)
-
-            deltai = deltas[counter][l]
-
-
-
-
-            a_sum = weight_s*deltai
-
-            sumwih_deltai = sumwih_deltai + a_sum
-
-
+            #get sum(wiDi)
+            sumwih_deltai += weight_s*deltai
+          
+          #Get delta for the given node.
           delcalc = sumwih_deltai*(xi)*(1-xi) 
-
-
-          deltas[counter+1].append(delcalc)
+          deltas[counter].append(delcalc)
  
 
 
-        
 
-        counter = counter + 1  
+
+      counter = counter + 1  
 
     deltas.reverse()
+    #print(deltas)
 
-
+    #Now we need to update the weights
+    #go through every layer
     for i in range(len(self.mlp_init)):
       layer = self.mlp_init[i]
+      #go through every node in every layer
       for j in range(len(layer)):
         neuron = layer[j]
+        #go through every weight
         for k in range(len(neuron)):
+          #print(self.mlp_init[i][j][k])
+          #print(self.values[i][j])
 
-          if j < len(self.values[i]):
-
-            self.mlp_init[i][j][k] = self.mlp_init[i][j][k] - eta*deltas[i][j]*self.values[i][j]
+          #should be every weight  + eta*delta in from of the weight*xi that caused the weight
+          self.mlp_init[i][j][k] = self.mlp_init[i][j][k] + eta*deltas[i+1][k]*self.values[i][j]    #delta needs to be +1 so we do not pull from the input layer
