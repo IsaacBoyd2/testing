@@ -197,6 +197,8 @@ class Model:
   
         for j in range(len(farthest_layer_right)): 
 
+          print('right layer',len(farthest_layer_right))
+
 
 
 
