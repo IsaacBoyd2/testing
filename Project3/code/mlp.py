@@ -104,10 +104,13 @@ class Model:
           #print("SUMMATION: ", summation)
 
 
-          if summation > 100:
-            sigmoid = 0
-          else:
+          #if summation > 100:
+          #  sigmoid = 0
+          #else:
+          try:
             sigmoid = 1/(1+math.e**(-summation))    #sigmoid function
+          except:
+            sigmoid = 1
 
 
           layer_outputs.append(sigmoid) #append for each input
