@@ -84,15 +84,15 @@ class Model:
       
 
       #output layer
-      output_nodes = []
-      for i in range(input_size):
-        output_node = []
-        for i in range(output_size):
-          output_node.append(random.random())
-        output_nodes.append(output_node)
+      #output_nodes = []
+      #for i in range(input_size):
+      #  output_node = []
+      #  for i in range(output_size):
+      #    output_node.append(random.random())
+      #  output_nodes.append(output_node)
       
       
-      mlp_init.append(output_nodes)
+      #mlp_init.append(output_nodes)
 
 
     #print(mlp_init)
