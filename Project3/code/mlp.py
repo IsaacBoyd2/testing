@@ -76,7 +76,7 @@ class Model:
       hidden_nodes = []
       for i in range(input_size):
         hidden_node = []
-        for i in range(ouput_size):
+        for i in range(output_size):
           hidden_node.append(random.random())
         hidden_nodes.append(hidden_node)
 
