@@ -109,7 +109,7 @@ class Model:
           else:
             sigmoid = 1/(1+math.e**(-summation))    #sigmoid function
 
-            
+
           layer_outputs.append(sigmoid) #append for each input
 
         values.append(layer_outputs) #append all the outputs. (this will be what is "inside" of each node)
@@ -143,6 +143,8 @@ class Model:
           for k in range(len(values[-1])):   #for every xi
             l.append(float(values[-1][k])*float(self.mlp_init[-1][k][i]))  #do xiwi
           summation = sum(l) #Sum of all xiwis
+
+
           sigmoid = 1/(1+math.e**(-summation))    #sigmoid function
           layer_outputs.append(sigmoid) #append for each input
 
@@ -193,7 +195,7 @@ class Model:
         #print(len(self.mlp_init))
         #print('hello :)')
         if classNumber == 1:
-          diff =  self.output - actual            #delta is actual - predicted * derivative of the actication function. So for the sigmoid layers this would be (ri-yi)(oj(1-oj)) and linear it would just be (ri-yi) * possibly C
+          diff =  actual - self.output#self.output - actual            #delta is actual - predicted * derivative of the actication function. So for the sigmoid layers this would be (ri-yi)(oj(1-oj)) and linear it would just be (ri-yi) * possibly C
           #print('This should be the difference between the actual and what our current prediction is',diff)
 
           deltas[counter].append(diff)
