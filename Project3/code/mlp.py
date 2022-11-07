@@ -138,9 +138,11 @@ class Model:
           summation = sum(l) #Sum of all xiwis
           
           print('Sum xi*wi : ',summation)
-          print('After sigmoidal activation : ',sigmoid)
+          
 
           sigmoid = 1/(1+(math.e**(-summation)))    #sigmoid function
+
+          print('After sigmoidal activation : ',sigmoid)
           layer_outputs.append(sigmoid) #append for each input
 
         print('Entire Layer output : ',layer_outputs)
