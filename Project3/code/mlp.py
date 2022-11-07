@@ -164,7 +164,7 @@ class Model:
   def Back_Prop(self,eta,classNumber,actual,output_size):  
     #print('Here are the weights at the start of backprop: ',self.mlp_init)
     #print('Here are the values in the nodes at the start of backprop: ',self.values)
-    #print('Here is the value that we are tryin to approach: ',actual)
+    print('Here is the value that we are tryin to approach: ',actual)
     print('Here is the guess that forwards prop yeilded', self.output)
     deltas=[]  
     for x in range(len(self.mlp_init)):
