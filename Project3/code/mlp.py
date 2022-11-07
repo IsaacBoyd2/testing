@@ -89,7 +89,7 @@ class Model:
   def forwardProp(self,input, classNumber):      #potentially need to do something for just the input layers
     values = [[]]
 
-    print('intput ',input)
+    #print('intput ',input)
     values[0] = input
     #loops through each layer.
     for i in range(len(self.mlp_init)):
@@ -102,13 +102,7 @@ class Model:
             l.append(float(values[i][k])*float(self.mlp_init[i][k][j]))  #do xiwi
           summation = sum(l) #Sum of all xiwis
 
-          #print(summation)
-          #print("SUMMATION: ", summation)
 
-
-          #if summation > 100:
-          #  sigmoid = 0
-          #else:
           try:
             sigmoid = 1/(1+math.e**(-summation))    #sigmoid function
           except:
@@ -117,34 +111,27 @@ class Model:
 
           layer_outputs.append(sigmoid) #append for each input
 
-        values.append(layer_outputs) #append all the outputs. (this will be what is "inside" of each node)
-        #print(values)
-
-      #output layer
+        values.append(layer_outputs) 
 
       elif classNumber == 1:
-        #print(self.mlp_init)
-        #print(values)
+
         for i in range(1):
-          #print(len(self.mlp_init[-1]))
+
           l = []
           for k in range(len(values[-1])):   #for every xi
             l.append(float(values[-1][k])*float(self.mlp_init[-1][k][i]))  #do xiwi
           summation = sum(l)
-          print('l ',l)
+ 
         
         output = summation
 
         self.output = output
 
-        #print('output',output)
 
-
-        #Decision Circuit
       else:
         layer_outputs = []
         for i in range(len(self.mlp_init[-1][0])):
-          #print(len(self.mlp_init[-1]))
+ 
           l = []
           for k in range(len(values[-1])):   #for every xi
             l.append(float(values[-1][k])*float(self.mlp_init[-1][k][i]))  #do xiwi
@@ -152,9 +139,9 @@ class Model:
 
 
           sigmoid = 1/(1+math.e**(-summation))    #sigmoid function
-          layer_outputs.append(sigmoid) #append for each input
+          layer_outputs.append(sigmoid) 
 
-        values.append(layer_outputs) #append all the outputs. (this will be what is "inside" of each node)
+        values.append(layer_outputs)
       
       if classNumber == 0:
 
@@ -177,40 +164,26 @@ class Model:
     self.values = values
 
   def Back_Prop(self,eta,classNumber,actual,output_size):  
-    #print('Here are the weights at the start of backprop: ',self.mlp_init)
-    #print('Here are the values in the nodes at the start of backprop: ',self.values)
-    print('Here is the value that we are tryin to approach: ',actual)
-    print('Here is the guess that forwards prop yeilded', self.output)
+
     deltas=[]  
     for x in range(len(self.mlp_init)):
       deltas.append([])
 
-    #print(deltas)
-    #deltas[2][] = 1
-    #deltas[1].append(1)
-    #deltas[2].append(2)
-    #print(deltas)
+ 
 
     counter = 0
-    for i in reversed(range(len(self.mlp_init))):   #go through every layer backwards
-      #print(self.mlp_init[i])
-      farthest_layer_right = self.mlp_init[i]    #grab the last layer
-      #print(len(farthest_layer_right)) 
+    for i in reversed(range(len(self.mlp_init))):  
+      farthest_layer_right = self.mlp_init[i]    
 
-      if i == len(self.mlp_init)- 1:    #output layer
-        #print(len(self.mlp_init))
-        #print('hello :)')
+      if i == len(self.mlp_init)- 1:    
+ 
         if classNumber == 1:
           print('hello')
-          diff =  self.output -actual            #delta is actual - predicted * derivative of the actication function. So for the sigmoid layers this would be (ri-yi)(oj(1-oj)) and linear it would just be (ri-yi) * possibly C
-          #print('This should be the difference between the actual and what our current prediction is',diff)
+          diff =  self.output -actual            
 
           deltas[counter].append(diff)
           
-          #print(self.mlp_init[-1])
 
-          #self.mlp_init[i][len(self.mlp_init[-1][-1])][self.mlp_init[-1][-1][-1]] = self.mlp_init[i][len(self.mlp_init[-1][-1])][self.mlp_init[-1][-1][-1]] + eta*diff*self.output
-          #print(diff)
         else:
           actualClass = actual[1]
           actualOneHot = actual[0]
@@ -221,8 +194,8 @@ class Model:
 
       else:
 
-        #print(len(farthest_layer_right))
-        for j in range(len(farthest_layer_right)): #Used to be farthest_layer_right[0]
+  
+        for j in range(len(farthest_layer_right)): 
 
 
 
@@ -240,7 +213,9 @@ class Model:
             weight_s = self.mlp_init[i][j][l]
 
 
-            
+            print(len(self.mlp_init[i][j]))
+            print(deltas)
+            print(counter)
 
             deltai = deltas[counter][l]
 
