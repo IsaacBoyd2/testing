@@ -88,6 +88,8 @@ class Model:
     
   def forwardProp(self,input, classNumber):      #potentially need to do something for just the input layers
     values = [[]]
+
+    print('intput ',input)
     values[0] = input
     #loops through each layer.
     for i in range(len(self.mlp_init)):
@@ -129,6 +131,7 @@ class Model:
           for k in range(len(values[-1])):   #for every xi
             l.append(float(values[-1][k])*float(self.mlp_init[-1][k][i]))  #do xiwi
           summation = sum(l)
+          print('l ',l)
         
         output = summation
 
