@@ -202,7 +202,7 @@ class Model:
         #print('hello :)')
         if classNumber == 1:
           print('hello')
-          diff =  actual - self.output#self.output - actual            #delta is actual - predicted * derivative of the actication function. So for the sigmoid layers this would be (ri-yi)(oj(1-oj)) and linear it would just be (ri-yi) * possibly C
+          diff =  self.output - actual            #delta is actual - predicted * derivative of the actication function. So for the sigmoid layers this would be (ri-yi)(oj(1-oj)) and linear it would just be (ri-yi) * possibly C
           #print('This should be the difference between the actual and what our current prediction is',diff)
 
           deltas[counter].append(diff)
@@ -223,36 +223,23 @@ class Model:
 
         #print(len(farthest_layer_right))
         for j in range(len(farthest_layer_right)): #Used to be farthest_layer_right[0]
-          #print(len(farthest_layer_right[0]))
-          #print(j) 
-          #print(i)
-          #print(self.values)
-          #print(self.values[0][3])
 
 
 
-          xi = self.values[i][j] #used to be i+1 think it needs to move back
 
-          #print('This value is xi. It should be in the same layer as deltai. It should come before the wieights so like      xh ----whi---> xi ',xi)
+          xi = self.values[i][j] 
 
-          #print('asdfasdf',self.values)
-
-          #weight_sum = 0
           sumwih_deltai = 0
 
 
 
-          #1. Grab all the weights connected to xi, multiply them by the delta connected to xi
 
           for l in range(len(self.mlp_init[i][j])):
 
-            #print(len(self.mlp_init[i][j]))
 
             weight_s = self.mlp_init[i][j][l]
 
-            #print('counter :', counter)
-            #print('l :', l)
-            #print('deltas: ',deltas)
+
             
 
             deltai = deltas[counter][l]
@@ -261,86 +248,30 @@ class Model:
 
 
             a_sum = weight_s*deltai
-            #print(deltai)
-            #print(weight_s)
+
             sumwih_deltai = sumwih_deltai + a_sum
 
-          #for l in range(len(self.mlp_init[i+1][0])):
-            #print(len(self.mlp_init[i+1][0]))
 
-            #print(self.mlp_init[i+1])
-            #if l < len(deltas[counter]):
-              #print("\n\nLen of Deltas(coutner/l): ", len(deltas), len(deltas[counter]), "counter/l: ", counter, l)
-              #deltai = deltas[counter][l]
-
-              #print('This shouldbe the previous delta calculation', deltai)
-
-              #for m in range(len(farthest_layer_right)): 
-                #weight_s = self.mlp_init[i][m][l]
-
-          
-          #sumwih_deltai += weight_s*deltai
-
-          #print('This should be the sum of all of the weights * the delta?',sumwih_deltai)
-
-
-
-          #try:
           delcalc = sumwih_deltai*(xi)*(1-xi) 
 
 
-          #print('This should be the calculated delta', delcalc)
           deltas[counter+1].append(delcalc)
-          #except:
-          #  pass
+ 
 
 
         
 
         counter = counter + 1  
-    #print('Fowards')
-    #print(self.mlp_init)
-    #print(self.values)
-    #print(deltas)
-    deltas.reverse()
-    #print(self.mlp_init)
 
-    #print('Here are the deltas that we should get... these should be correct since I just went through them',deltas)
-    #print('Now we are going to start updating the wights')
+    deltas.reverse()
+
 
     for i in range(len(self.mlp_init)):
       layer = self.mlp_init[i]
       for j in range(len(layer)):
         neuron = layer[j]
         for k in range(len(neuron)):
-          #print(i)
-          #print(j)5
-          
-          #print(k)
-          #print(len(self.mlp_init[i][j]), len(deltas), len(self.values[i]))
+
           if j < len(self.values[i]):
 
-            #print('Current weight: ',self.mlp_init[i][j][k])
-            #print('eta: ',eta)5
-
-            #print('delta: ',deltas[i][j])
-            #print('xi: ',self.values[i][j])
-            #print('hello')
             self.mlp_init[i][j][k] = self.mlp_init[i][j][k] + eta*deltas[i][j]*self.values[i][j]
-
-
-      #print(counter)
-            #delta = learning_rate* diff *
-          #else: #hidden layers
-          #  self.mlp_init[i][j][k] = k + eta*delta*self.values[i][j]
-    # print(self.mlp_init)
-#we need weight, xji, oj (for error), (oj(1-oj)), actual-predicted
-#weight = weight - learning_rate * error * input
-
-
-# learning_rate = 0.5
-# modeling = Model()
-# modeling.run(3, [4,3,2], 1)
-# input = [1,0.5,0.75]
-# modeling.forwardProp(input,1)
-# modeling.Back_Prop(learning_rate)
