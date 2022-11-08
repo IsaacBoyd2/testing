@@ -167,7 +167,7 @@ class Model:
 
         self.output = output
 
-        print('Before linear activation : ', values[-1])
+        print('Before linear activation : ', values[-2])
        
         print('Linear Output : ', self.output)
 
