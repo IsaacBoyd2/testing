@@ -282,7 +282,7 @@ class Model:
 
       counter = counter + 1  
 
-    print('Before weights update : ',self.mlp_init)
+    #print('Before weights update : ',self.mlp_init)
 
     deltas.reverse()
     #print(deltas)
@@ -302,4 +302,4 @@ class Model:
           #should be every weight  + eta*delta in from of the weight*xi that caused the weight
           self.mlp_init[i][j][k] = self.mlp_init[i][j][k] + eta*deltas[i+1][k]*self.values[i][j]    #delta needs to be +1 so we do not pull from the input layer
 
-    print('After weights update : ',self.mlp_init)
+    #print('After weights update : ',self.mlp_init)
