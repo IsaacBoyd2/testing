@@ -145,7 +145,7 @@ class Model:
           print('After sigmoidal activation : ',sigmoid)
           layer_outputs.append(sigmoid) #append for each input
 
-        print('Entire Layer output : ',layer_outputs)
+        #print('Entire Layer output : ',layer_outputs)
 
         values.append(layer_outputs) #append all the outputs. (this will be what is "inside" of each node)
 
@@ -207,7 +207,7 @@ class Model:
 
       
     self.values = values
-    print('All of the values == Complete forwards propegation!', values)
+    
 
   def Back_Prop(self,eta,classNumber,actual,output_size):  
     
