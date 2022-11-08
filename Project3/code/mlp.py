@@ -212,6 +212,7 @@ class Model:
           softmax2 = (math.e**i)/the_sum_of_soft
           output_values.append(softmax2)
 
+        print('weights', self.mlp_init[-1])
         print("Before Softamx : " ,values[-1])
 
         values[-1] = output_values
