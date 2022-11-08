@@ -195,7 +195,7 @@ class Model:
 
         values.append(layer_outputs)
 
-        print("Before Softamx : " ,values[-1])
+        
       
       if classNumber == 0:
 
@@ -211,6 +211,8 @@ class Model:
         for i in values[-1]:
           softmax2 = (math.e**i)/the_sum_of_soft
           output_values.append(softmax2)
+
+        print("Before Softamx : " ,values[-1])
 
         values[-1] = output_values
 
