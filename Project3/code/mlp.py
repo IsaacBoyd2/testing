@@ -167,9 +167,9 @@ class Model:
 
         self.output = output
 
-        print('Before linear activation : ', values[-2])
+        #print('Before linear activation : ', values[-2])
        
-        print('Linear Output : ', self.output)
+        #print('Linear Output : ', self.output)
 
 
         self.values = values
@@ -212,12 +212,12 @@ class Model:
           softmax2 = (math.e**i)/the_sum_of_soft
           output_values.append(softmax2)
 
-        print('weights', self.mlp_init[-1])
-        print("Before Softamx : " ,values[-1])
+        #print('weights', self.mlp_init[-1])
+        #print("Before Softamx : " ,values[-1])
 
         values[-1] = output_values
 
-        print('After Softmax : ',values[-1])
+        #print('After Softmax : ',values[-1])
 
       
     self.values = values
@@ -278,7 +278,11 @@ class Model:
 
 
 
+    
+
       counter = counter + 1  
+
+    print('Before weights update : ',self.mlp_init)
 
     deltas.reverse()
     #print(deltas)
@@ -297,3 +301,5 @@ class Model:
 
           #should be every weight  + eta*delta in from of the weight*xi that caused the weight
           self.mlp_init[i][j][k] = self.mlp_init[i][j][k] + eta*deltas[i+1][k]*self.values[i][j]    #delta needs to be +1 so we do not pull from the input layer
+
+    print('After weights update : ',self.mlp_init)
