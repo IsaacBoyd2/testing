@@ -214,7 +214,7 @@ class Model:
 
         values[-1] = output_values
 
-        print('After Softmax : 'values[-1])
+        print('After Softmax : ',values[-1])
 
       
     self.values = values
