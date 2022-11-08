@@ -149,7 +149,7 @@ class Model:
 
         values.append(layer_outputs) #append all the outputs. (this will be what is "inside" of each node)
 
-      print('Before linear activation : ', values[-1])
+      
 
       #output layer
       elif classNumber == 1:
@@ -167,6 +167,7 @@ class Model:
 
         self.output = output
 
+        print('Before linear activation : ', values[-1])
        
         print('Linear Output : ', self.output)
 
