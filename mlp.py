@@ -124,9 +124,11 @@ class Model:
     for i in range(len(self.mlp_init)):
       layer_outputs = []
       
-      #print('i :'i)
+      
  
       if i != len(self.mlp_init)-1: #As long as we are not in the last layer
+        
+        print(len(values[i]))
 
         #loops through each node according to the next layer length (ex. 0,1,2,3)  
         for j in range(len(self.mlp_init[i+1])): 
