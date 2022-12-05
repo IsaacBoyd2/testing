@@ -27,6 +27,7 @@ class Model:
     self.labels = []
     self.mlp_init = []
     self.values = []
+    self.output = 0
     
   def run(self, input_size, hidden_sizes, output_size,flag):  
     #Initilize the network to have random weights between 0 and 1.
