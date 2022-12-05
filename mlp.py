@@ -128,7 +128,7 @@ class Model:
  
       if i != len(self.mlp_init)-1: #As long as we are not in the last layer
         
-        print(len(values[i]))
+        #print(len(values[i]))
 
         #loops through each node according to the next layer length (ex. 0,1,2,3)  
         for j in range(len(self.mlp_init[i+1])): 
@@ -138,9 +138,9 @@ class Model:
 
           #This will grab everything in values starting at values[0]
           for k in range(len(values[i])): 
-            print('Current posistion in forwards prop',i,k,j)
-            print(float(values[i][k]))
-            print(float(self.mlp_init[i][k][j]))
+            #print('Current posistion in forwards prop',i,k,j)
+            #print(float(values[i][k]))
+            #print(float(self.mlp_init[i][k][j]))
             l.append(float(values[i][k])*float(self.mlp_init[i][k][j]))  #do xiwi
           summation = sum(l) #Sum of all xiwis
           
