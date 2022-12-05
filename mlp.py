@@ -137,7 +137,7 @@ class Model:
           #This will grab everything in values starting at values[0]
           for k in range(len(values[i])): 
             print('Current posistion in forwards prop',i,k,j)
-            print(float(values[i][k])
+            print(float(values[i][k]))
             print(float(self.mlp_init[i][k][j]))
             l.append(float(values[i][k])*float(self.mlp_init[i][k][j]))  #do xiwi
           summation = sum(l) #Sum of all xiwis
